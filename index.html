@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK SMART AI TECHNOLOGIES | Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Logo">
+                <div>
+                    <div class="brand-name">SK SMART AI TECHNOLOGIES</div>
+                    <div class="reg-text">MSME · UDYAM-TN-36-0058719</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#courses">Programs</a>
+                <a href="#portals">Portals</a>
+                <a href="#verify">Verify</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <img src="logo.png" alt="Logo" class="hero-logo">
+            <h1>Advanced <span class="accent">AI Intelligence</span></h1>
+            <p>Professional Curriculum & Smart-Seal Certification</p>
+            <button class="portal-btn" onclick="location.href='#verify'">Verify Now</button>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <h2 class="section-title">Academic Programs</h2>
+            <div class="grid" id="mainGrid"></div>
+        </div>
+    </section>
+
+    <section id="portals">
+        <div class="container">
+            <h2 class="section-title">Institutional Portals</h2>
+            <div class="grid">
+                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin Portal</h3></div>
+                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff Portal</h3></div>
+                <div class="card" onclick="openLogin('Student')"><i class="fas fa-user-graduate"></i><h3>Student Portal</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="verify">
+        <div class="container">
+            <h2 class="section-title">Certificate Verification</h2>
+            <div class="card verify-card">
+                <input type="text" id="certId" placeholder="Enter Certificate ID">
+                <div class="btn-group">
+                    <button class="portal-btn" onclick="manualVerify()">Search</button>
+                    <button class="portal-btn" style="background:#1a1a1a; color:white;" onclick="startScanner()">Scan QR</button>
+                </div>
+                <div id="reader"></div>
+                <div id="verifyResult"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h3 id="modalTitle" class="accent">Login</h3>
+            <input type="password" id="portalPass" placeholder="Password">
+            <div class="btn-group" style="margin-top:20px;">
+                <button class="portal-btn" onclick="checkPass()">Login</button>
+                <button class="portal-btn" style="background:transparent; border:1px solid white; color:white;" onclick="closeLogin()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 SK SMART AI TECHNOLOGIES. All Rights Reserved.</p>
+            <p>sksmartaitechnologies@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
