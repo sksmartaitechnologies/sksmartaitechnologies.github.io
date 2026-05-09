@@ -22,8 +22,7 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#courses">Programs</a>
-                <a href="#reviews">Reviews</a>
-                <a href="#verify">Verify</a>
+                <a href="#verify">Verify</a> <a href="#reviews">Reviews</a>
             </div>
         </div>
     </nav>
@@ -35,7 +34,7 @@
             <p>Empowering the next generation of Data Scientists & AI Engineers.</p>
             <div class="btn-group">
                 <button class="portal-btn" onclick="location.href='#about'">Learn More</button>
-                <button class="portal-btn" style="background:#25D366; color:white;" onclick="window.open('https://wa.me/YOUR_PHONE_NUMBER', '_blank')">Enroll via WhatsApp</button>
+                <button class="portal-btn" style="background:#d44638; color:white;" onclick="location.href='mailto:sksmartaitechnologies@gmail.com'">Contact via Email</button>
             </div>
         </div>
     </section>
@@ -44,8 +43,8 @@
         <div class="container">
             <h2 class="section-title">About <span class="accent">Our Institution</span></h2>
             <div class="card" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
-                <p>Welcome to <strong>SK SMART AI TECHNOLOGIES</strong>. Founded with a vision to bridge the gap between academic learning and industry requirements, we provide specialized training in Artificial Intelligence and Data Science.</p>
-                <p style="margin-top:15px;">Our mission is to provide high-quality, practical IT training that empowers students to excel in the global tech landscape. We don't just teach; we build careers.</p>
+                <p>Welcome to <strong>SK SMART AI TECHNOLOGIES</strong>. We are dedicated to bridging the gap between academic theory and industry reality through specialized training in Artificial Intelligence and Data Science.</p>
+                <p style="margin-top:15px;">Our goal is to provide students with high-impact, practical skills to lead in the global IT sector. We don't just teach; we prepare you for the future.</p>
             </div>
         </div>
     </section>
@@ -54,35 +53,6 @@
         <div class="container">
             <h2 class="section-title">Academic <span class="accent">Programs</span></h2>
             <div class="grid" id="mainGrid"></div>
-        </div>
-    </section>
-
-    <section id="reviews">
-        <div class="container">
-            <h2 class="section-title">Student <span class="accent">Feedback</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"The AI training here is world-class. The practical approach helped me understand complex concepts easily."</p>
-                    <h4 style="margin-top:15px;">- Arul Kumar</h4>
-                </div>
-                <div class="card">
-                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Best place for Data Science analytics. The certificate verification system is very professional."</p>
-                    <h4 style="margin-top:15px;">- Priya Dharshini</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portals">
-        <div class="container">
-            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
-            <div class="grid">
-                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
-                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users"></i><h3>Staff</h3></div>
-                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student</h3></div>
-            </div>
         </div>
     </section>
 
@@ -101,11 +71,47 @@
         </div>
     </section>
 
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Student <span class="accent">Feedback</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"The AI training here is world-class. The practical projects helped me understand complex concepts easily."</p>
+                    <h4 style="margin-top:15px;">- Arul Kumar</h4>
+                </div>
+                <div class="card">
+                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Professional environment and great mentorship for Data Science. Highly recommended."</p>
+                    <h4 style="margin-top:15px;">- Priya Dharshini</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portals">
+        <div class="container">
+            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
+            <div class="grid">
+                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin Access</h3></div>
+                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff Access</h3></div>
+                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student Access</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="padding: 40px 0; text-align: center; border-top: 1px solid var(--gold);">
+            <p>© 2026 SK SMART AI TECHNOLOGIES. All Rights Reserved.</p>
+            <p style="margin-top:10px;"><i class="fas fa-envelope accent"></i> sksmartaitechnologies@gmail.com</p>
+        </div>
+    </footer>
+
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h3 id="modalTitle" class="accent">Login</h3>
             <input type="password" id="portalPass" placeholder="Password">
-            <div class="btn-group" style="margin-top:20px;">
+            <div class="btn-group" style="margin-top:25px;">
                 <button class="portal-btn" onclick="checkPass()">Login</button>
                 <button class="portal-btn" style="background:transparent; border:1px solid white; color:white;" onclick="closeLogin()">Cancel</button>
             </div>
