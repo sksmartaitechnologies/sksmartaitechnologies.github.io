@@ -9,9 +9,9 @@ if (mainGrid) {
     subjects.forEach(s => {
         mainGrid.innerHTML += `
             <div class="card">
-                <i class="fas fa-brain" style="color:var(--gold); font-size:2.5rem; margin-bottom:20px;"></i>
+                <i class="fas fa-graduation-cap" style="color:var(--gold); font-size:2rem; margin-bottom:15px;"></i>
                 <h3>${s}</h3>
-                <p>Industrial certification course designed for career excellence.</p>
+                <p>Industrial certification course designed for professional career growth.</p>
             </div>`;
     });
 }
@@ -34,20 +34,22 @@ function checkPass() {
     if (input === passes[currentPortal]) {
         closeLogin();
         if (currentPortal === 'Admin') showAdmin();
-        else alert("Welcome to " + currentPortal + " Dashboard.");
+        else alert("Logged into " + currentPortal + " Dashboard.");
     } else {
-        alert("Incorrect Password.");
+        alert("Incorrect Credentials.");
     }
 }
 
 function showAdmin() {
     document.getElementById('hero').innerHTML = `
-        <div class="container" style="background:var(--royal-blue); padding:40px; border-radius:20px; border:1px solid var(--gold);">
+        <div class="container" style="background:var(--royal-blue); padding:40px; border-radius:15px; border:1px solid var(--gold);">
             <h2 class="accent">Admin Dashboard</h2>
-            <input type="text" id="sName" placeholder="Student Name">
-            <input type="text" id="sID" placeholder="Certificate ID">
-            <button class="portal-btn" style="margin-top:20px; width:100%;" onclick="issue()">Save Certificate</button>
-            <button class="portal-btn" style="background:red; color:white; margin-top:10px; width:100%;" onclick="location.reload()">Logout</button>
+            <div style="text-align:left; margin-top:20px;">
+                <input type="text" id="sName" placeholder="Student Name">
+                <input type="text" id="sID" placeholder="Certificate ID">
+                <button class="portal-btn" style="margin-top:20px; width:100%;" onclick="issue()">Save Certificate</button>
+                <button class="portal-btn" style="background:#ef4444; color:white; margin-top:10px; width:100%;" onclick="location.reload()">Logout</button>
+            </div>
         </div>`;
 }
 
@@ -58,7 +60,9 @@ function issue() {
         const db = JSON.parse(localStorage.getItem('sk_db') || '{}');
         db[i] = { name: n, date: new Date().toLocaleDateString() };
         localStorage.setItem('sk_db', JSON.stringify(db));
-        alert("Saved to Database!");
+        alert("Certificate Record Saved!");
+    } else {
+        alert("Fill all fields.");
     }
 }
 
@@ -67,9 +71,14 @@ function manualVerify() {
     const db = JSON.parse(localStorage.getItem('sk_db') || '{}');
     const res = document.getElementById('verifyResult');
     if (db[id]) {
-        res.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold;">✅ VERIFIED: ${db[id].name}</p>`;
+        res.innerHTML = `
+            <div style="background:rgba(74, 222, 128, 0.1); border:1px solid #4ade80; padding:15px; border-radius:10px; margin-top:20px;">
+                <p style="color:#4ade80; font-weight:bold;">✅ VERIFIED</p>
+                <p>Student: <strong>${db[id].name}</strong></p>
+                <p>Date: ${db[id].date}</p>
+            </div>`;
     } else {
-        res.innerHTML = `<p style="color:#ef4444; margin-top:20px;">❌ Not Found</p>`;
+        res.innerHTML = `<p style="color:#ef4444; margin-top:20px;">❌ Certificate ID Not Found</p>`;
     }
 }
 
@@ -79,5 +88,5 @@ function startScanner() {
         document.getElementById('certId').value = text;
         manualVerify();
         scanner.stop();
-    });
+    }).catch(err => alert("Camera blocked or not found."));
 }
