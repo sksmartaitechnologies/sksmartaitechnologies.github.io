@@ -13,7 +13,7 @@
     <nav>
         <div class="container nav-content">
             <div class="nav-logo">
-                <img src="logo.png" alt="Logo">
+                <img src="logo-1.png" alt="Logo">
                 <div>
                     <div class="brand-name">SK SMART AI TECHNOLOGIES</div>
                     <div class="reg-text">MSME · UDYAM-TN-36-0058719</div>
@@ -29,34 +29,27 @@
 
     <section id="hero">
         <div class="container">
-            <img src="logo.png" alt="Logo" class="hero-logo">
+            <img src="logo-1.png" alt="Logo" class="hero-logo">
             <h1>Advanced <span class="accent">AI Intelligence</span></h1>
             <p>Professional Curriculum & Smart-Seal Certification</p>
             <button class="portal-btn" onclick="location.href='#verify'">Verify Now</button>
         </div>
     </section>
 
-    <section id="courses">
-        <div class="container">
-            <h2 class="section-title">Academic Programs</h2>
-            <div class="grid" id="mainGrid"></div>
-        </div>
-    </section>
-
+    <section id="courses"><div class="container"><h2 class="section-title">Curriculum</h2><div class="grid" id="mainGrid"></div></div></section>
     <section id="portals">
         <div class="container">
-            <h2 class="section-title">Institutional Portals</h2>
+            <h2 class="section-title">Portals</h2>
             <div class="grid">
-                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin Portal</h3></div>
-                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff Portal</h3></div>
-                <div class="card" onclick="openLogin('Student')"><i class="fas fa-user-graduate"></i><h3>Student Portal</h3></div>
+                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
+                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users"></i><h3>Staff</h3></div>
+                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student</h3></div>
             </div>
         </div>
     </section>
-
     <section id="verify">
         <div class="container">
-            <h2 class="section-title">Certificate Verification</h2>
+            <h2 class="section-title">Verification</h2>
             <div class="card verify-card">
                 <input type="text" id="certId" placeholder="Enter Certificate ID">
                 <div class="btn-group">
@@ -68,7 +61,6 @@
             </div>
         </div>
     </section>
-
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h3 id="modalTitle" class="accent">Login</h3>
@@ -79,14 +71,6 @@
             </div>
         </div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 SK SMART AI TECHNOLOGIES. All Rights Reserved.</p>
-            <p>sksmartaitechnologies@gmail.com</p>
-        </div>
-    </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
