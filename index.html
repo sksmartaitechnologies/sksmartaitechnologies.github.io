@@ -13,15 +13,16 @@
     <nav>
         <div class="container nav-content">
             <div class="nav-logo">
-                <img src="logo-1.png" alt="Logo">
+                <img src="logo-1 (1).png" alt="Logo">
                 <div>
                     <div class="brand-name">SK SMART AI TECHNOLOGIES</div>
                     <div class="reg-text">MSME · UDYAM-TN-36-0058719</div>
                 </div>
             </div>
             <div class="nav-links">
+                <a href="#about">About</a>
                 <a href="#courses">Programs</a>
-                <a href="#portals">Portals</a>
+                <a href="#reviews">Reviews</a>
                 <a href="#verify">Verify</a>
             </div>
         </div>
@@ -29,17 +30,54 @@
 
     <section id="hero">
         <div class="container">
-            <img src="logo-1.png" alt="Logo" class="hero-logo">
-            <h1>Advanced <span class="accent">AI Intelligence</span></h1>
-            <p>Professional Curriculum & Smart-Seal Certification</p>
-            <button class="portal-btn" onclick="location.href='#verify'">Verify Now</button>
+            <img src="logo-1 (1).png" alt="Logo" class="hero-logo">
+            <h1>Future of <span class="accent">AI Intelligence</span></h1>
+            <p>Empowering the next generation of Data Scientists & AI Engineers.</p>
+            <div class="btn-group">
+                <button class="portal-btn" onclick="location.href='#about'">Learn More</button>
+                <button class="portal-btn" style="background:#25D366; color:white;" onclick="window.open('https://wa.me/YOUR_PHONE_NUMBER', '_blank')">Enroll via WhatsApp</button>
+            </div>
         </div>
     </section>
 
-    <section id="courses"><div class="container"><h2 class="section-title">Curriculum</h2><div class="grid" id="mainGrid"></div></div></section>
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About <span class="accent">Our Institution</span></h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
+                <p>Welcome to <strong>SK SMART AI TECHNOLOGIES</strong>. Founded with a vision to bridge the gap between academic learning and industry requirements, we provide specialized training in Artificial Intelligence and Data Science.</p>
+                <p style="margin-top:15px;">Our mission is to provide high-quality, practical IT training that empowers students to excel in the global tech landscape. We don't just teach; we build careers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <h2 class="section-title">Academic <span class="accent">Programs</span></h2>
+            <div class="grid" id="mainGrid"></div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Student <span class="accent">Feedback</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"The AI training here is world-class. The practical approach helped me understand complex concepts easily."</p>
+                    <h4 style="margin-top:15px;">- Arul Kumar</h4>
+                </div>
+                <div class="card">
+                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Best place for Data Science analytics. The certificate verification system is very professional."</p>
+                    <h4 style="margin-top:15px;">- Priya Dharshini</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="portals">
         <div class="container">
-            <h2 class="section-title">Portals</h2>
+            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
             <div class="grid">
                 <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
                 <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users"></i><h3>Staff</h3></div>
@@ -47,12 +85,13 @@
             </div>
         </div>
     </section>
+
     <section id="verify">
         <div class="container">
-            <h2 class="section-title">Verification</h2>
-            <div class="card verify-card">
+            <h2 class="section-title">Smart-Seal <span class="accent">Verify</span></h2>
+            <div class="card verify-card" style="max-width:600px; margin:0 auto;">
                 <input type="text" id="certId" placeholder="Enter Certificate ID">
-                <div class="btn-group">
+                <div class="btn-group" style="margin-top:20px;">
                     <button class="portal-btn" onclick="manualVerify()">Search</button>
                     <button class="portal-btn" style="background:#1a1a1a; color:white;" onclick="startScanner()">Scan QR</button>
                 </div>
@@ -61,6 +100,7 @@
             </div>
         </div>
     </section>
+
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h3 id="modalTitle" class="accent">Login</h3>
@@ -71,6 +111,7 @@
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
