@@ -8,36 +8,45 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background-color: var(--deep-blue); color: var(--white); scroll-behavior: smooth; }
 
-/* Reduced Spacing Layout */
-section { padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.section-title { font-size: 1.6rem; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
-
-/* Small Logo Sizes */
+/* Navbar - Fixed small size */
 nav { background: rgba(3, 10, 28, 0.98); padding: 8px 0; border-bottom: 1px solid var(--gold); position: fixed; width: 100%; top: 0; z-index: 1000; }
-.nav-logo img { height: 28px; }
-.hero-logo { width: 110px; margin-bottom: 15px; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { display: flex; align-items: center; gap: 8px; }
 
-/* Marquee Highlighting */
-.marquee-bar { background: var(--gold); color: var(--deep-blue); padding: 5px 0; font-weight: bold; overflow: hidden; margin-top: 50px; font-size: 0.8rem; }
+/* STRICTOR NAV LOGO SIZE */
+.nav-logo img { height: 25px !important; width: auto !important; object-fit: contain; }
+
+.brand-name { font-weight: bold; font-size: 0.7rem; }
+.reg-text { font-size: 0.5rem; color: var(--gold); }
+.nav-links a { color: white; text-decoration: none; margin-left: 10px; font-size: 0.6rem; font-weight: 600; }
+
+/* Hero Section - Strict Logo Control */
+#hero { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(var(--royal-blue), var(--deep-blue)); padding-top: 60px; }
+
+/* STRICTOR HERO LOGO SIZE */
+.hero-logo { 
+    width: 100px !important; 
+    height: auto !important; 
+    margin-bottom: 15px; 
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+    object-fit: contain;
+}
+
+h1 { font-size: 1.8rem; margin-bottom: 10px; }
+.accent { color: var(--gold); }
+#hero p { font-size: 0.9rem; max-width: 80%; margin: 0 auto 20px; }
+
+/* Marquee bar */
+.marquee-bar { background: var(--gold); color: var(--deep-blue); padding: 5px 0; font-weight: bold; overflow: hidden; margin-top: 45px; font-size: 0.75rem; }
 .marquee-content { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; }
 @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-.marquee-content span { margin: 0 30px; }
+.marquee-content span { margin: 0 25px; }
 
-/* Admin Excel UI */
-.admin-wrapper { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 15px; overflow: auto; }
-.tab-header { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 10px; }
-.tab-btn { background: var(--royal-blue); color: white; padding: 8px 15px; border: 1px solid var(--gold); border-radius: 4px; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
-.tab-btn.active { background: var(--gold); color: var(--deep-blue); }
-
-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 10px; }
-th, td { border: 1px solid rgba(255,255,255,0.2); padding: 8px; text-align: left; }
-th { background: var(--royal-blue); color: var(--gold); }
-td input { background: transparent; border: none; color: white; width: 100%; outline: none; }
-
-/* Password visibility */
-.pass-container { position: relative; width: 100%; }
-.toggle-pass { position: absolute; right: 10px; top: 22px; color: var(--gold); cursor: pointer; }
-
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-.card { background: rgba(10, 31, 92, 0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 8px 18px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
+/* Other UI Elements */
+section { padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.section-title { font-size: 1.5rem; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0 20px; }
+.card { background: rgba(10, 31, 92, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
