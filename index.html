@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SK SMART AI TECHNOLOGIES | Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,10 +21,17 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#courses">Programs</a>
-                <a href="#verify">Verify</a> <a href="#reviews">Reviews</a>
+                <a href="#verify">Verify</a>
+                <a href="#portals">Portals</a>
             </div>
         </div>
     </nav>
+
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            <span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span> • <span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span>
+        </div>
+    </div>
 
     <section id="hero">
         <div class="container">
@@ -41,10 +47,9 @@
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About <span class="accent">Our Institution</span></h2>
-            <div class="card" style="max-width: 800px; margin: 0 auto; text-align: left; line-height: 1.8;">
-                <p>Welcome to <strong>SK SMART AI TECHNOLOGIES</strong>. We are dedicated to bridging the gap between academic theory and industry reality through specialized training in Artificial Intelligence and Data Science.</p>
-                <p style="margin-top:15px;">Our goal is to provide students with high-impact, practical skills to lead in the global IT sector. We don't just teach; we prepare you for the future.</p>
+            <h2 class="section-title">About <span class="accent">Us</span></h2>
+            <div class="card about-card">
+                <p><strong>SK SMART AI TECHNOLOGIES</strong> bridges the gap between academic theory and industry reality through specialized training in AI and Data Science.</p>
             </div>
         </div>
     </section>
@@ -56,67 +61,43 @@
         </div>
     </section>
 
+    <section id="portals">
+        <div class="container">
+            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
+            <div class="grid">
+                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
+                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff</h3></div>
+                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student</h3></div>
+            </div>
+        </div>
+    </section>
+
     <section id="verify">
         <div class="container">
-            <h2 class="section-title">Smart-Seal <span class="accent">Verify</span></h2>
-            <div class="card verify-card" style="max-width:600px; margin:0 auto;">
+            <h2 class="section-title">Certificate <span class="accent">Verify</span></h2>
+            <div class="card verify-card">
                 <input type="text" id="certId" placeholder="Enter Certificate ID">
-                <div class="btn-group" style="margin-top:20px;">
-                    <button class="portal-btn" onclick="manualVerify()">Search</button>
-                    <button class="portal-btn" style="background:#1a1a1a; color:white;" onclick="startScanner()">Scan QR</button>
-                </div>
-                <div id="reader"></div>
+                <button class="portal-btn" onclick="manualVerify()" style="margin-top:15px; width:100%;">Search Database</button>
                 <div id="verifyResult"></div>
             </div>
         </div>
     </section>
 
-    <section id="reviews">
-        <div class="container">
-            <h2 class="section-title">Student <span class="accent">Feedback</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"The AI training here is world-class. The practical projects helped me understand complex concepts easily."</p>
-                    <h4 style="margin-top:15px;">- Arul Kumar</h4>
-                </div>
-                <div class="card">
-                    <div class="accent" style="margin-bottom:10px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Professional environment and great mentorship for Data Science. Highly recommended."</p>
-                    <h4 style="margin-top:15px;">- Priya Dharshini</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portals">
-        <div class="container">
-            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
-            <div class="grid">
-                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin Access</h3></div>
-                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff Access</h3></div>
-                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student Access</h3></div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container" style="padding: 40px 0; text-align: center; border-top: 1px solid var(--gold);">
-            <p>© 2026 SK SMART AI TECHNOLOGIES. All Rights Reserved.</p>
-            <p style="margin-top:10px;"><i class="fas fa-envelope accent"></i> sksmartaitechnologies@gmail.com</p>
-        </div>
-    </footer>
-
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h3 id="modalTitle" class="accent">Login</h3>
-            <input type="password" id="portalPass" placeholder="Password">
-            <div class="btn-group" style="margin-top:25px;">
+            <div class="pass-container">
+                <input type="password" id="portalPass" placeholder="Password">
+                <i class="fas fa-eye toggle-pass" onclick="togglePass('portalPass')"></i>
+            </div>
+            <div class="btn-group" style="margin-top:20px;">
                 <button class="portal-btn" onclick="checkPass()">Login</button>
                 <button class="portal-btn" style="background:transparent; border:1px solid white; color:white;" onclick="closeLogin()">Cancel</button>
             </div>
         </div>
     </div>
+
+    <div id="adminDashboard" class="admin-wrapper" style="display:none;"></div>
 
     <script src="script.js"></script>
 </body>
