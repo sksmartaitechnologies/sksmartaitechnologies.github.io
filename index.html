@@ -40,16 +40,7 @@
             <p>Empowering the next generation of Data Scientists & AI Engineers.</p>
             <div class="btn-group">
                 <button class="portal-btn" onclick="location.href='#about'">Learn More</button>
-                <button class="portal-btn" style="background:#d44638; color:white;" onclick="location.href='mailto:sksmartaitechnologies@gmail.com'">Contact via Email</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About <span class="accent">Us</span></h2>
-            <div class="card about-card">
-                <p><strong>SK SMART AI TECHNOLOGIES</strong> bridges the gap between academic theory and industry reality through specialized training in AI and Data Science.</p>
+                <button class="portal-btn" style="background:#d44638; color:white;" onclick="location.href='mailto:sksmartaitechnologies@gmail.com'">Contact Us</button>
             </div>
         </div>
     </section>
@@ -61,24 +52,36 @@
         </div>
     </section>
 
-    <section id="portals">
+    <section id="reviews">
         <div class="container">
-            <h2 class="section-title">Digital <span class="accent">Portals</span></h2>
+            <h2 class="section-title">Student <span class="accent">Feedback</span></h2>
             <div class="grid">
-                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
-                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff</h3></div>
-                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student</h3></div>
+                <div class="card">
+                    <div class="accent"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"The AI training here is world-class. Practical projects helped me understand concepts easily."</p>
+                    <h4 style="margin-top:10px;">- Arul Kumar</h4>
+                </div>
+                <div class="card">
+                    <div class="accent"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Great mentorship for Data Science. The curriculum is perfectly aligned with industry needs."</p>
+                    <h4 style="margin-top:10px;">- Ashwin Kumar</h4>
+                </div>
+                <div class="card">
+                    <div class="accent"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Learning Python and Machine Learning at SK Smart AI Technologies was a transformative experience."</p>
+                    <h4 style="margin-top:10px;">- Durga</h4>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="verify">
+    <section id="portals">
         <div class="container">
-            <h2 class="section-title">Certificate <span class="accent">Verify</span></h2>
-            <div class="card verify-card">
-                <input type="text" id="certId" placeholder="Enter Certificate ID">
-                <button class="portal-btn" onclick="manualVerify()" style="margin-top:15px; width:100%;">Search Database</button>
-                <div id="verifyResult"></div>
+            <h2 class="section-title">Institutional <span class="accent">Portals</span></h2>
+            <div class="grid">
+                <div class="card" onclick="openLogin('Admin')"><i class="fas fa-user-shield"></i><h3>Admin</h3></div>
+                <div class="card" onclick="openLogin('Staff')"><i class="fas fa-users-cog"></i><h3>Staff</h3></div>
+                <div class="card" onclick="openLogin('Student')"><i class="fas fa-graduation-cap"></i><h3>Student</h3></div>
             </div>
         </div>
     </section>
@@ -88,7 +91,7 @@
             <h3 id="modalTitle" class="accent">Login</h3>
             <div class="pass-container">
                 <input type="password" id="portalPass" placeholder="Password">
-                <i class="fas fa-eye toggle-pass" onclick="togglePass('portalPass')"></i>
+                <i class="fas fa-eye-slash toggle-pass" onclick="togglePass('portalPass', this)"></i>
             </div>
             <div class="btn-group" style="margin-top:20px;">
                 <button class="portal-btn" onclick="checkPass()">Login</button>
@@ -98,7 +101,6 @@
     </div>
 
     <div id="adminDashboard" class="admin-wrapper" style="display:none;"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
