@@ -1,96 +1,20 @@
-// Database initialized with user requirements
 let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
     certs: [["Student Name", "Certificate ID", "Course", "Date"]],
-    staffAtt: [["Staff Name", "Employee ID", "Status", "Date"]],
-    studAtt: [["Student Name", "Roll No", "Status", "Date"]],
+    staffAtt: [["Staff Name", "Date", "Time", "Status"]],
+    studAtt: [["Student Name", "Date", "Time", "Status"]],
     passwords: { Staff: "SKAITECH2026", Student: "skaistudent" }
 };
 
 const adminMasterPass = "santhassk";
 let currentPortal = "";
-let qrScanner = null;
 
-// Program Data with Descriptions
-const courseData = [
-    { title: "Artificial Intelligence", desc: "Master neural networks, deep learning, and advanced AI algorithms for real-world automation." },
-    { title: "Machine Learning", desc: "Predictive modeling and data patterns using Scikit-Learn, Random Forests, and Regression." },
-    { title: "Data Science", desc: "End-to-end data pipelines, exploratory analysis, and visualization for business intelligence." },
-    { title: "Python Programming", desc: "Core language mastery including NumPy, Pandas, and backend development frameworks." },
-    { title: "Generative AI", desc: "Learn to build and fine-tune LLMs, prompt engineering, and creative AI applications." }
-];
+const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Initialize Course Grid
-const mainGrid = document.getElementById('mainGrid');
-if (mainGrid) {
-    courseData.forEach(course => {
-        mainGrid.innerHTML += `
-            <div class="card">
-                <i class="fas fa-microchip" style="color:var(--gold); font-size:1.8rem; margin-bottom:15px;"></i>
-                <h3>${course.title}</h3>
-                <p>${course.desc}</p>
-            </div>`;
-    });
+function togglePasswordVisibility(id, icon) {
+    const x = document.getElementById(id);
+    if (x.type === "password") { x.type = "text"; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
+    else { x.type = "password"; icon.classList.replace('fa-eye', 'fa-eye-slash'); }
 }
-
-// Password Visibility Logic
-function togglePasswordVisibility(inputId, icon) {
-    const input = document.getElementById(inputId);
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.replace('fa-eye-slash', 'fa-eye');
-    } else {
-        input.type = "password";
-        icon.classList.replace('fa-eye', 'fa-eye-slash');
-    }
-}
-
-// QR Scanner Logic
-function startScanner() {
-    qrScanner = new Html5Qrcode("reader");
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-
-    qrScanner.start(
-        { facingMode: "environment" }, 
-        config, 
-        (decodedText) => {
-            document.getElementById('certId').value = decodedText;
-            manualVerify();
-            stopScanner();
-        }
-    ).catch(err => {
-        alert("Camera permission denied or not found.");
-    });
-}
-
-function stopScanner() {
-    if (qrScanner) {
-        qrScanner.stop().then(() => {
-            document.getElementById('reader').innerHTML = "";
-        });
-    }
-}
-
-// Verification Logic
-function manualVerify() {
-    const id = document.getElementById('certId').value.trim();
-    const resultDiv = document.getElementById('verifyResult');
-    const record = masterDB.certs.find(r => r[1] === id);
-    
-    if (record && id !== "") {
-        resultDiv.innerHTML = `
-            <div style="background:rgba(74, 222, 128, 0.1); border:1px solid #4ade80; padding:15px; border-radius:10px; margin-top:20px;">
-                <p style="color:#4ade80; font-weight:bold;">✅ VERIFIED RECORD</p>
-                <p>Student: <strong>${record[0]}</strong></p>
-                <p>Course: ${record[2]}</p>
-                <p>Date: ${record[3]}</p>
-            </div>`;
-    } else {
-        resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px;">❌ Record Not Found</p>`;
-    }
-}
-
-// --- ADMIN FUNCTIONS (UNCHANGED) ---
-function saveToLocal() { localStorage.setItem('sk_tech_db', JSON.stringify(masterDB)); }
 
 function openLogin(type) {
     currentPortal = type;
@@ -103,13 +27,44 @@ function closeLogin() { document.getElementById('loginModal').style.display = 'n
 function checkPass() {
     const input = document.getElementById('portalPass').value;
     if (currentPortal === 'Admin' && input === adminMasterPass) {
-        closeLogin();
-        showAdminPanel();
+        closeLogin(); showAdminPanel();
     } else if (input === masterDB.passwords[currentPortal]) {
-        alert("Welcome to " + currentPortal);
+        closeLogin(); showUserPortal(currentPortal);
     } else { alert("Incorrect Password"); }
 }
 
+// AUTOMATED ATTENDANCE PORTAL
+function showUserPortal(type) {
+    const panel = document.getElementById('userDashboard');
+    panel.style.display = 'block';
+    panel.innerHTML = `
+        <div class="attendance-card">
+            <h2 class="accent">${type} Attendance</h2>
+            <p style="margin: 20px 0; color: #ccc;">Hello! Please confirm your attendance for today.</p>
+            <input type="text" id="userName" placeholder="Enter Your Full Name" style="border-bottom: 2px solid var(--gold); margin-bottom: 25px; padding: 10px; font-size: 1.1rem;">
+            <button class="portal-btn" style="width:100%" onclick="markAttendance('${type}')">Confirm Attendance</button>
+            <button class="portal-btn" style="background:transparent; color:white; border: 1px solid white; margin-top:20px;" onclick="location.reload()">Back to Home</button>
+        </div>`;
+}
+
+function markAttendance(type) {
+    const name = document.getElementById('userName').value;
+    if (!name) return alert("Please enter your name to proceed.");
+    
+    const now = new Date();
+    const dateStr = now.toLocaleDateString();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dbKey = (type === 'Staff') ? 'staffAtt' : 'studAtt';
+    
+    // Save to the database with live timing
+    masterDB[dbKey].push([name, dateStr, timeStr, "Present"]);
+    saveToLocal();
+    
+    alert(`Success! Attendance recorded for ${name} at ${timeStr}.`);
+    location.reload();
+}
+
+// ADMIN PANEL
 function showAdminPanel() {
     document.getElementById('adminDashboard').style.display = 'block';
     renderAdminPage('certs');
@@ -118,23 +73,23 @@ function showAdminPanel() {
 function renderAdminPage(tab) {
     const panel = document.getElementById('adminDashboard');
     let html = `
-        <h3 class="accent" style="margin-bottom:15px;">Admin Dashboard</h3>
-        <div class="tab-header">
-            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Certs</button>
-            <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Attendance</button>
-            <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Attendance</button>
+        <h3 class="accent" style="margin-bottom:20px;">Admin Command Center</h3>
+        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:10px;">
+            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Manage Certs</button>
+            <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
+            <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Logs</button>
             <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Passwords</button>
-            <button class="tab-btn" style="background:red" onclick="location.reload()">Logout</button>
+            <button class="tab-btn" style="background:#d44638" onclick="location.reload()">Logout</button>
         </div>`;
 
     if(tab === 'security') {
         html += `
-            <div class="card" style="text-align:left; max-width:400px; margin: 20px auto;">
-                <label>Staff Portal Pass:</label>
+            <div class="card" style="text-align:left; max-width:450px; margin:20px auto;">
+                <p style="margin-bottom:10px;">Staff Portal Password:</p>
                 <input type="text" id="newStaffP" value="${masterDB.passwords.Staff}">
-                <label style="display:block; margin-top:10px;">Student Portal Pass:</label>
+                <p style="margin: 10px 0;">Student Portal Password:</p>
                 <input type="text" id="newStudP" value="${masterDB.passwords.Student}">
-                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Security</button>
+                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Access</button>
             </div>`;
     } else {
         html += `
@@ -148,9 +103,9 @@ function renderAdminPage(tab) {
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top:20px; display:flex; gap:10px;">
-                <button class="portal-btn" onclick="addRow('${tab}')">+ Row</button>
-                <button class="portal-btn" style="background:green; color:white;" onclick="saveData()">Save Details</button>
+            <div style="margin-top:25px; display:flex; gap:15px; justify-content: center;">
+                <button class="portal-btn" onclick="addRow('${tab}')">+ Add Manual Entry</button>
+                <button class="portal-btn" style="background:green; color:white" onclick="saveToLocal(); alert('System Database Updated!')">Save Changes</button>
             </div>`;
     }
     panel.innerHTML = html;
@@ -161,7 +116,20 @@ function addRow(tab) { masterDB[tab].push(new Array(masterDB[tab][0].length).fil
 function updatePass() {
     masterDB.passwords.Staff = document.getElementById('newStaffP').value;
     masterDB.passwords.Student = document.getElementById('newStudP').value;
-    saveToLocal();
-    alert("Passwords updated!");
+    saveToLocal(); alert("Portal Access Keys Updated!");
 }
-function saveData() { saveToLocal(); alert("All changes saved!"); }
+
+// Generate Academic Programs
+const courseData = [
+    { title: "Artificial Intelligence", icon: "brain" },
+    { title: "Machine Learning", icon: "robot" },
+    { title: "Data Science", icon: "chart-bar" },
+    { title: "Python Programming", icon: "code" },
+    { title: "Generative AI", icon: "magic" }
+];
+const mainGrid = document.getElementById('mainGrid');
+if (mainGrid) {
+    courseData.forEach(c => {
+        mainGrid.innerHTML += `<div class="card"><i class="fas fa-${c.icon}" style="color:var(--gold); font-size:1.8rem; margin-bottom:10px;"></i><h3>${c.title}</h3></div>`;
+    });
+}
