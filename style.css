@@ -8,32 +8,31 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background-color: var(--deep-blue); color: var(--white); scroll-behavior: smooth; }
 
-/* Fixed Screenshot Alignment */
-#hero { min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 40px; }
-.hero-container { display: flex; flex-direction: column; align-items: center; }
-.hero-logo { width: 90px; height: auto; margin-bottom: 20px; object-fit: contain; }
-h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 10px; }
-#hero p { font-size: 1rem; margin-bottom: 25px; max-width: 90%; }
-
-/* Portals & Panels */
-.user-panel, .admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 25px; overflow-y: auto; }
-.attendance-card { background: var(--royal-blue); padding: 30px; border-radius: 15px; border: 1px solid var(--gold); max-width: 400px; margin: 50px auto; text-align: center; }
-
-/* Navbar */
+/* Navbar & Logo */
 nav { background: rgba(3, 10, 28, 0.98); padding: 10px 0; border-bottom: 1px solid var(--gold); position: fixed; width: 100%; top: 0; z-index: 1000; }
-.nav-logo img { height: 25px; width: auto; }
-.nav-links a { color: white; text-decoration: none; margin-left: 12px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+.nav-logo img { height: 35px; }
 
-/* Table UI */
-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.8rem; }
-th, td { border: 1px solid rgba(255,255,255,0.1); padding: 10px; text-align: left; }
-th { background: var(--royal-blue); color: var(--gold); }
-input[type="text"] { background: transparent; border: none; color: white; width: 100%; outline: none; }
-
-/* Other components */
-.marquee-bar { background: var(--gold); color: var(--deep-blue); padding: 8px 0; margin-top: 55px; overflow: hidden; }
-.marquee { display: inline-block; white-space: nowrap; animation: scroll 15s linear infinite; }
+/* Marquee Highlighting */
+.highlight-bar { background: var(--gold); color: var(--deep-blue); padding: 10px 0; font-weight: bold; overflow: hidden; margin-top: 60px; }
+.marquee { white-space: nowrap; animation: scroll 20s linear infinite; display: inline-block; }
 @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 20px; }
-.card { background: rgba(10, 31, 92, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
-.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.marquee span { margin: 0 40px; }
+
+/* Course Card Refinement */
+.card h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.2rem; }
+.card p { font-size: 0.85rem; line-height: 1.5; color: rgba(255,255,255,0.85); }
+
+/* QR Scanner UI Fixes */
+#reader__scan_region { background: white !important; }
+#reader__dashboard { background: var(--royal-blue) !important; color: white !important; }
+
+/* Admin panel & Tables */
+.admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 20px; overflow-y: auto; }
+.tab-btn { background: var(--royal-blue); color: white; padding: 10px 20px; border: 1px solid var(--gold); cursor: pointer; white-space: nowrap; }
+.tab-btn.active { background: var(--gold); color: var(--deep-blue); font-weight: bold; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(255,255,255,0.05); }
+th, td { border: 1px solid rgba(255,255,255,0.2); padding: 8px; text-align: left; }
+th { background: var(--royal-blue); color: var(--gold); }
+td input { background: transparent; border: none; color: white; width: 100%; outline: none; }
+
+.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 10px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
