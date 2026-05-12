@@ -35,7 +35,7 @@
     </div>
 
     <section id="hero">
-        <div class="container hero-container">
+        <div class="container">
             <img src="logo-1 (1).png" alt="Logo" class="hero-logo">
             <h1>Future of <span class="accent">AI Intelligence</span></h1>
             <p>Empowering the next generation of Data Scientists & AI Engineers.</p>
@@ -50,6 +50,23 @@
         <div class="container">
             <h2 class="section-title">Academic <span class="accent">Programs</span></h2>
             <div class="grid" id="mainGrid"></div>
+        </div>
+    </section>
+
+    <section id="verify">
+        <div class="container">
+            <h2 class="section-title">Smart-Seal <span class="accent">Verification</span></h2>
+            <div class="card verify-card" style="max-width: 600px; margin: 0 auto;">
+                <input type="text" id="certId" placeholder="Enter Certificate ID">
+                <div class="btn-group" style="margin-top:20px;">
+                    <button class="portal-btn" onclick="manualVerify()">Search</button>
+                    <button class="portal-btn" style="background:#1a1a1a; color:white;" onclick="startScanner()">
+                        <i class="fas fa-qrcode"></i> Scan QR
+                    </button>
+                </div>
+                <div id="reader" style="width: 100%; margin-top: 20px; border-radius: 10px; overflow: hidden;"></div>
+                <div id="verifyResult"></div>
+            </div>
         </div>
     </section>
 
@@ -78,10 +95,7 @@
         </div>
     </div>
 
-    <div id="userDashboard" class="user-panel" style="display:none;"></div>
-    
     <div id="adminDashboard" class="admin-panel" style="display:none;"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
