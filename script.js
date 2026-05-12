@@ -1,8 +1,7 @@
-// Database initialized with user requirements
 let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
     certs: [["Student Name", "Certificate ID", "Course", "Date"]],
-    staffAtt: [["Staff Name", "Employee ID", "Status", "Date"]],
-    studAtt: [["Student Name", "Roll No", "Status", "Date"]],
+    staffAtt: [["Staff Name", "Date", "Time", "Status"]],
+    studAtt: [["Student Name", "Date", "Time", "Status"]],
     passwords: { Staff: "SKAITECH2026", Student: "skaistudent" }
 };
 
@@ -10,107 +9,58 @@ const adminMasterPass = "santhassk";
 let currentPortal = "";
 let qrScanner = null;
 
-// Program Data with Descriptions
-const programData = [
-    { name: "Artificial Intelligence", desc: "Master Neural Networks, Deep Learning, and AI model deployment for industry automation." },
-    { name: "Machine Learning", desc: "Predictive analytics, data modeling, and algorithmic implementation using Python libraries." },
-    { name: "Data Science", desc: "End-to-end data processing, visualization, and statistical analysis for business intelligence." },
-    { name: "Python Programming", desc: "Core backend development mastery including automation, scripting, and Django frameworks." },
-    { name: "Generative AI", desc: "Learn Prompt Engineering, LLM fine-tuning, and building creative AI applications." }
-];
-
-// Load Programs into Grid
-const mainGrid = document.getElementById('mainGrid');
-if (mainGrid) {
-    programData.forEach(p => {
-        mainGrid.innerHTML += `
-            <div class="card">
-                <i class="fas fa-microchip" style="color:var(--gold); font-size:1.8rem; margin-bottom:15px;"></i>
-                <h3>${p.name}</h3>
-                <p>${p.desc}</p>
-            </div>`;
-    });
-}
-
-// QR Code Scanner Functionality
-function startScanner() {
-    qrScanner = new Html5Qrcode("reader");
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-
-    qrScanner.start(
-        { facingMode: "environment" }, 
-        config, 
-        (decodedText) => {
-            document.getElementById('certId').value = decodedText;
-            manualVerify();
-            stopScanner();
-        }
-    ).catch(err => {
-        alert("Camera access denied or error occurred.");
-    });
-}
-
-function stopScanner() {
-    if (qrScanner) {
-        qrScanner.stop().then(() => {
-            document.getElementById('reader').innerHTML = "";
-        });
-    }
-}
-
-// Verification Logic
-function manualVerify() {
-    const id = document.getElementById('certId').value.trim();
-    const resultDiv = document.getElementById('verifyResult');
-    const record = masterDB.certs.find(r => r[1] === id);
-    
-    if (record && id !== "") {
-        resultDiv.innerHTML = `
-            <div style="background:rgba(74, 222, 128, 0.1); border:1px solid #4ade80; padding:15px; border-radius:10px; margin-top:20px;">
-                <p style="color:#4ade80; font-weight:bold;">✅ VERIFIED RECORD</p>
-                <p>Student: <strong>${record[0]}</strong></p>
-                <p>Course: ${record[2]}</p>
-                <p>Date: ${record[3]}</p>
-            </div>`;
-    } else {
-        resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px;">❌ Invalid ID: No record found.</p>`;
-    }
-}
-
-// --- ADMIN SYSTEM ---
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
+// Password Toggle
 function togglePasswordVisibility(id, icon) {
-    const input = document.getElementById(id);
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.replace('fa-eye-slash', 'fa-eye');
-    } else {
-        input.type = "password";
-        icon.classList.replace('fa-eye', 'fa-eye-slash');
-    }
+    const x = document.getElementById(id);
+    if (x.type === "password") { x.type = "text"; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
+    else { x.type = "password"; icon.classList.replace('fa-eye', 'fa-eye-slash'); }
 }
 
+// Attendance Portal Logic
 function openLogin(type) {
     currentPortal = type;
     document.getElementById('modalTitle').innerText = type + " Portal";
     document.getElementById('loginModal').style.display = 'flex';
 }
 
-function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-
 function checkPass() {
     const input = document.getElementById('portalPass').value;
     if (currentPortal === 'Admin' && input === adminMasterPass) {
-        closeLogin();
+        document.getElementById('loginModal').style.display = 'none';
         showAdminPanel();
     } else if (input === masterDB.passwords[currentPortal]) {
-        alert("Welcome to " + currentPortal);
-    } else {
-        alert("Incorrect Password");
-    }
+        document.getElementById('loginModal').style.display = 'none';
+        showUserPortal(currentPortal);
+    } else { alert("Incorrect Password"); }
 }
 
+function showUserPortal(type) {
+    const panel = document.getElementById('userDashboard');
+    panel.style.display = 'block';
+    panel.innerHTML = `
+        <div class="attendance-card">
+            <h2 class="accent">${type} Attendance</h2>
+            <p style="margin: 20px 0; color: #ccc;">Secure attendance logging with real-time timestamps.</p>
+            <input type="text" id="userName" placeholder="Enter Your Full Name" style="border-bottom: 2px solid var(--gold); margin-bottom: 25px; padding: 10px;">
+            <button class="portal-btn" style="width:100%" onclick="markAttendance('${type}')">Confirm Login</button>
+            <button class="portal-btn" style="background:transparent; color:white; border: 1px solid white; margin-top:20px;" onclick="location.reload()">Back to Home</button>
+        </div>`;
+}
+
+function markAttendance(type) {
+    const name = document.getElementById('userName').value;
+    if (!name) return alert("Please enter your name.");
+    const now = new Date();
+    const dbKey = (type === 'Staff') ? 'staffAtt' : 'studAtt';
+    masterDB[dbKey].push([name, now.toLocaleDateString(), now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), "Present"]);
+    saveToLocal();
+    alert(`Attendance marked for ${name}.`);
+    location.reload();
+}
+
+// Admin Panel Logic
 function showAdminPanel() {
     document.getElementById('adminDashboard').style.display = 'block';
     renderAdminPage('certs');
@@ -119,22 +69,23 @@ function showAdminPanel() {
 function renderAdminPage(tab) {
     const panel = document.getElementById('adminDashboard');
     let html = `
-        <h2 class="accent">Admin Management</h2>
-        <div class="admin-tabs">
-            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">1. Certificates</button>
-            <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">2. Staff Attendance</button>
-            <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">3. Student Attendance</button>
-            <button class="tab-btn ${tab==='pass'?'active':''}" onclick="renderAdminPage('pass')">Security</button>
-            <button class="tab-btn" style="background:red" onclick="location.reload()">Logout</button>
+        <h3 class="accent">Admin Dashboard</h3>
+        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:10px;">
+            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Manage Certs</button>
+            <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
+            <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Logs</button>
+            <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Security</button>
+            <button class="tab-btn" style="background:#d44638" onclick="location.reload()">Logout</button>
         </div>`;
 
-    if(tab === 'pass') {
+    if(tab === 'security') {
         html += `
-            <div class="card" style="text-align:left; max-width:500px; margin:auto;">
-                <p>Change Portal Passwords:</p>
+            <div class="card" style="text-align:left; max-width:450px; margin:20px auto;">
+                <p>Staff Access Pass:</p>
                 <input type="text" id="newStaffP" value="${masterDB.passwords.Staff}">
+                <p style="margin-top:10px;">Student Access Pass:</p>
                 <input type="text" id="newStudP" value="${masterDB.passwords.Student}">
-                <button class="portal-btn" style="margin-top:20px; width:100%;" onclick="updatePass()">Update Security</button>
+                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Access</button>
             </div>`;
     } else {
         html += `
@@ -148,9 +99,9 @@ function renderAdminPage(tab) {
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top:20px; display:flex; gap:10px;">
-                <button class="portal-btn" onclick="addRow('${tab}')">+ Row</button>
-                <button class="portal-btn" style="background:green; color:white;" onclick="saveData()">Save Details</button>
+            <div style="margin-top:25px; display:flex; gap:15px; justify-content: center;">
+                <button class="portal-btn" onclick="addRow('${tab}')">+ Add Manual Row</button>
+                <button class="portal-btn" style="background:green; color:white" onclick="saveToLocal(); alert('Database Saved!')">Save Changes</button>
             </div>`;
     }
     panel.innerHTML = html;
@@ -161,7 +112,52 @@ function addRow(tab) { masterDB[tab].push(new Array(masterDB[tab][0].length).fil
 function updatePass() {
     masterDB.passwords.Staff = document.getElementById('newStaffP').value;
     masterDB.passwords.Student = document.getElementById('newStudP').value;
-    saveToLocal();
-    alert("Passwords updated!");
+    saveToLocal(); alert("Security Updated!");
 }
-function saveData() { saveToLocal(); alert("Database updated!"); }
+
+// Verification Logic
+function manualVerify() {
+    const id = document.getElementById('certId').value.trim();
+    const resultDiv = document.getElementById('verifyResult');
+    const record = masterDB.certs.find(r => r[1] === id);
+    if (record && id !== "") {
+        resultDiv.innerHTML = `<div style="color:#4ade80; margin-top:15px; font-weight:bold;">✅ VERIFIED: ${record[0]} (${record[2]})</div>`;
+    } else {
+        resultDiv.innerHTML = `<div style="color:#ef4444; margin-top:15px;">❌ Invalid Certificate ID</div>`;
+    }
+}
+
+function startScanner() {
+    qrScanner = new Html5Qrcode("reader");
+    qrScanner.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, (text) => {
+        document.getElementById('certId').value = text;
+        manualVerify();
+        qrScanner.stop();
+    }).catch(err => alert("Camera permission denied."));
+}
+
+// EXPANDED COURSE DATA
+const courseData = [
+    { title: "Artificial Intelligence", desc: "Master Neural Networks, NLP, and advanced AI model deployment." },
+    { title: "Machine Learning", desc: "Predictive analytics, data modeling, and algorithmic implementation." },
+    { title: "Deep Learning (DL)", desc: "Study multi-layered neural networks and complex pattern recognition." },
+    { title: "Data Science", desc: "Comprehensive data engineering, statistical analysis, and BI strategies." },
+    { title: "Cyber Security", desc: "Ethical hacking, network defense, and information security protocols." },
+    { title: "Blockchain Tech", desc: "Smart contracts, decentralized ledgers, and secure crypto transactions." },
+    { title: "Python Programming", desc: "Core backend development, automation scripting, and API management." },
+    { title: "Power BI & Tableau", desc: "Professional business intelligence and data visualization mastery." },
+    { title: "Internship Programs", desc: "Live project experience with industry mentors and certificate." },
+    { title: "Expert Workshops", desc: "Short-term specialized training sessions on trending technologies." }
+];
+
+const mainGrid = document.getElementById('mainGrid');
+if (mainGrid) {
+    courseData.forEach(c => {
+        mainGrid.innerHTML += `
+            <div class="card">
+                <i class="fas fa-graduation-cap" style="color:var(--gold); font-size:1.5rem; margin-bottom:10px;"></i>
+                <h3>${c.title}</h3>
+                <p>${c.desc}</p>
+            </div>`;
+    });
+}
