@@ -7,9 +7,10 @@ let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
 
 const adminMasterPass = "santhassk";
 let currentPortal = "";
+let qrScanner = null;
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Auto-verify URL logic
+// Auto-verify URL Query Parameters Logic
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const certIdFromUrl = urlParams.get('id');
@@ -50,21 +51,21 @@ function showUserPortal(type) {
     panel.innerHTML = `
         <div class="attendance-card">
             <h2 class="accent">${type} Attendance</h2>
-            <p style="margin: 20px 0;">Please enter your name to log attendance.</p>
-            <input type="text" id="userName" placeholder="Full Name" style="border-bottom: 2px solid var(--gold); margin-bottom: 25px; padding: 10px;">
-            <button class="portal-btn" style="width:100%" onclick="markAttendance('${type}')">Confirm</button>
-            <button class="portal-btn" style="background:transparent; color:white; border: 1px solid white; margin-top:20px;" onclick="location.reload()">Back</button>
+            <p style="margin: 20px 0; color: #ccc;">Secure institutional attendance logger.</p>
+            <input type="text" id="userName" placeholder="Type Full Name">
+            <button class="portal-btn" style="width:100%; margin-top:25px;" onclick="markAttendance('${type}')">Confirm Login</button>
+            <button class="portal-btn" style="background:transparent; color:white; border: 1px solid white; margin-top:15px; width:100%;" onclick="location.reload()">Back to Home</button>
         </div>`;
 }
 
 function markAttendance(type) {
-    const name = document.getElementById('userName').value;
-    if (!name) return alert("Enter name.");
+    const name = document.getElementById('userName').value.trim();
+    if (!name) return alert("Please enter your name.");
     const now = new Date();
     const dbKey = (type === 'Staff') ? 'staffAtt' : 'studAtt';
     masterDB[dbKey].push([name, now.toLocaleDateString(), now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), "Present"]);
     saveToLocal();
-    alert(`Attendance marked for ${name}.`);
+    alert(`Attendance marked successfully for ${name}.`);
     location.reload();
 }
 
@@ -76,21 +77,23 @@ function showAdminPanel() {
 function renderAdminPage(tab) {
     const panel = document.getElementById('adminDashboard');
     let html = `
-        <h3 class="accent">Management console</h3>
-        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px;">
-            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Certs</button>
+        <h3 class="accent" style="margin-bottom:20px;">Management Control Panel</h3>
+        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:10px;">
+            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Certs Database</button>
             <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
             <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Logs</button>
-            <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Passwords</button>
-            <button class="tab-btn" style="background:red" onclick="location.reload()">Logout</button>
+            <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Access Passwords</button>
+            <button class="tab-btn" style="background:#d44638;" onclick="location.reload()">System Logout</button>
         </div>`;
 
     if(tab === 'security') {
         html += `
-            <div class="card" style="text-align:left; max-width:400px; margin:20px auto;">
-                <label>Staff Pass:</label><input type="text" id="newStaffP" value="${masterDB.passwords.Staff}">
-                <label>Student Pass:</label><input type="text" id="newStudP" value="${masterDB.passwords.Student}">
-                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update</button>
+            <div class="card" style="text-align:left; max-width:400px; margin:20px 0;">
+                <p style="margin-bottom:5px; font-weight:bold;">Staff Portal Password:</p>
+                <input type="text" id="newStaffP" value="${masterDB.passwords.Staff}" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--gold); color:white; border-radius:4px; margin-bottom:15px; outline:none;">
+                <p style="margin-bottom:5px; font-weight:bold;">Student Portal Password:</p>
+                <input type="text" id="newStudP" value="${masterDB.passwords.Student}" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--gold); color:white; border-radius:4px; outline:none;">
+                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Access Credentials</button>
             </div>`;
     } else {
         html += `
@@ -104,9 +107,9 @@ function renderAdminPage(tab) {
                     </tbody>
                 </table>
             </div>
-            <div style="margin-top:20px; display:flex; gap:15px; justify-content: center;">
-                <button class="portal-btn" onclick="addRow('${tab}')">+ Add Row</button>
-                <button class="portal-btn" style="background:green; color:white" onclick="saveToLocal(); alert('Saved!')">Save All</button>
+            <div style="margin-top:25px; display:flex; gap:15px;">
+                <button class="portal-btn" onclick="addRow('${tab}')">+ Add Sheet Row</button>
+                <button class="portal-btn" style="background:green; color:white" onclick="saveToLocal(); alert('System Database Saved Successfully!')">Commit Changes</button>
             </div>`;
     }
     panel.innerHTML = html;
@@ -117,17 +120,49 @@ function addRow(tab) { masterDB[tab].push(new Array(masterDB[tab][0].length).fil
 function updatePass() {
     masterDB.passwords.Staff = document.getElementById('newStaffP').value;
     masterDB.passwords.Student = document.getElementById('newStudP').value;
-    saveToLocal(); alert("Passwords Updated!");
+    saveToLocal(); alert("Access Credentials Updated Successfully!");
 }
 
 function manualVerify() {
     const id = document.getElementById('certId').value.trim();
+    const resultDiv = document.getElementById('verifyResult');
     const record = masterDB.certs.find(r => r[1] === id);
     if (record && id !== "") {
-        document.getElementById('verifyResult').innerHTML = `<p style="color:#4ade80; margin-top:15px;">✅ Verified: ${record[0]}</p>`;
-    } else { document.getElementById('verifyResult').innerHTML = `<p style="color:#ef4444; margin-top:15px;">❌ Invalid ID</p>`; }
+        resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${record[0]} (${record[2]})</p>`;
+    } else { resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`; }
 }
 
+// Optimized HTTPS-Secure Camera Initialization Logic
+function startScanner() {
+    const readerDiv = document.getElementById('reader');
+    if (!readerDiv) return;
+    if (qrScanner) { qrScanner.clear(); }
+    
+    qrScanner = new Html5Qrcode("reader");
+    const config = { 
+        fps: 15, 
+        qrbox: function(viewfinderWidth, viewfinderHeight) {
+            const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+            return { width: Math.floor(minEdge * 0.65), height: Math.floor(minEdge * 0.65) };
+        }
+    };
+
+    qrScanner.start(
+        { facingMode: "environment" }, 
+        config, 
+        (text) => {
+            document.getElementById('certId').value = text;
+            manualVerify();
+            qrScanner.stop().then(() => qrScanner.clear());
+        },
+        (errorMessage) => { /* Frame processing fallback hook */ }
+    ).catch(err => {
+        console.error("Camera Hardware Exception:", err);
+        alert("Camera Deployment Error: Ensure your browser is utilizing an HTTPS protocol connection and permission rules are explicitly allowed for this domain.");
+    });
+}
+
+// Institutional Curriculum Configuration
 const courseData = [
     { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
     { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
