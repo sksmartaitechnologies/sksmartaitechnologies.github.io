@@ -11,7 +11,11 @@ body { font-family: 'DM Sans', sans-serif; background-color: var(--deep-blue); c
 /* Navigation */
 nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px solid var(--gold); position: fixed; width: 100%; top: 0; z-index: 1000; }
 .nav-logo img { height: 30px; }
-.nav-links a { color: white; text-decoration: none; margin-left: 12px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.brand-name { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.5px; }
+.reg-text { font-size: 0.6rem; color: var(--gold); }
+.nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
 
 /* Hero Section */
 #hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; background: radial-gradient(var(--royal-blue), var(--deep-blue)); }
@@ -19,7 +23,8 @@ nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px sol
 .hero-logo { width: 90px; height: auto; margin-bottom: 10px; }
 .hero-title { font-size: 2.5rem; line-height: 1.1; }
 .accent { color: var(--gold); }
-.btn-group-hero { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.hero-desc { font-size: 1.1rem; max-width: 650px; color: rgba(255,255,255,0.9); line-height: 1.5; }
+.btn-group-hero { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
 .email-btn { background: #d44638 !important; color: white !important; }
 
 /* About Section with Logo Watermark */
@@ -51,25 +56,43 @@ nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px sol
 
 /* Grid and Cards */
 section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
 .section-title { font-size: 2rem; text-align: center; margin-bottom: 35px; text-transform: uppercase; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
 .card { background: rgba(10, 31, 92, 0.4); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
 .card:hover { transform: translateY(-5px); border-color: var(--gold); }
-.card h3 { color: var(--gold); margin-bottom: 10px; }
+.card h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.3rem; }
+.card p { font-size: 0.85rem; line-height: 1.5; color: #ddd; }
+.card .accent { margin-bottom: 12px; font-size: 0.9rem; }
+.card h4 { font-size: 0.9rem; color: var(--gold); }
 
-/* Admin & Portals */
-.user-panel, .admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 30px; overflow-y: auto; }
-.tab-btn { background: var(--royal-blue); color: white; padding: 10px 15px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; white-space: nowrap; }
+/* Admin & Portals Dashboard UI */
+.user-panel, .admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 30px; overflow-y: auto; text-align: left; }
+.attendance-card { background: var(--royal-blue); padding: 40px; border-radius: 15px; border: 1px solid var(--gold); max-width: 450px; margin: 80px auto; text-align: center; }
+.attendance-card input { width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--gold); color: white; padding: 10px; text-align: center; outline: none; font-size: 1rem; }
+.tab-btn { background: var(--royal-blue); color: white; padding: 10px 15px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; white-space: nowrap; font-weight: 500; }
 .tab-btn.active { background: var(--gold); color: var(--deep-blue); font-weight: bold; }
+
+/* Spreadsheet Modifiers */
 table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(255,255,255,0.02); }
-th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; }
+th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; font-size: 0.85rem; }
 th { background: var(--royal-blue); color: var(--gold); }
 td input { background: transparent; border: none; color: white; width: 100%; outline: none; }
 
-/* Misc */
+/* Authentication Modal UI */
+.modal { position: fixed; inset: 0; background: rgba(3, 10, 28, 0.9); display: none; align-items: center; justify-content: center; z-index: 2000; }
+.modal-content { background: var(--royal-blue); padding: 35px; border-radius: 12px; border: 1px solid var(--gold); width: 100%; max-width: 380px; text-align: center; }
+.modal-content h3 { margin-bottom: 20px; font-size: 1.4rem; }
+.modal-content input { width: 100%; padding: 12px; background: rgba(3, 10, 28, 0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: white; outline: none; margin-bottom: 5px; }
+
+/* Misc Utilities */
 .highlight-bar { background: var(--gold); color: var(--deep-blue); padding: 10px 0; margin-top: 60px; overflow: hidden; font-weight: bold; }
 .marquee { display: inline-block; white-space: nowrap; animation: scroll 15s linear infinite; }
 @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 14px 28px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-.toggle-icon { position: absolute; right: 15px; top: 22px; color: var(--gold); cursor: pointer; }
+.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 14px 28px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+.portal-btn:hover { opacity: 0.9; }
+.btn-group { display: flex; gap: 10px; justify-content: center; width: 100%; }
+.toggle-icon { position: absolute; right: 15px; top: 14px; color: var(--gold); cursor: pointer; }
 .pass-wrapper { position: relative; width: 100%; }
+.verify-card input { width: 100%; padding: 14px; background: rgba(10, 31, 92, 0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; text-align: center; font-size: 1rem; outline: none; }
+.verify-card input:focus { border-color: var(--gold); }
