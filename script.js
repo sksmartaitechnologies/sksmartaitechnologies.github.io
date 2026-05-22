@@ -149,13 +149,11 @@ function manualVerify() {
     fetch(targetUrl)
         .then(res => res.text())
         .then(data => {
-            // Cleans Google's security layout wrapper strings to isolate raw text data
             const tempJson = JSON.parse(data.substr(47).slice(0, -2));
             const rows = tempJson.table.rows;
             
             let recordFound = null;
 
-            // Scans column A for an exact string match with your target certificate number
             for (let i = 0; i < rows.length; i++) {
                 const rowCells = rows[i].c;
                 if (rowCells && rowCells[0] && rowCells[0].v && rowCells[0].v.toString().trim() === id) {
@@ -170,7 +168,8 @@ function manualVerify() {
             }
 
             if (recordFound) {
-                resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${recordFound.name} (${recordFound.course})</p>`;
+                // FIXED TEXT: Now clearly reads "Completed on" instead of "Issued"
+                resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${recordFound.name} — ${recordFound.course} (Completed on: ${recordFound.date})</p>`;
             } else {
                 resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`;
             }
