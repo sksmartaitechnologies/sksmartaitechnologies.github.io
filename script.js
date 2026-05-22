@@ -1,5 +1,10 @@
+// Centralized Cloud Configuration
+// =========================================================================
+// Connected to your SK_AI_Certificates Spreadsheet Database
+const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
+// =========================================================================
+
 let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
-    certs: [["Student Name", "Certificate ID", "Course", "Date"]],
     staffAtt: [["Staff Name", "Date", "Time", "Status"]],
     studAtt: [["Student Name", "Date", "Time", "Status"]],
     passwords: { Staff: "SKAITECH2026", Student: "skaistudent" }
@@ -18,7 +23,11 @@ window.onload = function() {
         const verifySection = document.getElementById('verify');
         if (verifySection) verifySection.scrollIntoView({ behavior: 'smooth' });
         document.getElementById('certId').value = certIdFromUrl;
-        manualVerify();
+        
+        // Give the DOM a moment to adjust before sending the fetch request
+        setTimeout(() => {
+            manualVerify();
+        }, 300);
     }
 };
 
@@ -71,7 +80,7 @@ function markAttendance(type) {
 
 function showAdminPanel() {
     document.getElementById('adminDashboard').style.display = 'block';
-    renderAdminPage('certs');
+    renderAdminPage('staffAtt');
 }
 
 function renderAdminPage(tab) {
@@ -79,7 +88,7 @@ function renderAdminPage(tab) {
     let html = `
         <h3 class="accent" style="margin-bottom:20px;">Management Control Panel</h3>
         <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:10px;">
-            <button class="tab-btn ${tab==='certs'?'active':''}" onclick="renderAdminPage('certs')">Certs Database</button>
+            <button class="tab-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">🌐 Open Cloud Sheet</button>
             <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
             <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Logs</button>
             <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Access Passwords</button>
@@ -95,7 +104,7 @@ function renderAdminPage(tab) {
                 <input type="text" id="newStudP" value="${masterDB.passwords.Student}" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--gold); color:white; border-radius:4px; outline:none;">
                 <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Access Credentials</button>
             </div>`;
-    } else {
+    } else if (tab === 'staffAtt' || tab === 'studAtt') {
         html += `
             <div style="overflow-x:auto;">
                 <table>
@@ -123,16 +132,56 @@ function updatePass() {
     saveToLocal(); alert("Access Credentials Updated Successfully!");
 }
 
+// Live Real-Time Google Sheets Verification Logic
 function manualVerify() {
     const id = document.getElementById('certId').value.trim();
     const resultDiv = document.getElementById('verifyResult');
-    const record = masterDB.certs.find(r => r[1] === id);
-    if (record && id !== "") {
-        resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${record[0]} (${record[2]})</p>`;
-    } else { resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`; }
+    
+    if (id === "") {
+        resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Please enter a Certificate ID</p>`;
+        return;
+    }
+
+    resultDiv.innerHTML = `<p style="color:var(--gold); margin-top:20px; font-weight:bold;"><i class="fas fa-spinner fa-spin"></i> Contacting Cloud Database Securely...</p>`;
+
+    const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
+
+    fetch(targetUrl)
+        .then(res => res.text())
+        .then(data => {
+            // Cleans Google's security layout wrapper strings to isolate raw text data
+            const tempJson = JSON.parse(data.substr(47).slice(0, -2));
+            const rows = tempJson.table.rows;
+            
+            let recordFound = null;
+
+            // Scans column A for an exact string match with your target certificate number
+            for (let i = 0; i < rows.length; i++) {
+                const rowCells = rows[i].c;
+                if (rowCells && rowCells[0] && rowCells[0].v && rowCells[0].v.toString().trim() === id) {
+                    recordFound = {
+                        id: rowCells[0].v,
+                        name: rowCells[1] ? rowCells[1].v : "N/A",
+                        course: rowCells[2] ? rowCells[2].v : "N/A",
+                        date: rowCells[3] ? rowCells[3].v : "N/A"
+                    };
+                    break;
+                }
+            }
+
+            if (recordFound) {
+                resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${recordFound.name} (${recordFound.course})</p>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`;
+            }
+        })
+        .catch(err => {
+            console.error("Cloud Connection Exception:", err);
+            resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Database Offline. Check if Sheet is Shared as 'Anyone with link'</p>`;
+        });
 }
 
-// Optimized HTTPS-Secure Camera Initialization Logic
+// HTTPS Camera Initialization Logic
 function startScanner() {
     const readerDiv = document.getElementById('reader');
     if (!readerDiv) return;
@@ -155,10 +204,10 @@ function startScanner() {
             manualVerify();
             qrScanner.stop().then(() => qrScanner.clear());
         },
-        (errorMessage) => { /* Frame processing fallback hook */ }
+        (errorMessage) => {}
     ).catch(err => {
         console.error("Camera Hardware Exception:", err);
-        alert("Camera Deployment Error: Ensure your browser is utilizing an HTTPS protocol connection and permission rules are explicitly allowed for this domain.");
+        alert("Camera Deployment Error: Ensure your browser is utilizing an HTTPS protocol connection.");
     });
 }
 
