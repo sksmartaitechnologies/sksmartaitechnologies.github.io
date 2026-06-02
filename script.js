@@ -1,8 +1,5 @@
-// Centralized Cloud Configuration
-// =========================================================================
-// Connected to your SK_AI_Certificates Spreadsheet Database
+// Database Sheet Reference Configuration
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
-// =========================================================================
 
 let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
     staffAtt: [["Staff Name", "Date", "Time", "Status"]],
@@ -15,22 +12,49 @@ let currentPortal = "";
 let qrScanner = null;
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Auto-verify URL Query Parameters Logic
+// Comprehensive Institutional Curriculum Configuration - All 17 Courses
+const courseData = [
+    { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
+    { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
+    { title: "Deep Learning (DL)", desc: "Study complex neural network patterns." },
+    { title: "Data Science", desc: "End-to-end data processing and BI strategies." },
+    { title: "Cyber Security", desc: "Ethical hacking and network defense." },
+    { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
+    { title: "Python Programming", desc: "Backend mastery and automation scripting." },
+    { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
+    { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking analytics." },
+    { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns.\nLeverage web analytics architectures and automated funnel optimizations." },
+    { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.\nOptimize robust relational data stores utilizing specialized python analytics libraries." },
+    { title: "Banking Analytics & Risk Management", desc: "Deploy classification models to predict loan default metrics.\nBuild real-time anomaly detection pipelines to mitigate corporate operational risk." },
+    { title: "Next-Gen Financial Technologies (FinTech)", desc: "Develop secure distributed ledger layers for investment clearing networks.\nImplement automated smart contracts and intelligent OCR banking engines." },
+    { title: "Data Analyst", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
+    { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and data transformations.\nMaintain low-latency server configurations for enterprise engineering models." },
+    { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and responsive user pathways.\nDeploy scalable backend logical layers backed by cloud deployment strategies." },
+    { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations.\nImplement performant data fetching mechanisms using vanilla engine frameworks." }
+];
+
 window.onload = function() {
+    const mainGrid = document.getElementById('mainGrid');
+    if (mainGrid) {
+        mainGrid.innerHTML = ""; // Clean layout before parsing array
+        courseData.forEach(c => {
+            // Evaluates multi-line text parameters (\n) converting them seamlessly to HTML tags
+            const formattedDesc = c.desc.replace(/\n/g, '<br>');
+            mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${formattedDesc}</p></div>`;
+        });
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const certIdFromUrl = urlParams.get('id');
     if (certIdFromUrl) {
         const verifySection = document.getElementById('verify');
         if (verifySection) verifySection.scrollIntoView({ behavior: 'smooth' });
         document.getElementById('certId').value = certIdFromUrl;
-        
-        // Give the DOM a moment to adjust before sending the fetch request
-        setTimeout(() => {
-            manualVerify();
-        }, 300);
+        setTimeout(() => { manualVerify(); }, 300);
     }
 };
 
+// Access Control & Security Utilities
 function togglePasswordVisibility(id, icon) {
     const x = document.getElementById(id);
     if (x.type === "password") { x.type = "text"; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
@@ -54,6 +78,7 @@ function checkPass() {
     } else { alert("Incorrect Password"); }
 }
 
+// Attendance Infrastructure Loggers
 function showUserPortal(type) {
     const panel = document.getElementById('userDashboard');
     panel.style.display = 'block';
@@ -78,6 +103,7 @@ function markAttendance(type) {
     location.reload();
 }
 
+// Administrative Management Control Interface
 function showAdminPanel() {
     document.getElementById('adminDashboard').style.display = 'block';
     renderAdminPage('staffAtt');
@@ -132,7 +158,7 @@ function updatePass() {
     saveToLocal(); alert("Access Credentials Updated Successfully!");
 }
 
-// Live Real-Time Google Sheets Verification Logic
+// Live Real-Time Verification Infrastructure
 function manualVerify() {
     const id = document.getElementById('certId').value.trim();
     const resultDiv = document.getElementById('verifyResult');
@@ -143,7 +169,6 @@ function manualVerify() {
     }
 
     resultDiv.innerHTML = `<p style="color:var(--gold); margin-top:20px; font-weight:bold;"><i class="fas fa-spinner fa-spin"></i> Contacting Cloud Database Securely...</p>`;
-
     const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
 
     fetch(targetUrl)
@@ -151,7 +176,6 @@ function manualVerify() {
         .then(data => {
             const tempJson = JSON.parse(data.substr(47).slice(0, -2));
             const rows = tempJson.table.rows;
-            
             let recordFound = null;
 
             for (let i = 0; i < rows.length; i++) {
@@ -168,7 +192,6 @@ function manualVerify() {
             }
 
             if (recordFound) {
-                // FIXED TEXT: Now clearly reads "Completed on" instead of "Issued"
                 resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${recordFound.name} — ${recordFound.course} (Completed on: ${recordFound.date})</p>`;
             } else {
                 resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`;
@@ -180,7 +203,7 @@ function manualVerify() {
         });
 }
 
-// HTTPS Camera Initialization Logic
+// Optical Lens QR Hardware Hook
 function startScanner() {
     const readerDiv = document.getElementById('reader');
     if (!readerDiv) return;
@@ -207,24 +230,5 @@ function startScanner() {
     ).catch(err => {
         console.error("Camera Hardware Exception:", err);
         alert("Camera Deployment Error: Ensure your browser is utilizing an HTTPS protocol connection.");
-    });
-}
-
-// Institutional Curriculum Configuration
-const courseData = [
-    { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
-    { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
-    { title: "Deep Learning (DL)", desc: "Study complex neural network patterns." },
-    { title: "Data Science", desc: "End-to-end data processing and BI strategies." },
-    { title: "Cyber Security", desc: "Ethical hacking and network defense." },
-    { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
-    { title: "Python Programming", desc: "Backend mastery and automation scripting." },
-    { title: "Power BI & Tableau", desc: "Professional BI and visualization." }
-];
-
-const mainGrid = document.getElementById('mainGrid');
-if (mainGrid) {
-    courseData.forEach(c => {
-        mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${c.desc}</p></div>`;
     });
 }
