@@ -27,7 +27,7 @@ const courseData = [
     { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.\nOptimize robust relational data stores utilizing specialized python analytics libraries." },
     { title: "Banking Analytics & Risk Management", desc: "Deploy classification models to predict loan default metrics.\nBuild real-time anomaly detection pipelines to mitigate corporate operational risk." },
     { title: "Next-Gen Financial Technologies (FinTech)", desc: "Develop secure distributed ledger layers for investment clearing networks.\nImplement automated smart contracts and intelligent OCR banking engines." },
-    { title: "Data Analyst", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
+    { title: "Data Analytics", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
     { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and data transformations.\nMaintain low-latency server configurations for enterprise engineering models." },
     { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and responsive user pathways.\nDeploy scalable backend logical layers backed by cloud deployment strategies." },
     { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations.\nImplement performant data fetching mechanisms using vanilla engine frameworks." }
