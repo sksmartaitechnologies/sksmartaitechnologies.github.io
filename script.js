@@ -12,7 +12,7 @@ let currentPortal = "";
 let qrScanner = null;
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Comprehensive Institutional Curriculum Configuration - All 17 Courses
+// Comprehensive Institutional Curriculum Configuration - All 19 Courses
 const courseData = [
     { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
     { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
@@ -22,6 +22,8 @@ const courseData = [
     { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
     { title: "Python Programming", desc: "Backend mastery and automation scripting." },
     { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
+    { title: "Internet of Things", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
+    { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.\nOptimize real-time hardware telemetry streams with low-latency communication systems." },
     { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking analytics." },
     { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns.\nLeverage web analytics architectures and automated funnel optimizations." },
     { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.\nOptimize robust relational data stores utilizing specialized python analytics libraries." },
@@ -137,7 +139,7 @@ function renderAdminPage(tab) {
                     <thead><tr>${masterDB[tab][0].map(h => `<th>${h}</th>`).join('')}</tr></thead>
                     <tbody>
                         ${masterDB[tab].slice(1).map((row, rIdx) => `
-                            <tr>${row.map((cell, cIdx) => `<td><input type="text" value="${cell}" onchange="updateCell('${tab}', ${rIdx+1}, ${cIdx}, this.value)"></td>`).join('')}</tr>
+                            <tr>${row.map((cell, cIdx) => `<td><input type="text" value="${cell}" onchange="updateCell('${tab}', ${rIdx+1}, \${cIdx}, this.value)"></td>`).join('')}</tr>
                         `).join('')}
                     </tbody>
                 </table>
@@ -203,7 +205,6 @@ function manualVerify() {
         });
 }
 
-// Optical Lens QR Hardware Hook
 function startScanner() {
     const readerDiv = document.getElementById('reader');
     if (!readerDiv) return;
