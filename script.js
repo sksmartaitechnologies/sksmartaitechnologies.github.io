@@ -11,7 +11,7 @@ const adminMasterPass = "santhassk";
 let currentPortal = "";
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Comprehensive Institutional Curriculum Configuration - All 19 Courses
+// Comprehensive Institutional Curriculum Configuration - All 20 Courses
 const courseData = [
     { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
     { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
@@ -21,6 +21,7 @@ const courseData = [
     { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
     { title: "Python Programming", desc: "Backend mastery and automation scripting." },
     { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
+    { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks.\nManage enterprise application layers across secure virtualization networks." },
     { title: "Internet of Things", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
     { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.\nOptimize real-time hardware telemetry streams with low-latency communication systems." },
     { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking analytics." },
