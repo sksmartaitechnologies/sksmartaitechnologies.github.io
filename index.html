@@ -6,7 +6,6 @@
     <title>SK SMART AI TECHNOLOGIES | Global IT Training</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,7 +29,7 @@
 
     <div class="highlight-bar">
         <div class="marquee">
-            •<span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span> • <span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span> 
+            • <span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span> • <span>COURSES</span> • <span>INTERNSHIP</span> • <span>WORKSHOP</span> 
         </div>
     </div>
 
@@ -52,7 +51,7 @@
             <div class="card about-card">
                 <div class="about-content">
                     <p><strong>SK SMART AI TECHNOLOGIES</strong> is a premier IT training institution dedicated to nurturing the next generation of tech innovators. As a registered MSME entity, we specialize in high-impact technical education across Artificial Intelligence, Data Analytics, and Information Security.</p>
-                    <p style="margin-top: 15px;">Our curriculum is designed by industry experts to provide hands-on project experience, ensuring that every student transition from a learner to a professional ready for the global IT sector. We don't just provide certificates; we build careers.</p>
+                    <p style="margin-top: 15px;">Our curriculum is designed by industry experts to provide hands-on project experience, ensuring that every student transitions from a learner to a professional ready for the global IT sector. We don't just provide certificates; we build careers.</p>
                 </div>
             </div>
         </div>
@@ -82,12 +81,8 @@
             <div class="card verify-card" style="max-width: 600px; margin: 0 auto;">
                 <input type="text" id="certId" placeholder="Enter Certificate ID">
                 <div class="btn-group" style="margin-top:20px;">
-                    <button class="portal-btn" onclick="manualVerify()">Search</button>
-                    <button class="portal-btn" style="background:#1a1a1a; color:white;" onclick="startScanner()">
-                        <i class="fas fa-qrcode"></i> Scan QR
-                    </button>
+                    <button class="portal-btn" style="width: 100%;" onclick="manualVerify()">Search Certificate</button>
                 </div>
-                <div id="reader" style="width: 100%; margin-top: 20px; border-radius: 10px; overflow: hidden;"></div>
                 <div id="verifyResult"></div>
             </div>
         </div>
