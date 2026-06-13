@@ -9,7 +9,6 @@ let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
 
 const adminMasterPass = "santhassk";
 let currentPortal = "";
-let qrScanner = null;
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
 // Comprehensive Institutional Curriculum Configuration - All 19 Courses
@@ -40,7 +39,6 @@ window.onload = function() {
     if (mainGrid) {
         mainGrid.innerHTML = ""; // Clean layout before parsing array
         courseData.forEach(c => {
-            // Evaluates multi-line text parameters (\n) converting them seamlessly to HTML tags
             const formattedDesc = c.desc.replace(/\n/g, '<br>');
             mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${formattedDesc}</p></div>`;
         });
@@ -139,7 +137,7 @@ function renderAdminPage(tab) {
                     <thead><tr>${masterDB[tab][0].map(h => `<th>${h}</th>`).join('')}</tr></thead>
                     <tbody>
                         ${masterDB[tab].slice(1).map((row, rIdx) => `
-                            <tr>${row.map((cell, cIdx) => `<td><input type="text" value="${cell}" onchange="updateCell('${tab}', ${rIdx+1}, \${cIdx}, this.value)"></td>`).join('')}</tr>
+                            <tr>${row.map((cell, cIdx) => `<td><input type="text" value="${cell}" onchange="updateCell('${tab}', ${rIdx+1}, ${cIdx}, this.value)"></td>`).join('')}</tr>
                         `).join('')}
                     </tbody>
                 </table>
@@ -160,7 +158,7 @@ function updatePass() {
     saveToLocal(); alert("Access Credentials Updated Successfully!");
 }
 
-// Live Real-Time Verification Infrastructure
+// Live Real-Time Verification Infrastructure (Manual Text-Lookup Only)
 function manualVerify() {
     const id = document.getElementById('certId').value.trim();
     const resultDiv = document.getElementById('verifyResult');
@@ -203,33 +201,4 @@ function manualVerify() {
             console.error("Cloud Connection Exception:", err);
             resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Database Offline. Check if Sheet is Shared as 'Anyone with link'</p>`;
         });
-}
-
-function startScanner() {
-    const readerDiv = document.getElementById('reader');
-    if (!readerDiv) return;
-    if (qrScanner) { qrScanner.clear(); }
-    
-    qrScanner = new Html5Qrcode("reader");
-    const config = { 
-        fps: 15, 
-        qrbox: function(viewfinderWidth, viewfinderHeight) {
-            const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-            return { width: Math.floor(minEdge * 0.65), height: Math.floor(minEdge * 0.65) };
-        }
-    };
-
-    qrScanner.start(
-        { facingMode: "environment" }, 
-        config, 
-        (text) => {
-            document.getElementById('certId').value = text;
-            manualVerify();
-            qrScanner.stop().then(() => qrScanner.clear());
-        },
-        (errorMessage) => {}
-    ).catch(err => {
-        console.error("Camera Hardware Exception:", err);
-        alert("Camera Deployment Error: Ensure your browser is utilizing an HTTPS protocol connection.");
-    });
 }
