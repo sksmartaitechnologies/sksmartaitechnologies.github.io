@@ -3,7 +3,7 @@
     --royal-blue: #0a1f5c;
     --gold: #c9a84c;
     --white: #ffffff;
-    --green: #25d366;
+    --phone-green: #1ebd55;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,11 +16,9 @@ nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px sol
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .brand-name { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.5px; }
 .reg-text { font-size: 0.6rem; color: var(--gold); }
-.nav-links { display: flex; align-items: center; }
-.nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; transition: color 0.3s ease; }
-.nav-links a:hover { color: var(--gold); }
-.nav-links a.nav-phone { color: var(--gold); font-weight: 700; border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px; background: rgba(201, 168, 76, 0.1); }
-.nav-links a.nav-phone:hover { background: var(--gold); color: var(--deep-blue); }
+.nav-links { display: flex; align-items: center; gap: 15px; }
+.nav-links a { color: white; text-decoration: none; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+.nav-links a.nav-tel { color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
 
 /* Highlight Marquee Bar */
 .highlight-bar { background: var(--gold); color: var(--deep-blue); padding: 10px 0; margin-top: 60px; overflow: hidden; font-weight: bold; }
@@ -36,8 +34,7 @@ nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px sol
 .hero-desc { font-size: 1.1rem; max-width: 650px; color: rgba(255,255,255,0.9); line-height: 1.5; }
 .btn-group-hero { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
 .email-btn { background: #d44638 !important; color: white !important; }
-.call-btn { background: var(--green) !important; color: var(--deep-blue) !important; }
-.call-btn:hover { opacity: 0.9; }
+.call-btn { background: var(--phone-green) !important; color: white !important; }
 
 /* About Section Watermark Rules */
 .about-card {
