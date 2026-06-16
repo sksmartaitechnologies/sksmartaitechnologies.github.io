@@ -1,4 +1,3 @@
-// Database Sheet Reference Configuration
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
 
 let masterDB = JSON.parse(localStorage.getItem('sk_tech_db')) || {
@@ -11,7 +10,6 @@ const adminMasterPass = "santhassk";
 let currentPortal = "";
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Comprehensive Institutional Curriculum Configuration - All 20 Courses
 const courseData = [
     { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
     { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
@@ -21,41 +19,37 @@ const courseData = [
     { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
     { title: "Python Programming", desc: "Backend mastery and automation scripting." },
     { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
-    { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks.\nManage enterprise application layers across secure virtualization networks." },
-    { title: "Internet of Things", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
-    { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.\nOptimize real-time hardware telemetry streams with low-latency communication systems." },
-    { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking analytics." },
-    { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns.\nLeverage web analytics architectures and automated funnel optimizations." },
-    { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.\nOptimize robust relational data stores utilizing specialized python analytics libraries." },
-    { title: "Banking Analytics & Risk Management", desc: "Deploy classification models to predict loan default metrics.\nBuild real-time anomaly detection pipelines to mitigate corporate operational risk." },
-    { title: "Next-Gen Financial Technologies (FinTech)", desc: "Develop secure distributed ledger layers for investment clearing networks.\nImplement automated smart contracts and intelligent OCR banking engines." },
-    { title: "Data Analytics", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
-    { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and data transformations.\nMaintain low-latency server configurations for enterprise engineering models." },
-    { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and responsive user pathways.\nDeploy scalable backend logical layers backed by cloud deployment strategies." },
-    { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations.\nImplement performant data fetching mechanisms using vanilla engine frameworks." }
+    { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks." },
+    { title: "Internet of Things", desc: "Design smart connected node network architectures." },
+    { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols." },
+    { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators." },
+    { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns." },
+    { title: "Financial Data Engineering", desc: "Architect high-frequency time-series pipelines for market data." },
+    { title: "Banking Analytics", desc: "Deploy classification models to predict loan default metrics." },
+    { title: "Next-Gen FinTech", desc: "Develop secure distributed ledger layers for investment." },
+    { title: "Data Analytics", desc: "Translate historical metrics into clear corporate strategy trends." },
+    { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and transformations." },
+    { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and backend logic." },
+    { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations." }
 ];
 
 window.onload = function() {
     const mainGrid = document.getElementById('mainGrid');
     if (mainGrid) {
-        mainGrid.innerHTML = ""; // Clean layout before parsing array
+        mainGrid.innerHTML = "";
         courseData.forEach(c => {
-            const formattedDesc = c.desc.replace(/\n/g, '<br>');
-            mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${formattedDesc}</p></div>`;
+            mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${c.desc}</p></div>`;
         });
     }
 
     const urlParams = new URLSearchParams(window.location.search);
     const certIdFromUrl = urlParams.get('id');
     if (certIdFromUrl) {
-        const verifySection = document.getElementById('verify');
-        if (verifySection) verifySection.scrollIntoView({ behavior: 'smooth' });
         document.getElementById('certId').value = certIdFromUrl;
         setTimeout(() => { manualVerify(); }, 300);
     }
 };
 
-// Access Control & Security Utilities
 function togglePasswordVisibility(id, icon) {
     const x = document.getElementById(id);
     if (x.type === "password") { x.type = "text"; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
@@ -79,14 +73,12 @@ function checkPass() {
     } else { alert("Incorrect Password"); }
 }
 
-// Attendance Infrastructure Loggers
 function showUserPortal(type) {
     const panel = document.getElementById('userDashboard');
     panel.style.display = 'block';
     panel.innerHTML = `
         <div class="attendance-card">
             <h2 class="accent">${type} Attendance</h2>
-            <p style="margin: 20px 0; color: #ccc;">Secure institutional attendance logger.</p>
             <input type="text" id="userName" placeholder="Type Full Name">
             <button class="portal-btn" style="width:100%; margin-top:25px;" onclick="markAttendance('${type}')">Confirm Login</button>
             <button class="portal-btn" style="background:transparent; color:white; border: 1px solid white; margin-top:15px; width:100%;" onclick="location.reload()">Back to Home</button>
@@ -98,13 +90,12 @@ function markAttendance(type) {
     if (!name) return alert("Please enter your name.");
     const now = new Date();
     const dbKey = (type === 'Staff') ? 'staffAtt' : 'studAtt';
-    masterDB[dbKey].push([name, now.toLocaleDateString(), now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), "Present"]);
+    masterDB[dbKey].push([name, now.toLocaleDateString(), now.toLocaleTimeString(), "Present"]);
     saveToLocal();
     alert(`Attendance marked successfully for ${name}.`);
     location.reload();
 }
 
-// Administrative Management Control Interface
 function showAdminPanel() {
     document.getElementById('adminDashboard').style.display = 'block';
     renderAdminPage('staffAtt');
@@ -113,93 +104,36 @@ function showAdminPanel() {
 function renderAdminPage(tab) {
     const panel = document.getElementById('adminDashboard');
     let html = `
-        <h3 class="accent" style="margin-bottom:20px;">Management Control Panel</h3>
-        <div style="display:flex; gap:10px; overflow-x:auto; padding-bottom:15px; margin-bottom:10px;">
-            <button class="tab-btn" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">🌐 Open Cloud Sheet</button>
-            <button class="tab-btn ${tab==='staffAtt'?'active':''}" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
-            <button class="tab-btn ${tab==='studAtt'?'active':''}" onclick="renderAdminPage('studAtt')">Student Logs</button>
-            <button class="tab-btn ${tab==='security'?'active':''}" onclick="renderAdminPage('security')">Access Passwords</button>
-            <button class="tab-btn" style="background:#d44638;" onclick="location.reload()">System Logout</button>
+        <h3 class="accent">Management Control Panel</h3>
+        <div style="display:flex; gap:10px; margin:20px 0;">
+            <button class="tab-btn" onclick="renderAdminPage('staffAtt')">Staff Logs</button>
+            <button class="tab-btn" onclick="renderAdminPage('studAtt')">Student Logs</button>
+            <button class="tab-btn" onclick="location.reload()">Logout</button>
         </div>`;
-
-    if(tab === 'security') {
-        html += `
-            <div class="card" style="text-align:left; max-width:400px; margin:20px 0;">
-                <p style="margin-bottom:5px; font-weight:bold;">Staff Portal Password:</p>
-                <input type="text" id="newStaffP" value="${masterDB.passwords.Staff}" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--gold); color:white; border-radius:4px; margin-bottom:15px; outline:none;">
-                <p style="margin-bottom:5px; font-weight:bold;">Student Portal Password:</p>
-                <input type="text" id="newStudP" value="${masterDB.passwords.Student}" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--gold); color:white; border-radius:4px; outline:none;">
-                <button class="portal-btn" style="margin-top:20px; width:100%" onclick="updatePass()">Update Access Credentials</button>
-            </div>`;
-    } else if (tab === 'staffAtt' || tab === 'studAtt') {
-        html += `
-            <div style="overflow-x:auto;">
-                <table>
-                    <thead><tr>${masterDB[tab][0].map(h => `<th>${h}</th>`).join('')}</tr></thead>
-                    <tbody>
-                        ${masterDB[tab].slice(1).map((row, rIdx) => `
-                            <tr>${row.map((cell, cIdx) => `<td><input type="text" value="${cell}" onchange="updateCell('${tab}', ${rIdx+1}, ${cIdx}, this.value)"></td>`).join('')}</tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </div>
-            <div style="margin-top:25px; display:flex; gap:15px;">
-                <button class="portal-btn" onclick="addRow('${tab}')">+ Add Sheet Row</button>
-                <button class="portal-btn" style="background:green; color:white" onclick="saveToLocal(); alert('System Database Saved Successfully!')">Commit Changes</button>
-            </div>`;
+    
+    if (tab === 'staffAtt' || tab === 'studAtt') {
+        html += `<table><thead><tr>${masterDB[tab][0].map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                 <tbody>${masterDB[tab].slice(1).map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
     }
     panel.innerHTML = html;
 }
 
-function updateCell(tab, r, c, val) { masterDB[tab][r][c] = val; }
-function addRow(tab) { masterDB[tab].push(new Array(masterDB[tab][0].length).fill("")); renderAdminPage(tab); }
-function updatePass() {
-    masterDB.passwords.Staff = document.getElementById('newStaffP').value;
-    masterDB.passwords.Student = document.getElementById('newStudP').value;
-    saveToLocal(); alert("Access Credentials Updated Successfully!");
-}
-
-// Live Real-Time Verification Infrastructure (Manual Text-Lookup Only)
 function manualVerify() {
     const id = document.getElementById('certId').value.trim();
     const resultDiv = document.getElementById('verifyResult');
+    if (!id) return;
+    resultDiv.innerHTML = `<p style="color:var(--gold);">Verifying...</p>`;
     
-    if (id === "") {
-        resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Please enter a Certificate ID</p>`;
-        return;
-    }
-
-    resultDiv.innerHTML = `<p style="color:var(--gold); margin-top:20px; font-weight:bold;"><i class="fas fa-spinner fa-spin"></i> Contacting Cloud Database Securely...</p>`;
-    const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
-
-    fetch(targetUrl)
+    fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`)
         .then(res => res.text())
         .then(data => {
             const tempJson = JSON.parse(data.substr(47).slice(0, -2));
             const rows = tempJson.table.rows;
-            let recordFound = null;
-
-            for (let i = 0; i < rows.length; i++) {
-                const rowCells = rows[i].c;
-                if (rowCells && rowCells[0] && rowCells[0].v && rowCells[0].v.toString().trim() === id) {
-                    recordFound = {
-                        id: rowCells[0].v,
-                        name: rowCells[1] ? rowCells[1].v : "N/A",
-                        course: rowCells[2] ? rowCells[2].v : "N/A",
-                        date: rowCells[3] ? rowCells[3].v : "N/A"
-                    };
-                    break;
-                }
-            }
-
-            if (recordFound) {
-                resultDiv.innerHTML = `<p style="color:#4ade80; margin-top:20px; font-weight:bold; font-size:1.1rem;">✅ VERIFIED CREDENTIAL: ${recordFound.name} — ${recordFound.course} (Completed on: ${recordFound.date})</p>`;
+            let record = rows.find(r => r.c[0] && r.c[0].v.toString() === id);
+            if (record) {
+                resultDiv.innerHTML = `<p style="color:#4ade80;">✅ VERIFIED: ${record.c[1].v} - ${record.c[2].v}</p>`;
             } else {
-                resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Invalid Record or Certificate ID Not Found</p>`;
+                resultDiv.innerHTML = `<p style="color:#ef4444;">❌ Invalid Certificate ID</p>`;
             }
-        })
-        .catch(err => {
-            console.error("Cloud Connection Exception:", err);
-            resultDiv.innerHTML = `<p style="color:#ef4444; margin-top:20px; font-weight:bold;">❌ Database Offline. Check if Sheet is Shared as 'Anyone with link'</p>`;
         });
 }
