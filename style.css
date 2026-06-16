@@ -8,92 +8,49 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background-color: var(--deep-blue); color: var(--white); scroll-behavior: smooth; }
 
-/* Navigation */
+/* Navigation & Phone Styling */
 nav { background: rgba(3, 10, 28, 0.98); padding: 12px 0; border-bottom: 1px solid var(--gold); position: fixed; width: 100%; top: 0; z-index: 1000; }
-.nav-logo img { height: 30px; }
 .nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .brand-name { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.5px; }
 .reg-text { font-size: 0.6rem; color: var(--gold); }
-.nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+.nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+.nav-links a:hover, .nav-phone:hover { color: var(--gold); }
+.nav-phone { color: var(--gold) !important; font-weight: bold !important; }
 
-/* Highlight Marquee Bar */
+/* Marquee */
 .highlight-bar { background: var(--gold); color: var(--deep-blue); padding: 10px 0; margin-top: 60px; overflow: hidden; font-weight: bold; }
 .marquee { display: inline-block; white-space: nowrap; animation: scroll 15s linear infinite; }
 @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-/* Hero Graphic Presentation */
+/* Hero Section */
 #hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; background: radial-gradient(var(--royal-blue), var(--deep-blue)); }
 .hero-content { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
-.hero-logo { width: 90px; height: auto; margin-bottom: 10px; }
-.hero-title { font-size: 2.5rem; line-height: 1.1; }
+.hero-logo { width: 90px; height: auto; }
+.hero-title { font-size: 2.5rem; }
 .accent { color: var(--gold); }
-.hero-desc { font-size: 1.1rem; max-width: 650px; color: rgba(255,255,255,0.9); line-height: 1.5; }
+.hero-desc { font-size: 1.1rem; max-width: 650px; color: rgba(255,255,255,0.9); }
 .btn-group-hero { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+
+/* Button Styles */
+.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 14px 28px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; }
+.call-btn { background: #25d366 !important; color: white !important; } /* Green for calling */
 .email-btn { background: #d44638 !important; color: white !important; }
 
-/* About Section Watermark Rules */
-.about-card {
-    position: relative;
-    max-width: 900px;
-    margin: auto;
-    line-height: 1.8;
-    overflow: hidden;
-    text-align: left;
-    background: rgba(10, 31, 92, 0.6);
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    z-index: 1;
-}
-.about-card::before {
-    content: "";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 250px; height: 250px;
-    background: url('logo.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.08;
-    z-index: -1;
-}
-
-/* Grid Layout & Dynamic Cards */
+/* Grid & Cards */
 section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
-.section-title { font-size: 2rem; text-align: center; margin-bottom: 35px; text-transform: uppercase; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
-.card { background: rgba(10, 31, 92, 0.4); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.3s; }
+.section-title { font-size: 2rem; margin-bottom: 35px; text-transform: uppercase; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
+.card { background: rgba(10, 31, 92, 0.4); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
 .card:hover { transform: translateY(-5px); border-color: var(--gold); }
-.card h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.3rem; }
-.card p { font-size: 0.85rem; line-height: 1.5; color: #ddd; }
-.card .accent { margin-bottom: 12px; font-size: 0.9rem; }
-.card h4 { font-size: 0.9rem; color: var(--gold); }
+.card h3 { color: var(--gold); margin-bottom: 10px; }
+.card p { font-size: 0.85rem; color: #ddd; line-height: 1.4; }
 
-/* Buttons & Navigation Anchors */
-.portal-btn { background: var(--gold); color: var(--deep-blue); padding: 14px 28px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
-.portal-btn:hover { opacity: 0.9; }
-.btn-group { display: flex; gap: 10px; justify-content: center; width: 100%; }
-
-/* Admin Control Panel & Internal Modals */
-.user-panel, .admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 30px; overflow-y: auto; text-align: left; }
-.attendance-card { background: var(--royal-blue); padding: 40px; border-radius: 15px; border: 1px solid var(--gold); max-width: 450px; margin: 80px auto; text-align: center; }
-.attendance-card input { width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--gold); color: white; padding: 10px; text-align: center; outline: none; font-size: 1rem; }
-.tab-btn { background: var(--royal-blue); color: white; padding: 10px 15px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; white-space: nowrap; font-weight: 500; }
-.tab-btn.active { background: var(--gold); color: var(--deep-blue); font-weight: bold; }
-
-/* Management Log Tables */
-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(255,255,255,0.02); }
-th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; font-size: 0.85rem; }
-th { background: var(--royal-blue); color: var(--gold); }
-td input { background: transparent; border: none; color: white; width: 100%; outline: none; }
-
-/* Security Layers & Utilities */
+/* Modals & Panels */
 .modal { position: fixed; inset: 0; background: rgba(3, 10, 28, 0.9); display: none; align-items: center; justify-content: center; z-index: 2000; }
-.modal-content { background: var(--royal-blue); padding: 35px; border-radius: 12px; border: 1px solid var(--gold); width: 100%; max-width: 380px; text-align: center; }
-.modal-content h3 { margin-bottom: 20px; font-size: 1.4rem; }
-.modal-content input { width: 100%; padding: 12px; background: rgba(3, 10, 28, 0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; color: white; outline: none; margin-bottom: 5px; }
-.pass-wrapper { position: relative; width: 100%; }
-.toggle-icon { position: absolute; right: 15px; top: 14px; color: var(--gold); cursor: pointer; }
-.verify-card input { width: 100%; padding: 14px; background: rgba(10, 31, 92, 0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; text-align: center; font-size: 1rem; outline: none; }
-.verify-card input:focus { border-color: var(--gold); }
+.modal-content { background: var(--royal-blue); padding: 35px; border-radius: 12px; border: 1px solid var(--gold); width: 100%; max-width: 380px; }
+.user-panel, .admin-panel { position: fixed; inset: 0; background: var(--deep-blue); z-index: 3000; padding: 30px; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; }
+th { background: var(--royal-blue); color: var(--gold); }
