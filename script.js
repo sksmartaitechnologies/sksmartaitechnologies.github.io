@@ -21,18 +21,18 @@ const courseData = [
     { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
     { title: "Python Programming", desc: "Backend mastery and automation scripting." },
     { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
-    { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks.<br>Manage enterprise application layers across secure virtualization networks." },
-    { title: "Internet of Things", desc: "Design smart connected node network architectures.<br>Deploy sensory grid environments backed by robust edge analytics computing." },
-    { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.<br>Optimize real-time hardware telemetry streams with low-latency communication systems." },
-    { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.<br>Perform equity research alongside quantitative portfolio tracking analytics." },
-    { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns.<br>Leverage web analytics architectures and automated funnel optimizations." },
-    { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.<br>Optimize robust relational data stores utilizing specialized python analytics libraries." },
-    { title: "Banking Analytics & Risk Management", desc: "Deploy classification models to predict loan default metrics.<br>Build real-time anomaly detection pipelines to mitigate corporate operational risk." },
-    { title: "Next-Gen Financial Technologies (FinTech)", desc: "Develop secure distributed ledger layers for investment clearing networks.<br>Implement automated smart contracts and intelligent OCR banking engines." },
-    { title: "Data Analytics", desc: "Translate historical metrics into clear corporate strategy trends.<br>Build structured database layers alongside enterprise-level visual analytics." },
-    { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and data transformations.<br>Maintain low-latency server configurations for enterprise engineering models." },
-    { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and responsive user pathways.<br>Deploy scalable backend logical layers backed by cloud deployment strategies." },
-    { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations.<br>Implement performant data fetching mechanisms using vanilla engine frameworks." }
+    { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks.\nManage enterprise application layers across secure virtualization networks." },
+    { title: "Internet of Things", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
+    { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.\nOptimize real-time hardware telemetry streams with low-latency communication systems." },
+    { title: "Financial Analyst", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking analytics." },
+    { title: "Digital Marketing", desc: "Build ROI-focused multi-channel consumer engagement campaigns.\nLeverage web analytics architectures and automated funnel optimizations." },
+    { title: "Financial Data Engineering & Foundations", desc: "Architect high-frequency time-series pipelines for market data ticks.\nOptimize robust relational data stores utilizing specialized python analytics libraries." },
+    { title: "Banking Analytics & Risk Management", desc: "Deploy classification models to predict loan default metrics.\nBuild real-time anomaly detection pipelines to mitigate corporate operational risk." },
+    { title: "Next-Gen Financial Technologies (FinTech)", desc: "Develop secure distributed ledger layers for investment clearing networks.\nImplement automated smart contracts and intelligent OCR banking engines." },
+    { title: "Data Analytics", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
+    { title: "Data Engineer", desc: "Construct multi-gigabyte ingestion networks and data transformations.\nMaintain low-latency server configurations for enterprise engineering models." },
+    { title: "Full Stack Development", desc: "Engineer comprehensive client-side interfaces and responsive user pathways.\nDeploy scalable backend logical layers backed by cloud deployment strategies." },
+    { title: "Web Development", desc: "Design elegant modern applications with responsive grid configurations.\nImplement performant data fetching mechanisms using vanilla engine frameworks." }
 ];
 
 window.onload = function() {
@@ -40,7 +40,8 @@ window.onload = function() {
     if (mainGrid) {
         mainGrid.innerHTML = ""; // Clean layout before parsing array
         courseData.forEach(c => {
-            mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${c.desc}</p></div>`;
+            const formattedDesc = c.desc.replace(/\n/g, '<br>');
+            mainGrid.innerHTML += `<div class="card"><h3>${c.title}</h3><p>${formattedDesc}</p></div>`;
         });
     }
 
