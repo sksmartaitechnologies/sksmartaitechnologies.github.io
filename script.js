@@ -11,16 +11,17 @@ const adminMasterPass = "santhassk";
 let currentPortal = "";
 const saveToLocal = () => localStorage.setItem('sk_tech_db', JSON.stringify(masterDB));
 
-// Comprehensive Institutional Curriculum Configuration - All 20 Courses
+// Comprehensive Institutional Curriculum Configuration - 21 Courses
 const courseData = [
-    { title: "Artificial Intelligence", desc: "Master Neural Networks and AI deployment." },
-    { title: "Machine Learning", desc: "Predictive analytics and data modeling." },
-    { title: "Deep Learning (DL)", desc: "Study complex neural network patterns." },
-    { title: "Data Science", desc: "End-to-end data processing and BI strategies." },
-    { title: "Cyber Security", desc: "Ethical hacking and network defense." },
-    { title: "Blockchain Tech", desc: "Smart contracts and crypto ledgers." },
-    { title: "Python Programming", desc: "Backend mastery and automation scripting." },
-    { title: "Power BI & Tableau", desc: "Professional BI and visualization." },
+    { title: "Artificial Intelligence", desc: "Master advanced Neural Networks, Natural Language Processing, and Computer Vision algorithms.\nDeploy production-ready predictive models across secure cloud environments." },
+    { title: "Machine Learning", desc: "Build enterprise predictive analytics engines using robust supervised and unsupervised learning algorithms.\nOptimize complex statistical data modeling pathways for data-driven strategic planning." },
+    { title: "Deep Learning (DL)", desc: "Study complex neural network patterns using state-of-the-art structural layers.\nTrain generative architectures and deep computational models for multi-dimensional data processing." },
+    { title: "Data Science", desc: "Architect end-to-end data preprocessing pipelines and feature engineering workflows.\nFormulate enterprise Business Intelligence strategies leveraging modern visualization models." },
+    { title: "Cyber Security", desc: "Implement defensive operations using cutting-edge ethical hacking and digital forensics frameworks.\nSecure distributed networks against modern zero-day exploits and threat vectors." },
+    { title: "Blockchain Tech", desc: "Develop secure distributed ledger layers using smart contracts and immutable protocols.\nArchitect high-throughput decentralized applications for next-generation digital trust." },
+    { title: "Python Programming", desc: "Master comprehensive object-oriented system architectures and automation workflows.\nBuild microservice logical engines utilizing performant computational libraries." },
+    { title: "Power BI & Tableau", desc: "Design interactive corporate dashboard configurations and real-time database connections.\nTranslate complex tabular analytical sets into scalable operational decision matrix panels." },
+    { title: "Java Programming", desc: "Engineer robust enterprise software using clean object-oriented design and multi-threading models.\nDevelop platform-independent application layers backed by structural database interfaces." },
     { title: "Cloud Computing", desc: "Architect scalable serverless computing infrastructures and deployment frameworks.\nManage enterprise application layers across secure virtualization networks." },
     { title: "Internet of Things", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
     { title: "Embedded IoT", desc: "Program microcontrollers and operational firmware protocols.\nOptimize real-time hardware telemetry streams with low-latency communication systems." },
@@ -68,6 +69,7 @@ function openLogin(type) {
     document.getElementById('loginModal').style.display = 'flex';
 }
 
+// Attendance Infrastructure Loggers
 function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
 
 function checkPass() {
@@ -79,7 +81,6 @@ function checkPass() {
     } else { alert("Incorrect Password"); }
 }
 
-// Attendance Infrastructure Loggers
 function showUserPortal(type) {
     const panel = document.getElementById('userDashboard');
     panel.style.display = 'block';
