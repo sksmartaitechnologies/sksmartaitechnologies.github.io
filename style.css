@@ -74,6 +74,17 @@ section { padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .card .accent { margin-bottom: 12px; font-size: 0.9rem; }
 .card h4 { font-size: 0.9rem; color: var(--gold); }
 
+/* Track Record Metrics Section Styles */
+.metrics-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; }
+.metric-card { background: rgba(10, 31, 92, 0.6); border: 1px solid rgba(201, 168, 76, 0.2); padding: 35px 20px; }
+.metric-icon { font-size: 2.2rem; color: var(--gold); margin-bottom: 12px; }
+.metric-number { font-size: 2.8rem; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 5px; }
+.metric-label { font-size: 0.9rem !important; font-weight: 500; letter-spacing: 0.5px; color: #bbb !important; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+    .metrics-grid { grid-template-columns: 1fr; }
+}
+
 /* Buttons & Navigation Anchors */
 .portal-btn { background: var(--gold); color: var(--deep-blue); padding: 14px 28px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 .portal-btn:hover { opacity: 0.9; }
