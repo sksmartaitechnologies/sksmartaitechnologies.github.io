@@ -1,341 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK SMART AI TECHNOLOGIES | 3D IT, Internship & Workshop Portal</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK SMART AI TECHNOLOGIES | IT Training, Internships & Workshops</title>
+  
+  <!-- Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Dynamic 3D Geometric Background Canvas -->
-    <canvas id="bg3dCanvas"></canvas>
+  <!-- Interactive 3D Background Grid & Particle Canvas -->
+  <canvas id="canvas3d"></canvas>
+  
+  <!-- Subtle Ambient Glow Orbs (Eliminates dead white space) -->
+  <div class="ambient-glow glow-blue"></div>
+  <div class="ambient-glow glow-gold"></div>
 
-    <!-- Ambient Mesh Gradients (No Blank Spaces) -->
-    <div class="mesh-orb orb-1"></div>
-    <div class="mesh-orb orb-2"></div>
-    <div class="mesh-orb orb-3"></div>
-    <div class="mesh-grid-pattern"></div>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <div class="logo-mark">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SK SMART <strong>AI</strong></span>
+          <span class="brand-sub">MSME: UDYAM-TN-36-0058719</span>
+        </div>
+      </a>
 
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="#" class="nav-logo">
-                <div class="logo-box-3d">
-                    <i class="fas fa-brain-circuit"></i>
-                </div>
-                <div>
-                    <div class="brand-name">SK SMART <span class="gradient-text">AI TECHNOLOGIES</span></div>
-                    <div class="reg-tag"><i class="fas fa-shield-halved"></i> MSME · UDYAM-TN-36-0058719</div>
-                </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#offerings" class="nav-link">Programs</a>
+        <a href="#workshops" class="nav-link">Workshops</a>
+        <a href="#verify" class="nav-link">Verify</a>
+        <a href="#portals" class="nav-link">Portals</a>
+        <a href="tel:9361483073" class="btn-nav-call">
+          <i class="fa-solid fa-phone"></i> 9361483073
+        </a>
+      </nav>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Live Marquee Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-track">
+      <span><i class="fa-solid fa-sparkles"></i> 2026 INDUSTRIAL INTERNSHIPS OPEN</span>
+      <span><i class="fa-solid fa-microchip"></i> HANDS-ON AI & DEEP LEARNING</span>
+      <span><i class="fa-solid fa-shield-halved"></i> CYBER SECURITY WORKSHOPS</span>
+      <span><i class="fa-solid fa-cloud"></i> CLOUD ARCHITECTURE</span>
+      <span><i class="fa-solid fa-chart-pie"></i> POWER BI & DATA ANALYTICS</span>
+      <span><i class="fa-solid fa-sparkles"></i> 2026 INDUSTRIAL INTERNSHIPS OPEN</span>
+      <span><i class="fa-solid fa-microchip"></i> HANDS-ON AI & DEEP LEARNING</span>
+      <span><i class="fa-solid fa-shield-halved"></i> CYBER SECURITY WORKSHOPS</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-container">
+        
+        <div class="hero-text">
+          <div class="badge-3d">
+            <span class="badge-dot"></span>
+            Govt. Registered MSME Training Institute
+          </div>
+          <h1 class="hero-heading">
+            Empower Your Career in <span class="gradient-text">AI, Cloud & Data</span>
+          </h1>
+          <p class="hero-paragraph">
+            Bridging academic learning with enterprise engineering through real-world 
+            <strong>Internships</strong>, intensive <strong>Workshops</strong>, and verified 
+            <strong>Certification Programs</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#offerings" class="btn-3d btn-primary">
+              <i class="fa-solid fa-compass"></i> Explore Catalog
             </a>
-            
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#offerings">Programs & Internships</a>
-                <a href="#workshops">Live Workshops</a>
-                <a href="#verify">3D Smart-Seal</a>
-                <a href="#portals" class="nav-portal-pill"><i class="fas fa-id-badge"></i> Portals</a>
-                <a href="tel:9361483073" class="nav-phone"><i class="fas fa-phone-volume"></i> 9361483073</a>
-            </div>
-            <button class="menu-burger" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
-        </div>
-    </nav>
+            <a href="#verify" class="btn-3d btn-outline">
+              <i class="fa-solid fa-certificate"></i> Verify Certificate
+            </a>
+            <a href="https://wa.me/919361483073" target="_blank" class="btn-3d btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
 
-    <!-- Kinetic Marquee Track -->
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <span class="ticker-item"><i class="fas fa-bolt"></i> INDUSTRIAL INTERNSHIPS 2026</span>
-            <span class="ticker-item"><i class="fas fa-laptop-code"></i> HANDS-ON AI LABS</span>
-            <span class="ticker-item"><i class="fas fa-microchip"></i> HARDWARE & EMBEDDED IOT</span>
-            <span class="ticker-item"><i class="fas fa-shield-cat"></i> CYBER SECURITY BOOTCAMPS</span>
-            <span class="ticker-item"><i class="fas fa-chart-line"></i> QUANTITATIVE FINTECH WORKSHOPS</span>
-            <span class="ticker-item"><i class="fas fa-bolt"></i> INDUSTRIAL INTERNSHIPS 2026</span>
-            <span class="ticker-item"><i class="fas fa-laptop-code"></i> HANDS-ON AI LABS</span>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <span class="metric-num">150+</span>
+              <span class="metric-label">Students Trained</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-box">
+              <span class="metric-num">50+</span>
+              <span class="metric-label">Internships Run</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-box">
+              <span class="metric-num">100%</span>
+              <span class="metric-label">Smart-Seal Verified</span>
+            </div>
+          </div>
         </div>
+
+        <!-- 3D Interactive Centerpiece -->
+        <div class="hero-visual">
+          <div class="card-3d-scene">
+            <div class="floating-panel" id="heroCard3d">
+              <div class="panel-pill">INNOVATION HUB</div>
+              <div class="panel-icon">
+                <i class="fa-solid fa-network-wired"></i>
+              </div>
+              <h2 class="panel-title">SK SMART AI</h2>
+              <p class="panel-desc">Advanced Applied Computing, Neural Systems & Engineering Incubator</p>
+              <div class="panel-tags">
+                <span><i class="fa-solid fa-check"></i> Project-Driven</span>
+                <span><i class="fa-solid fa-laptop-code"></i> Live Labs</span>
+              </div>
+              <div class="panel-footer">
+                <span class="status-indicator"></span> Admissions Live for 2026 Cohorts
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">WHO WE ARE</span>
+          <h2 class="section-title">Industry-Aligned Tech Education</h2>
+          <p class="section-desc">We transform conventional learners into confident, productive software engineers and data analysts.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="feature-card tilt-card">
+            <div class="feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3>Production-Ready Internships</h3>
+            <p>Skip toy projects. Work on production-grade microservices, real data pipelines, and machine learning models with industry mentors.</p>
+          </div>
+          <div class="feature-card tilt-card">
+            <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Intensive Weekend Workshops</h3>
+            <p>Fast-track practical knowledge in Edge IoT, Ethical Hacking, or Deep Learning frameworks inside live cloud lab sandboxes.</p>
+          </div>
+          <div class="feature-card tilt-card">
+            <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+            <h3>Smart-Seal Digital Credentials</h3>
+            <p>Every certificate is cryptographically tagged and verifiable 24/7 by employers worldwide on our centralized database.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unified Offerings: Courses, Internships & Workshops -->
+    <section class="section bg-tint" id="offerings">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">COMPREHENSIVE MATRIX</span>
+          <h2 class="section-title">Internships, Programs & Workshops</h2>
+          <p class="section-desc">Search and filter across all 21 specialized pathways.</p>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="matrix-controls">
+          <div class="search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search Python, AI, FinTech, Cyber Security..." oninput="handleSearch()">
+          </div>
+
+          <div class="filter-pills">
+            <button class="pill active" onclick="applyFilter('all', this)">All</button>
+            <button class="pill" onclick="applyFilter('internship', this)">Internships</button>
+            <button class="pill" onclick="applyFilter('workshop', this)">Workshops</button>
+            <button class="pill" onclick="applyFilter('course', this)">Full Courses</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Grid of 3D Cards -->
+        <div class="offerings-grid" id="offeringsGrid">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificate Verification System -->
+    <section class="section" id="verify">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CREDENTIAL VALIDATOR</span>
+          <h2 class="section-title">Smart-Seal Instant Verification</h2>
+          <p class="section-desc">Enter your unique certificate serial to confirm authenticity in real time.</p>
+        </div>
+
+        <div class="verify-box">
+          <div class="verify-input-group">
+            <i class="fa-solid fa-shield-halved"></i>
+            <input type="text" id="certInput" placeholder="Enter Certificate ID (e.g. SK-AI-101)">
+            <button class="btn-3d btn-primary" onclick="verifyCertificate()">
+              <i class="fa-solid fa-check"></i> Verify
+            </button>
+          </div>
+
+          <div id="verifyFeedback" class="verify-feedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portals Section -->
+    <section class="section bg-tint" id="portals">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">INTERNAL ACCESS</span>
+          <h2 class="section-title">Institutional Portals</h2>
+          <p class="section-desc">Dedicated gateways for administrators, teaching faculty, and enrolled trainees.</p>
+        </div>
+
+        <div class="portals-grid">
+          <div class="portal-card tilt-card" onclick="openLoginModal('Admin')">
+            <div class="portal-icon-box"><i class="fa-solid fa-lock"></i></div>
+            <h3>Admin Portal</h3>
+            <p>Access master rosters, issue credentials, and configure records.</p>
+            <span class="portal-cta">Launch Console <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+
+          <div class="portal-card tilt-card" onclick="openLoginModal('Staff')">
+            <div class="portal-icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <h3>Staff Gateway</h3>
+            <p>Record cohort attendance, track student project evaluations, and submit logs.</p>
+            <span class="portal-cta">Open Gateway <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+
+          <div class="portal-card tilt-card" onclick="openLoginModal('Student')">
+            <div class="portal-icon-box"><i class="fa-solid fa-user-graduate"></i></div>
+            <h3>Student Check-In</h3>
+            <p>Confirm daily session participation and download learning modules.</p>
+            <span class="portal-cta">Sign In <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-main">
+        <div class="brand">
+          <div class="logo-mark"><i class="fa-solid fa-cube"></i></div>
+          <span class="brand-title">SK SMART <strong>AI</strong></span>
+        </div>
+        <p class="footer-desc">
+          Premier Indian IT training establishment dedicated to high-impact software, 
+          artificial intelligence, cloud computing, and hardware analytics.
+        </p>
+        <span class="footer-msme"><i class="fa-solid fa-stamp"></i> Reg: UDYAM-TN-36-0058719</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="#about">About Us</a>
+        <a href="#offerings">Internships & Courses</a>
+        <a href="#verify">Verify Certificate</a>
+        <a href="#portals">Staff / Student Portals</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact & Desk</h4>
+        <p><i class="fa-solid fa-phone"></i> +91 93614 83073</p>
+        <p><i class="fa-solid fa-envelope"></i> sksmartaitechnologies@gmail.com</p>
+        <p><i class="fa-solid fa-map-pin"></i> Tamil Nadu, India</p>
+      </div>
     </div>
-
-    <!-- 3D Hero Section -->
-    <section id="hero">
-        <div class="container hero-layout">
-            <div class="hero-left">
-                <div class="badge-3d">
-                    <span class="pulse-indicator"></span> Verified Industry Ready Training
-                </div>
-                <h1 class="hero-heading">
-                    Future-Proof Your Tech Career In <span class="gradient-text">Real-Time 3D</span>
-                </h1>
-                <p class="hero-subtext">
-                    Bridging academia and the IT industry through immersive real-world <strong>Internships</strong>, intensive <strong>Workshops</strong>, and accredited <strong>Technical Certifications</strong>.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="#offerings" class="btn-3d btn-primary"><i class="fas fa-compass"></i> Explore Offerings</a>
-                    <a href="#verify" class="btn-3d btn-glass"><i class="fas fa-cube"></i> Verify Credential</a>
-                    <a href="https://wa.me/919361483073" target="_blank" class="btn-3d btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat Now</a>
-                </div>
-                <div class="stats-mini-strip">
-                    <div class="mini-stat"><strong>150+</strong> Students Placed</div>
-                    <div class="stat-divider"></div>
-                    <div class="mini-stat"><strong>50+</strong> Live Internships</div>
-                    <div class="stat-divider"></div>
-                    <div class="mini-stat"><strong>100%</strong> Verified Credentials</div>
-                </div>
-            </div>
-
-            <div class="hero-right">
-                <!-- Interactive 3D Holographic Display Card -->
-                <div class="hologram-stage">
-                    <div class="holo-card" id="tiltCard">
-                        <div class="holo-inner">
-                            <div class="holo-badge">MSME CERTIFIED</div>
-                            <div class="holo-icon-ring">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            <h3>SK SMART AI</h3>
-                            <p>Global Center for AI, Deep Learning & Distributed Systems</p>
-                            <div class="holo-chips">
-                                <span><i class="fas fa-check"></i> Live Production</span>
-                                <span><i class="fas fa-shield"></i> Validated Seals</span>
-                            </div>
-                            <div class="holo-status">
-                                <span class="dot-online"></span> Next Cohort: Active Enrollment
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comprehensive Offerings Matrix (Internships, Courses, Workshops) -->
-    <section id="offerings">
-        <div class="container">
-            <div class="section-badge-center">Enterprise Curriculum</div>
-            <h2 class="section-title-center">Programs, Internships & <span class="gradient-text">Workshops</span></h2>
-            <p class="section-subtext-center">Choose your specialization pathway designed with industry mentors.</p>
-
-            <!-- 3D Category Tab Switches -->
-            <div class="control-panel">
-                <div class="search-input-wrap">
-                    <i class="fas fa-magnifying-glass"></i>
-                    <input type="text" id="catalogSearch" placeholder="Search by domain, tech, or role..." oninput="filterOfferings()">
-                </div>
-                <div class="type-filter-group">
-                    <button class="filter-pill active" onclick="setProgramType('all', this)">All Pathways</button>
-                    <button class="filter-pill" onclick="setProgramType('internship', this)">Internships (Work Experience)</button>
-                    <button class="filter-pill" onclick="setProgramType('workshop', this)">Specialized Workshops</button>
-                    <button class="filter-pill" onclick="setProgramType('course', this)">Full Certifications</button>
-                </div>
-            </div>
-
-            <!-- Dynamic 3D Offerings Grid -->
-            <div class="cards-grid" id="offeringsGrid"></div>
-        </div>
-    </section>
-
-    <!-- Hands-on Workshop Spotlight -->
-    <section id="workshops">
-        <div class="container">
-            <div class="section-badge-center">Intensive Bootcamps</div>
-            <h2 class="section-title-center">Upcoming High-Impact <span class="gradient-text">Workshops</span></h2>
-            
-            <div class="workshop-cards-row">
-                <div class="workshop-box tilt-item">
-                    <div class="workshop-ribbon">Weekend Sprint</div>
-                    <div class="workshop-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Embedded IoT Telemetry & Edge AI</h3>
-                    <p>Program microcontrollers, deploy sensor grid nodes, and transmit edge telemetry packets directly over secure cloud queues.</p>
-                    <ul class="workshop-perks">
-                        <li><i class="fas fa-circle-check"></i> Physical Hardware Kit Provided</li>
-                        <li><i class="fas fa-circle-check"></i> Live Cloud Stream Dashboards</li>
-                        <li><i class="fas fa-circle-check"></i> Verified Workshop Credential</li>
-                    </ul>
-                    <a href="tel:9361483073" class="btn-3d btn-primary btn-block">Register For Workshop</a>
-                </div>
-
-                <div class="workshop-box tilt-item popular">
-                    <div class="workshop-ribbon gold">Popular Bootcamp</div>
-                    <div class="workshop-icon"><i class="fas fa-brain"></i></div>
-                    <h3>Applied Generative AI & Deep Learning</h3>
-                    <p>Train customized transformer attention models, fine-tune open weights, and build production vector search retrieval layers.</p>
-                    <ul class="workshop-perks">
-                        <li><i class="fas fa-circle-check"></i> GPU Cluster Lab Access</li>
-                        <li><i class="fas fa-circle-check"></i> Production API Deployment</li>
-                        <li><i class="fas fa-circle-check"></i> Verified Workshop Credential</li>
-                    </ul>
-                    <a href="tel:9361483073" class="btn-3d btn-primary btn-block">Register For Workshop</a>
-                </div>
-
-                <div class="workshop-box tilt-item">
-                    <div class="workshop-ribbon">Corporate Track</div>
-                    <div class="workshop-icon"><i class="fas fa-shield-virus"></i></div>
-                    <h3>Ethical Hacking & Zero-Day Defense</h3>
-                    <p>Execute real intrusion tests, audit firewall vulnerabilities, and understand modern forensic telemetry mitigation methods.</p>
-                    <ul class="workshop-perks">
-                        <li><i class="fas fa-circle-check"></i> Virtual Sandbox Environment</li>
-                        <li><i class="fas fa-circle-check"></i> Penetration Testing Checklists</li>
-                        <li><i class="fas fa-circle-check"></i> Verified Workshop Credential</li>
-                    </ul>
-                    <a href="tel:9361483073" class="btn-3d btn-primary btn-block">Register For Workshop</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3D Smart-Seal Verification Engine -->
-    <section id="verify">
-        <div class="container">
-            <div class="section-badge-center">Public Ledger</div>
-            <h2 class="section-title-center">Smart-Seal <span class="gradient-text">Verification</span></h2>
-            <p class="section-subtext-center">Authenticate student internships, workshops, and program certifications instantly.</p>
-
-            <div class="verify-3d-wrapper">
-                <div class="verify-glass-input">
-                    <i class="fas fa-fingerprint"></i>
-                    <input type="text" id="certId" placeholder="Enter Certificate ID (e.g. SK-AI-101)">
-                    <button class="btn-3d btn-primary" onclick="manualVerify()"><i class="fas fa-magnifying-glass"></i> Validate</button>
-                </div>
-                <div id="verifyResult"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Operational Portals -->
-    <section id="portals">
-        <div class="container">
-            <div class="section-badge-center">Access Gateways</div>
-            <h2 class="section-title-center">Institutional <span class="gradient-text">Portals</span></h2>
-            <div class="portal-grid">
-                <div class="portal-cube tilt-item" onclick="openLogin('Admin')">
-                    <div class="cube-icon"><i class="fas fa-user-shield"></i></div>
-                    <h3>Admin Console</h3>
-                    <p>Database management, roster oversight, and global certificate issuer.</p>
-                    <span class="portal-link">Login to Console &rarr;</span>
-                </div>
-                <div class="portal-cube tilt-item" onclick="openLogin('Staff')">
-                    <div class="cube-icon"><i class="fas fa-chalkboard-user"></i></div>
-                    <h3>Staff Gateway</h3>
-                    <p>Daily cohort attendance, syllabus progression, and performance reviews.</p>
-                    <span class="portal-link">Open Staff Portal &rarr;</span>
-                </div>
-                <div class="portal-cube tilt-item" onclick="openLogin('Student')">
-                    <div class="cube-icon"><i class="fas fa-user-graduate"></i></div>
-                    <h3>Student Portal</h3>
-                    <p>Mark daily session presence, view internship repositories, and access tools.</p>
-                    <span class="portal-link">Check-in Here &rarr;</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="reviews">
-        <div class="container">
-            <div class="section-badge-center">Student Experiences</div>
-            <h2 class="section-title-center">What Our <span class="gradient-text">Interns Say</span></h2>
-            <div class="testimonials-grid">
-                <div class="testi-card tilt-item">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"The Machine Learning and Data Science internship gave me actual project deployments on AWS. No theoretical slides—everything was code-first."</p>
-                    <div class="testi-author">
-                        <div class="author-circle">AK</div>
-                        <div>
-                            <h4>Arul Kumar</h4>
-                            <span>AI Research Intern</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testi-card tilt-item">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Building backend microservice routes during the Full Stack internship helped me clear my corporate tech evaluation with zero hesitation."</p>
-                    <div class="testi-author">
-                        <div class="author-circle">PK</div>
-                        <div>
-                            <h4>Preethi K.</h4>
-                            <span>Full Stack Intern</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testi-card tilt-item">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"The Embedded IoT sensor bootcamp was hands-on from minute one. Writing firmware and publishing low-latency MQTT streams was super intuitive."</p>
-                    <div class="testi-author">
-                        <div class="author-circle">RK</div>
-                        <div>
-                            <h4>Rajesh Kumar</h4>
-                            <span>Embedded Systems Fellow</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-layout">
-            <div class="footer-left">
-                <div class="brand-name">SK SMART <span class="gradient-text">AI TECHNOLOGIES</span></div>
-                <p>Premier IT training institute and innovation lab offering career-track internships, hands-on workshops, and verifiable certifications.</p>
-                <div class="msme-badge"><i class="fas fa-stamp"></i> Reg: UDYAM-TN-36-0058719</div>
-            </div>
-            <div class="footer-col">
-                <h4>Offerings</h4>
-                <a href="#offerings">Industrial Internships</a>
-                <a href="#workshops">Technical Workshops</a>
-                <a href="#offerings">AI & ML Certifications</a>
-                <a href="#verify">Verification System</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contact & Desk</h4>
-                <p><i class="fas fa-phone-alt"></i> <a href="tel:9361483073">+91 93614 83073</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:sksmartaitechnologies@gmail.com">sksmartaitechnologies@gmail.com</a></p>
-                <p><i class="fas fa-location-dot"></i> Tamil Nadu, India</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 SK SMART AI TECHNOLOGIES. All Rights Reserved. Built with 3D Canvas Architecture.</p>
-        </div>
-    </footer>
-
-    <!-- Floating Action Quick Connect -->
-    <div class="floating-quick-bar">
-        <a href="https://wa.me/919361483073?text=Hi%20SK%20Smart%20AI%20Technologies,%20I%20want%20to%20know%20more%20about%20Internships%20and%20Workshops." target="_blank" class="quick-pill whatsapp" aria-label="WhatsApp Us">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-        <a href="tel:9361483073" class="quick-pill call" aria-label="Call Now">
-            <i class="fas fa-phone-alt"></i> Call Us
-        </a>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 SK SMART AI TECHNOLOGIES. All rights reserved.</p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Login Modal -->
-    <div class="modal-layer" id="loginModal">
-        <div class="modal-3d-box">
-            <button class="modal-exit" onclick="closeLogin()">&times;</button>
-            <div class="modal-icon"><i class="fas fa-lock"></i></div>
-            <h3 id="modalTitle">Gateway Authentication</h3>
-            <p class="modal-desc">Please supply access key to authenticate.</p>
-            <div class="input-3d-wrap">
-                <input type="password" id="portalPass" placeholder="Enter security passkey">
-                <i class="fas fa-eye toggle-eye" onclick="togglePassEye()"></i>
-            </div>
-            <button class="btn-3d btn-primary btn-block" style="margin-top: 18px;" onclick="checkPass()">Authorize Access</button>
-        </div>
+  <!-- Universal Login Modal -->
+  <div class="modal-backdrop" id="loginModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+      <div class="modal-icon"><i class="fa-solid fa-key"></i></div>
+      <h3 id="modalRole">Portal Authentication</h3>
+      <p class="modal-sub">Enter your security passkey to access this panel.</p>
+      
+      <div class="input-password-wrap">
+        <input type="password" id="passkeyInput" placeholder="Enter key">
+        <i class="fa-solid fa-eye eye-btn" onclick="togglePassVisibility()"></i>
+      </div>
+
+      <button class="btn-3d btn-primary btn-full" style="margin-top: 16px;" onclick="authenticatePortal()">
+        Authenticate
+      </button>
     </div>
+  </div>
 
-    <!-- Portal Attendance Panels -->
-    <div id="userDashboard" class="portal-overlay" style="display: none;"></div>
-    <div id="adminDashboard" class="portal-overlay" style="display: none;"></div>
+  <!-- Attendance Recording Overlay -->
+  <div class="overlay-panel" id="userDashboard" style="display: none;"></div>
+  <!-- Admin Console Overlay -->
+  <div class="overlay-panel" id="adminDashboard" style="display: none;"></div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
