@@ -1,328 +1,321 @@
-// Google Cloud Sheet ID for Real-Time Credential Checks
+// Google Cloud Sheet ID for Public Credential Verification
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
 
-// Structured Database for Programs, Internships & Workshops
-const offeringsData = [
-    // Internships
-    { title: "AI & Neural Networks Internship", type: "internship", mode: "Hybrid / Remote", duration: "8-12 Weeks", desc: "Build production deep learning pipelines, CNN vision classifiers, and automated LLM fine-tuning pipelines on cloud servers." },
-    { title: "Full Stack Cloud Development Internship", type: "internship", mode: "Hands-on Lab", duration: "8 Weeks", desc: "Engineer responsive interfaces and high-throughput REST APIs backed by secure relational databases and Docker containers." },
-    { title: "Data Science & BI Strategy Internship", type: "internship", mode: "Corporate Sprint", duration: "6 Weeks", desc: "Clean and model multi-gigabyte data sets, formulate executive business intelligence dashboards, and extract statistical forecasts." },
-    { title: "Cyber Defense & PenTesting Internship", type: "internship", mode: "Virtual Sandbox", duration: "8 Weeks", desc: "Perform vulnerability assessments, simulate security audits, and write automated intrusion mitigation scripts." },
-    { title: "FinTech & Quantitative Risk Internship", type: "internship", mode: "Analytics Desk", duration: "8 Weeks", desc: "Engineer loan default classification models and analyze market transaction logs using quantitative Python packages." },
-    { title: "Embedded Systems & IoT Internship", type: "internship", mode: "Hardware Kit", duration: "6 Weeks", desc: "Program microcontrollers, configure sensory grids, and establish real-time telemetry streams over low-latency MQTT networks." },
+// Structured Offering Catalog (Internships, Workshops, Full Courses)
+const offeringsCatalog = [
+  // Industrial Internships
+  { title: "Artificial Intelligence & DL Internship", type: "internship", duration: "8-12 Weeks", desc: "Build neural network classifiers, transformer models, and real-time computer vision inference services." },
+  { title: "Full Stack Web Engineering Internship", type: "internship", duration: "8 Weeks", desc: "Architect responsive user interfaces, modular REST services, and database management layers." },
+  { title: "Data Science & BI Strategy Internship", type: "internship", duration: "6 Weeks", desc: "Execute multi-variable feature selection, clean tabular data, and deploy Power BI dashboards." },
+  { title: "Cyber Defense & PenTesting Internship", type: "internship", duration: "8 Weeks", desc: "Audit networks, inspect packet streams, and implement defensive zero-day counter-measures." },
+  { title: "FinTech Analytics & Risk Internship", type: "internship", duration: "8 Weeks", desc: "Engineer quantitative models for loan classification, default prediction, and market tick feeds." },
+  { title: "Embedded Systems & IoT Internship", type: "internship", duration: "6 Weeks", desc: "Program microcontrollers, manage sensor inputs, and stream telemetry over MQTT networks." },
 
-    // Workshops
-    { title: "Generative AI & Transformer Architectures", type: "workshop", mode: "Live Weekend", duration: "2 Days Sprint", desc: "Intensive deep-dive into transformer layers, custom vector embeddings, and zero-shot deployment." },
-    { title: "Power BI & Tableau Decision Matrix", type: "workshop", mode: "Interactive Lab", duration: "3 Days Sprint", desc: "Rapidly translate raw database extracts into interactive decision panels with dynamic drill-down hierarchies." },
-    { title: "Ethical Hacking & Network Forensics", type: "workshop", mode: "Sandbox Lab", duration: "2 Days Sprint", desc: "Hands-on intrusion detection, credential sniffing counter-measures, and security policy hardening." },
-    { title: "High-Frequency Financial Data Pipelines", type: "workshop", mode: "Code Bootcamp", duration: "2 Days Sprint", desc: "Build time-series database architectures optimized for sub-millisecond stock market analytics." },
+  // Specialized Workshops
+  { title: "Generative AI & LLM Fine-Tuning", type: "workshop", duration: "2-Day Sprint", desc: "Hands-on transformer prompt engineering, vector database retrieval, and model quantization." },
+  { title: "Power BI & Tableau Corporate Matrix", type: "workshop", duration: "3-Day Sprint", desc: "Build executive visual dashboards with calculated measures and real-time database connectors." },
+  { title: "Ethical Hacking & Network Forensics", type: "workshop", duration: "2-Day Sprint", desc: "Practical intrusion detection, port vulnerability auditing, and forensic analysis." },
+  { title: "High-Frequency FinTech Pipelines", type: "workshop", duration: "2-Day Sprint", desc: "Stream financial ticks into Python time-series arrays and generate statistical indicators." },
 
-    // Specialized Courses
-    { title: "Advanced Machine Learning Mastery", type: "course", mode: "Instructor-Led", duration: "16 Weeks", desc: "Comprehensive study of supervised, unsupervised, reinforcement learning algorithms, and mathematical loss functions." },
-    { title: "Blockchain & Decentralized Ledger Protocols", type: "course", mode: "Virtual Lab", duration: "12 Weeks", desc: "Design immutable smart contracts, consensus mechanisms, and high-throughput decentralized applications." },
-    { title: "Enterprise Cloud Computing Architecture", type: "course", mode: "Cloud Console", duration: "10 Weeks", desc: "Architect serverless computing infrastructures and automated multi-zone deployment workflows." },
-    { title: "Core & Advanced Python Engineering", type: "course", mode: "Hands-on", duration: "8 Weeks", desc: "Master object-oriented structures, async multi-threading, and performant backend microservice architectures." },
-    { title: "Modern Java Enterprise Systems", type: "course", mode: "Hands-on", duration: "10 Weeks", desc: "Develop multi-threaded enterprise software layers using modern Spring Boot patterns and database connectors." }
+  // Full Certification Courses
+  { title: "Machine Learning Masterclass", type: "course", duration: "16 Weeks", desc: "Comprehensive exploration of supervised, unsupervised, and reinforcement algorithms." },
+  { title: "Cloud Computing & AWS Architecture", type: "course", duration: "10 Weeks", desc: "Manage serverless microservices, IAM access roles, and scalable cluster topologies." },
+  { title: "Python Programming from Scratch", type: "course", duration: "8 Weeks", desc: "Object-oriented software development, asynchronous routines, and automation scripts." },
+  { title: "Enterprise Java Application Systems", type: "course", duration: "10 Weeks", desc: "Build multi-threaded enterprise software backed by relational databases and Spring Boot." },
+  { title: "Modern Blockchain Engineering", type: "course", duration: "12 Weeks", desc: "Develop decentralized applications, smart contract protocols, and immutable ledgers." }
 ];
 
-let selectedType = 'all';
+let activeFilter = 'all';
 
-// Initialize Everything
+// On Document Load
 document.addEventListener("DOMContentLoaded", () => {
-    init3DCanvas();
-    initHologramTilt();
-    renderOfferings(offeringsData);
-    initCard3DTilt();
+  initBackgroundCanvas();
+  initHeroCard3D();
+  renderOfferings(offeringsCatalog);
 
-    // Direct certificate link resolution
-    const urlParams = new URLSearchParams(window.location.search);
-    const certId = urlParams.get('id');
-    if (certId) {
-        const verifySection = document.getElementById('verify');
-        if (verifySection) verifySection.scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('certId').value = certId;
-        setTimeout(() => { manualVerify(); }, 400);
-    }
+  // URL Parameter auto-lookup for certificates (e.g. ?id=SK-AI-101)
+  const urlParams = new URLSearchParams(window.location.search);
+  const certParam = urlParams.get('id');
+  if (certParam) {
+    const verifySec = document.getElementById('verify');
+    if (verifySec) verifySec.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('certInput').value = certParam;
+    setTimeout(verifyCertificate, 300);
+  }
+
+  // Mobile menu toggle
+  const toggleBtn = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (toggleBtn && navMenu) {
+    toggleBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+  }
 });
 
-// Render Dynamic Offerings Grid
-function renderOfferings(list) {
-    const grid = document.getElementById('offeringsGrid');
-    if (!grid) return;
+// Render Offerings
+function renderOfferings(items) {
+  const grid = document.getElementById('offeringsGrid');
+  if (!grid) return;
 
-    if (list.length === 0) {
-        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 50px;">No offerings match your search criteria.</div>`;
-        return;
-    }
+  if (items.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No programs found matching the query.</div>`;
+    return;
+  }
 
-    grid.innerHTML = list.map(item => `
-        <div class="card-3d tilt-item">
-            <div>
-                <div class="card-top-tag">
-                    <span class="type-tag ${item.type}">${item.type}</span>
-                    <span class="mode-tag"><i class="fas fa-location-dot"></i> ${item.mode}</span>
-                </div>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-            </div>
-            <div class="card-bottom-meta">
-                <span><i class="far fa-clock"></i> ${item.duration}</span>
-                <span>Apply Now <i class="fas fa-arrow-right"></i></span>
-            </div>
-        </div>
-    `).join('');
-
-    // Reattach mouse listeners for dynamic cards
-    initCard3DTilt();
+  grid.innerHTML = items.map(item => `
+    <div class="offering-card">
+      <div>
+        <div class="offering-badge badge-${item.type}">${item.type}</div>
+        <h3 class="offering-title">${item.title}</h3>
+        <p class="offering-desc">${item.desc}</p>
+      </div>
+      <div class="offering-footer">
+        <span><i class="fa-regular fa-clock"></i> ${item.duration}</span>
+        <span>Enroll Now <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+  `).join('');
 }
 
-// Category and Search Filtering
-function setProgramType(type, btn) {
-    selectedType = type;
-    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterOfferings();
+// Search and Filter Handling
+function applyFilter(type, buttonEl) {
+  activeFilter = type;
+  document.querySelectorAll('.filter-pills .pill').forEach(btn => btn.classList.remove('active'));
+  buttonEl.classList.add('active');
+  executeFilter();
 }
 
-function filterOfferings() {
-    const q = document.getElementById('catalogSearch').value.toLowerCase().trim();
-    const filtered = offeringsData.filter(item => {
-        const matchesType = (selectedType === 'all') || (item.type === selectedType);
-        const matchesQuery = item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
-        return matchesType && matchesQuery;
+function handleSearch() {
+  executeFilter();
+}
+
+function executeFilter() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const results = offeringsCatalog.filter(item => {
+    const matchesCategory = (activeFilter === 'all') || (item.type === activeFilter);
+    const matchesSearch = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+    return matchesCategory && matchesSearch;
+  });
+  renderOfferings(results);
+}
+
+// 3D Tilt Centerpiece
+function initHeroCard3D() {
+  const card = document.getElementById('heroCard3d');
+  if (!card) return;
+
+  window.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.clientX) / 28;
+    const y = (window.innerHeight / 2 - e.clientY) / 28;
+    card.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
+  });
+}
+
+// Background Clean 3D Geometric Canvas
+function initBackgroundCanvas() {
+  const canvas = document.getElementById('canvas3d');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const nodes = [];
+  const nodeCount = 35;
+
+  for (let i = 0; i < nodeCount; i++) {
+    nodes.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2.5 + 1.5
     });
-    renderOfferings(filtered);
-}
+  }
 
-// Interactive 3D Cursor Tilt for Hero Card
-function initHologramTilt() {
-    const card = document.getElementById('tiltCard');
-    if (!card) return;
+  function loop() {
+    ctx.clearRect(0, 0, width, height);
 
-    window.addEventListener('mousemove', (e) => {
-        const x = (window.innerWidth / 2 - e.clientX) / 25;
-        const y = (window.innerHeight / 2 - e.clientY) / 25;
-        card.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
-    });
-}
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
 
-// 3D Tilt for Content Cards
-function initCard3DTilt() {
-    const tiltElements = document.querySelectorAll('.tilt-item');
-    tiltElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            el.style.transform = `perspective(1000px) rotateY(${x / 18}deg) rotateX(${-y / 18}deg) translateY(-6px)`;
-        });
-        el.addEventListener('mouseleave', () => {
-            el.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)`;
-        });
-    });
-}
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
 
-// Background Dynamic 3D Geometric Canvas
-function init3DCanvas() {
-    const canvas = document.getElementById('bg3dCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(29, 78, 216, 0.35)';
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
 
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    });
-
-    const nodes = [];
-    const count = 38;
-
-    for (let i = 0; i < count; i++) {
-        nodes.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.6,
-            vy: (Math.random() - 0.5) * 0.6,
-            size: Math.random() * 3 + 2
-        });
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, w, h);
-
-        // Render Connections
-        for (let i = 0; i < nodes.length; i++) {
-            const n = nodes[i];
-            n.x += n.vx;
-            n.y += n.vy;
-
-            if (n.x < 0 || n.x > w) n.vx *= -1;
-            if (n.y < 0 || n.y > h) n.vy *= -1;
-
-            ctx.fillStyle = 'rgba(37, 99, 235, 0.4)';
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
-            ctx.fill();
-
-            for (let j = i + 1; j < nodes.length; j++) {
-                const n2 = nodes[j];
-                const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
-                if (dist < 150) {
-                    ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / 150)})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(n.x, n.y);
-                    ctx.lineTo(n2.x, n2.y);
-                    ctx.stroke();
-                }
-            }
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n2 = nodes[j];
+        const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
+        if (dist < 140) {
+          ctx.strokeStyle = `rgba(29, 78, 216, ${0.12 * (1 - dist / 140)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(n.x, n.y);
+          ctx.lineTo(n2.x, n2.y);
+          ctx.stroke();
         }
-        requestAnimationFrame(draw);
+      }
     }
-    draw();
+    requestAnimationFrame(loop);
+  }
+  loop();
 }
 
-// 3D Smart-Seal Verification Engine
-function manualVerify() {
-    const id = document.getElementById('certId').value.trim();
-    const resultDiv = document.getElementById('verifyResult');
+// Certificate Verification Fetcher
+function verifyCertificate() {
+  const idInput = document.getElementById('certInput');
+  const feedback = document.getElementById('verifyFeedback');
+  const id = idInput.value.trim();
 
-    if (!id) {
-        resultDiv.innerHTML = `<div style="color: #dc2626; margin-top: 15px; font-weight: 600;"><i class="fas fa-triangle-exclamation"></i> Please enter an issued certificate number.</div>`;
-        return;
-    }
+  if (!id) {
+    feedback.innerHTML = `<p style="color: #dc2626; margin-top: 14px; font-weight: 600;">Please enter a certificate ID.</p>`;
+    return;
+  }
 
-    resultDiv.innerHTML = `<div style="color: var(--accent-blue); margin-top: 20px; font-weight: 600;"><i class="fas fa-spinner fa-spin"></i> Contacting Decentralized Ledger Records...</div>`;
-    const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
+  feedback.innerHTML = `<p style="color: var(--primary); margin-top: 14px; font-weight: 600;"><i class="fa-solid fa-spinner fa-spin"></i> Querying cloud database...</p>`;
 
-    fetch(targetUrl)
-        .then(res => res.text())
-        .then(data => {
-            const parsed = JSON.parse(data.substr(47).slice(0, -2));
-            const rows = parsed.table.rows;
-            let record = null;
+  const endpoint = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
 
-            for (let i = 0; i < rows.length; i++) {
-                const c = rows[i].c;
-                if (c && c[0] && c[0].v && c[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
-                    record = {
-                        id: c[0].v,
-                        name: c[1] ? c[1].v : "Candidate Record",
-                        course: c[2] ? c[2].v : "Technical Program",
-                        date: c[3] ? c[3].v : "Verified Date"
-                    };
-                    break;
-                }
-            }
+  fetch(endpoint)
+    .then(res => res.text())
+    .then(text => {
+      const json = JSON.parse(text.substr(47).slice(0, -2));
+      const rows = json.table.rows;
+      let record = null;
 
-            if (record) {
-                resultDiv.innerHTML = `
-                    <div class="cert-3d-card">
-                        <div class="cert-header">
-                            <div>
-                                <span class="cert-id-tag">${record.id}</span>
-                                <h3 style="margin-top: 6px; color: #16a34a;"><i class="fas fa-check-circle"></i> Authenticated Credential</h3>
-                            </div>
-                            <i class="fas fa-award cert-seal-icon"></i>
-                        </div>
-                        <div class="cert-row">
-                            <label>Certified Recipient</label>
-                            <div>${record.name}</div>
-                        </div>
-                        <div class="cert-row">
-                            <label>Domain Track / Program</label>
-                            <div>${record.course}</div>
-                        </div>
-                        <div class="cert-row">
-                            <label>Date of Completion</label>
-                            <div>${record.date}</div>
-                        </div>
-                    </div>`;
-            } else {
-                resultDiv.innerHTML = `
-                    <div style="background: #fee2e2; border: 1px solid #f87171; padding: 15px; border-radius: 12px; color: #b91c1c; margin-top: 20px;">
-                        <i class="fas fa-circle-xmark"></i> Verification Failed: No matching record found for ID "<strong>${id}</strong>".
-                    </div>`;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            resultDiv.innerHTML = `<div style="color: #dc2626; margin-top: 20px; font-weight: 600;">Unable to connect to cloud verification database.</div>`;
-        });
-}
+      for (let i = 0; i < rows.length; i++) {
+        const c = rows[i].c;
+        if (c && c[0] && c[0].v && c[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
+          record = {
+            id: c[0].v,
+            name: c[1] ? c[1].v : "Candidate Record",
+            course: c[2] ? c[2].v : "Program Name",
+            date: c[3] ? c[3].v : "Verified Date"
+          };
+          break;
+        }
+      }
 
-// Navigation & Auth Modals
-function toggleNav() {
-    document.querySelector('.nav-links').classList.toggle('open');
-}
-
-let activePortal = "";
-function openLogin(type) {
-    activePortal = type;
-    document.getElementById('modalTitle').innerText = `${type} Authentication`;
-    document.getElementById('loginModal').style.display = 'flex';
-}
-
-function closeLogin() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('portalPass').value = '';
-}
-
-function togglePassEye() {
-    const p = document.getElementById('portalPass');
-    p.type = p.type === 'password' ? 'text' : 'password';
-}
-
-function checkPass() {
-    const input = document.getElementById('portalPass').value;
-    if (activePortal === 'Admin' && input === 'santhassk') {
-        closeLogin();
-        showAdmin();
-    } else if (activePortal === 'Staff' && input === 'SKAITECH2026') {
-        closeLogin();
-        showUser('Staff');
-    } else if (activePortal === 'Student' && input === 'skaistudent') {
-        closeLogin();
-        showUser('Student');
-    } else {
-        alert("Authentication failed: Invalid key.");
-    }
-}
-
-function showUser(type) {
-    const p = document.getElementById('userDashboard');
-    p.style.display = 'block';
-    p.innerHTML = `
-        <div class="dash-card">
-            <h2 style="color: var(--primary-blue);">${type} Check-In</h2>
-            <p style="margin: 12px 0 20px; color: var(--text-muted);">Session attendance log timestamp.</p>
-            <input type="text" id="uname" placeholder="Type your full registered name">
-            <button class="btn-3d btn-primary btn-block" onclick="recordPresence('${type}')">Confirm Check-In</button>
-            <button class="btn-3d btn-glass btn-block" style="margin-top: 10px;" onclick="location.reload()">Exit Portal</button>
-        </div>`;
-}
-
-function recordPresence(type) {
-    const name = document.getElementById('uname').value.trim();
-    if (!name) return alert("Please type your name.");
-    alert(`Attendance marked successfully for ${name} [${type}].`);
-    location.reload();
-}
-
-function showAdmin() {
-    const p = document.getElementById('adminDashboard');
-    p.style.display = 'block';
-    p.innerHTML = `
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                <h2>Admin Management Operations</h2>
-                <button class="btn-3d btn-glass" onclick="location.reload()">Exit Console</button>
+      if (record) {
+        feedback.innerHTML = `
+          <div class="cert-card-3d">
+            <div class="cert-header">
+              <div>
+                <span class="cert-id-tag">${record.id}</span>
+                <h4 style="margin-top: 6px; color: #16a34a;"><i class="fa-solid fa-circle-check"></i> Authenticated Credential</h4>
+              </div>
+              <i class="fa-solid fa-award" style="font-size: 2.2rem; color: var(--gold);"></i>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Direct access to real-time verification records and rosters:</p>
-            <button class="btn-3d btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
-                <i class="fas fa-table"></i> Launch Google Cloud Records Sheet
-            </button>
-        </div>`;
+            <div class="cert-row">
+              <label>Candidate Name</label>
+              <div>${record.name}</div>
+            </div>
+            <div class="cert-row">
+              <label>Program / Track</label>
+              <div>${record.course}</div>
+            </div>
+            <div class="cert-row">
+              <label>Completion Date</label>
+              <div>${record.date}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        feedback.innerHTML = `
+          <div style="background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 14px; border-radius: 10px; margin-top: 16px;">
+            <i class="fa-solid fa-circle-xmark"></i> No valid record found for ID "<strong>${id}</strong>".
+          </div>
+        `;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      feedback.innerHTML = `<p style="color: #dc2626; margin-top: 14px; font-weight: 600;">Unable to connect to verification database.</p>`;
+    });
+}
+
+// Authentication & Portal Access
+let activeRole = "";
+
+function openLoginModal(role) {
+  activeRole = role;
+  document.getElementById('modalRole').innerText = `${role} Portal`;
+  document.getElementById('loginModal').style.display = 'flex';
+}
+
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none';
+  document.getElementById('passkeyInput').value = '';
+}
+
+function togglePassVisibility() {
+  const input = document.getElementById('passkeyInput');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function authenticatePortal() {
+  const key = document.getElementById('passkeyInput').value;
+  
+  if (activeRole === 'Admin' && key === 'santhassk') {
+    closeLoginModal();
+    showAdminDashboard();
+  } else if (activeRole === 'Staff' && key === 'SKAITECH2026') {
+    closeLoginModal();
+    showUserDashboard('Staff');
+  } else if (activeRole === 'Student' && key === 'skaistudent') {
+    closeLoginModal();
+    showUserDashboard('Student');
+  } else {
+    alert("Authentication failed: Invalid key.");
+  }
+}
+
+function showUserDashboard(role) {
+  const panel = document.getElementById('userDashboard');
+  panel.style.display = 'block';
+  panel.innerHTML = `
+    <div class="dash-box">
+      <h2 style="color: var(--primary); margin-bottom: 8px;">${role} Attendance</h2>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Session check-in timestamp.</p>
+      <input type="text" id="traineeName" placeholder="Enter Full Name">
+      <button class="btn-3d btn-primary btn-full" onclick="recordAttendance('${role}')">Mark Present</button>
+      <button class="btn-3d btn-outline btn-full" style="margin-top: 10px;" onclick="location.reload()">Exit Portal</button>
+    </div>
+  `;
+}
+
+function recordAttendance(role) {
+  const name = document.getElementById('traineeName').value.trim();
+  if (!name) return alert("Please enter your name.");
+  alert(`Attendance marked for ${name} [${role}].`);
+  location.reload();
+}
+
+function showAdminDashboard() {
+  const panel = document.getElementById('adminDashboard');
+  panel.style.display = 'block';
+  panel.innerHTML = `
+    <div class="container" style="max-width: 600px; margin-top: 60px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <h2>Admin Management</h2>
+        <button class="btn-3d btn-outline" onclick="location.reload()">Exit</button>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Manage student data and cloud certificate records:</p>
+      <button class="btn-3d btn-primary btn-full" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
+        <i class="fa-solid fa-table"></i> Open Google Cloud Sheet
+      </button>
+    </div>
+  `;
 }
