@@ -1,120 +1,148 @@
-// Google Cloud Sheet ID for Public Credential Verification
+// Google Cloud Sheet Target for Public Credential Queries
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
 
-// Structured Offering Catalog (Internships, Workshops, Full Courses)
-const offeringsCatalog = [
-  // Industrial Internships
-  { title: "Artificial Intelligence & DL Internship", type: "internship", duration: "8-12 Weeks", desc: "Build neural network classifiers, transformer models, and real-time computer vision inference services." },
-  { title: "Full Stack Web Engineering Internship", type: "internship", duration: "8 Weeks", desc: "Architect responsive user interfaces, modular REST services, and database management layers." },
-  { title: "Data Science & BI Strategy Internship", type: "internship", duration: "6 Weeks", desc: "Execute multi-variable feature selection, clean tabular data, and deploy Power BI dashboards." },
-  { title: "Cyber Defense & PenTesting Internship", type: "internship", duration: "8 Weeks", desc: "Audit networks, inspect packet streams, and implement defensive zero-day counter-measures." },
-  { title: "FinTech Analytics & Risk Internship", type: "internship", duration: "8 Weeks", desc: "Engineer quantitative models for loan classification, default prediction, and market tick feeds." },
-  { title: "Embedded Systems & IoT Internship", type: "internship", duration: "6 Weeks", desc: "Program microcontrollers, manage sensor inputs, and stream telemetry over MQTT networks." },
+// Complete 21-Program Repository (Internships, Workshops, Full Courses)
+const programCatalog = [
+  // 1. Industrial Internships
+  { title: "AI & Neural Networks Internship", type: "internship", duration: "8-12 Weeks", mode: "Cloud Labs", desc: "Build production deep learning pipelines, CNN vision classifiers, and LLM fine-tuning pipelines on cloud servers." },
+  { title: "Full Stack Cloud Development Internship", type: "internship", duration: "8 Weeks", mode: "Live Repo", desc: "Engineer responsive interfaces and modular REST API microservices backed by PostgreSQL and container workflows." },
+  { title: "Data Science & BI Strategy Internship", type: "internship", duration: "6 Weeks", mode: "Corporate Desk", desc: "Model multi-gigabyte datasets, curate predictive business models, and translate insights into scalable reporting." },
+  { title: "Cyber Defense & PenTesting Internship", type: "internship", duration: "8 Weeks", mode: "Sandbox", desc: "Conduct active network scans, audit firewall configurations, and automate zero-day intrusion defense scripts." },
+  { title: "FinTech & Quantitative Risk Internship", type: "internship", duration: "8 Weeks", mode: "Analytics Desk", desc: "Engineer loan default classification models and analyze market transaction logs using quantitative Python packages." },
+  { title: "Embedded Systems & IoT Internship", type: "internship", duration: "6 Weeks", mode: "Hardware Kit", desc: "Program microcontrollers, configure sensory grids, and establish real-time telemetry streams over low-latency MQTT networks." },
 
-  // Specialized Workshops
-  { title: "Generative AI & LLM Fine-Tuning", type: "workshop", duration: "2-Day Sprint", desc: "Hands-on transformer prompt engineering, vector database retrieval, and model quantization." },
-  { title: "Power BI & Tableau Corporate Matrix", type: "workshop", duration: "3-Day Sprint", desc: "Build executive visual dashboards with calculated measures and real-time database connectors." },
-  { title: "Ethical Hacking & Network Forensics", type: "workshop", duration: "2-Day Sprint", desc: "Practical intrusion detection, port vulnerability auditing, and forensic analysis." },
-  { title: "High-Frequency FinTech Pipelines", type: "workshop", duration: "2-Day Sprint", desc: "Stream financial ticks into Python time-series arrays and generate statistical indicators." },
+  // 2. Sprint Workshops
+  { title: "Transformer Networks & GenAI", type: "workshop", duration: "2-Day Sprint", mode: "Hands-on", desc: "Intensive deep-dive into transformer layers, custom vector embeddings, tokenizer optimizations, and inference endpoints." },
+  { title: "Power BI & Tableau Decision Matrix", type: "workshop", duration: "3-Day Sprint", mode: "Corporate Lab", desc: "Rapidly translate raw database extracts into interactive decision panels with dynamic drill-down hierarchies." },
+  { title: "Ethical Hacking & Network Forensics", type: "workshop", duration: "2-Day Sprint", mode: "Virtual Lab", desc: "Practical intrusion detection, port vulnerability auditing, credential attack defenses, and forensic analysis." },
+  { title: "High-Frequency Financial Data Pipelines", type: "workshop", duration: "2-Day Sprint", mode: "Code Bootcamp", desc: "Stream financial ticks into Python time-series arrays and generate statistical indicators in real-time." },
 
-  // Full Certification Courses
-  { title: "Machine Learning Masterclass", type: "course", duration: "16 Weeks", desc: "Comprehensive exploration of supervised, unsupervised, and reinforcement algorithms." },
-  { title: "Cloud Computing & AWS Architecture", type: "course", duration: "10 Weeks", desc: "Manage serverless microservices, IAM access roles, and scalable cluster topologies." },
-  { title: "Python Programming from Scratch", type: "course", duration: "8 Weeks", desc: "Object-oriented software development, asynchronous routines, and automation scripts." },
-  { title: "Enterprise Java Application Systems", type: "course", duration: "10 Weeks", desc: "Build multi-threaded enterprise software backed by relational databases and Spring Boot." },
-  { title: "Modern Blockchain Engineering", type: "course", duration: "12 Weeks", desc: "Develop decentralized applications, smart contract protocols, and immutable ledgers." }
+  // 3. Full Certification Programs
+  { title: "Machine Learning Masterclass", type: "course", duration: "16 Weeks", mode: "Instructor-Led", desc: "Comprehensive exploration of supervised, unsupervised, and reinforcement algorithms with mathematical loss function proofs." },
+  { title: "Blockchain & Decentralized Ledger Protocols", type: "course", duration: "12 Weeks", mode: "Virtual Lab", desc: "Design immutable smart contracts, consensus mechanisms, and high-throughput decentralized applications." },
+  { title: "Enterprise Cloud Computing Architecture", type: "course", duration: "10 Weeks", mode: "Cloud Console", desc: "Architect serverless computing infrastructures and automated multi-zone deployment workflows." },
+  { title: "Core & Advanced Python Engineering", type: "course", duration: "8 Weeks", mode: "Hands-on", desc: "Master object-oriented structures, async multi-threading, and performant backend microservice architectures." },
+  { title: "Modern Java Enterprise Systems", type: "course", duration: "10 Weeks", mode: "Hands-on", desc: "Develop multi-threaded enterprise software layers using modern Spring Boot patterns and database connectors." },
+  { title: "Deep Learning Computational Graphs", type: "course", duration: "12 Weeks", mode: "GPU Lab", desc: "Study generative adversarial models, diffusion mathematics, and recurrent attention sequences." },
+  { title: "Digital Marketing Analytics & Funnels", type: "course", duration: "6 Weeks", mode: "Live Campaigns", desc: "Master quantitative multi-channel campaign architectures, tag managers, and conversion optimizations." },
+  { title: "Banking Analytics & Risk Engines", type: "course", duration: "8 Weeks", mode: "Corporate Data", desc: "Deploy classification models to identify financial distress, mitigate fraud, and audit regulatory baselines." },
+  { title: "Next-Gen Financial Technologies", type: "course", duration: "10 Weeks", mode: "FinTech Sandbox", desc: "Build automated clearing ledger systems, financial OCR pipelines, and algorithmic scoring engines." },
+  { title: "Big Data Engineering Infrastructure", type: "course", duration: "12 Weeks", mode: "Cluster Labs", desc: "Ingest, transform, and store terabyte-scale distributed data using modern stream processing models." },
+  { title: "Modern Web Front-End Architecture", type: "course", duration: "8 Weeks", mode: "Interface Lab", desc: "Design high-performance modern user interfaces utilizing responsive grids and performant event loops." }
 ];
 
-let activeFilter = 'all';
+let currentFilter = 'all';
 
-// On Document Load
+// Bootstrapping Engine
 document.addEventListener("DOMContentLoaded", () => {
-  initBackgroundCanvas();
-  initHeroCard3D();
-  renderOfferings(offeringsCatalog);
+  initAmbient3DCanvas();
+  initMonolithTilt();
+  renderOfferingsMatrix(programCatalog);
+  initTiltCards();
 
-  // URL Parameter auto-lookup for certificates (e.g. ?id=SK-AI-101)
+  // Auto-scan URL params for direct certificate queries
   const urlParams = new URLSearchParams(window.location.search);
   const certParam = urlParams.get('id');
   if (certParam) {
-    const verifySec = document.getElementById('verify');
-    if (verifySec) verifySec.scrollIntoView({ behavior: 'smooth' });
-    document.getElementById('certInput').value = certParam;
-    setTimeout(verifyCertificate, 300);
+    const verifyAnchor = document.getElementById('verify');
+    if (verifyAnchor) verifyAnchor.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('certQuery').value = certParam;
+    setTimeout(verifyCredential, 350);
   }
 
-  // Mobile menu toggle
-  const toggleBtn = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-  if (toggleBtn && navMenu) {
-    toggleBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
+  // Mobile navigation trigger
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
   }
 });
 
-// Render Offerings
-function renderOfferings(items) {
-  const grid = document.getElementById('offeringsGrid');
+// Render Dynamic Grid
+function renderOfferingsMatrix(items) {
+  const grid = document.getElementById('matrixGrid');
   if (!grid) return;
 
   if (items.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No programs found matching the query.</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 50px;">No programs found matching criteria.</div>`;
     return;
   }
 
   grid.innerHTML = items.map(item => `
-    <div class="offering-card">
+    <div class="offering-pod tilt-box">
       <div>
-        <div class="offering-badge badge-${item.type}">${item.type}</div>
-        <h3 class="offering-title">${item.title}</h3>
-        <p class="offering-desc">${item.desc}</p>
+        <div class="pod-header">
+          <span class="pod-badge ${item.type}">${item.type}</span>
+          <span class="pod-mode"><i class="fa-solid fa-layer-group"></i> ${item.mode}</span>
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
       </div>
-      <div class="offering-footer">
+      <div class="pod-footer">
         <span><i class="fa-regular fa-clock"></i> ${item.duration}</span>
-        <span>Enroll Now <i class="fa-solid fa-arrow-right"></i></span>
+        <span>Apply Now <i class="fa-solid fa-arrow-right"></i></span>
       </div>
     </div>
   `).join('');
+
+  initTiltCards();
 }
 
-// Search and Filter Handling
-function applyFilter(type, buttonEl) {
-  activeFilter = type;
-  document.querySelectorAll('.filter-pills .pill').forEach(btn => btn.classList.remove('active'));
+// Search & Filter Dispatchers
+function setProgramFilter(type, buttonEl) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-pills-row .pill-btn').forEach(btn => btn.classList.remove('active'));
   buttonEl.classList.add('active');
-  executeFilter();
+  executeCatalogFilter();
 }
 
 function handleSearch() {
-  executeFilter();
+  executeCatalogFilter();
 }
 
-function executeFilter() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  const results = offeringsCatalog.filter(item => {
-    const matchesCategory = (activeFilter === 'all') || (item.type === activeFilter);
-    const matchesSearch = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-    return matchesCategory && matchesSearch;
+function executeCatalogFilter() {
+  const query = document.getElementById('offeringSearch').value.toLowerCase().trim();
+  const results = programCatalog.filter(item => {
+    const matchCategory = (currentFilter === 'all') || (item.type === currentFilter);
+    const matchQuery = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+    return matchCategory && matchQuery;
   });
-  renderOfferings(results);
+  renderOfferingsMatrix(results);
 }
 
-// 3D Tilt Centerpiece
-function initHeroCard3D() {
-  const card = document.getElementById('heroCard3d');
-  if (!card) return;
+// Interactive 3D Cursor Tilt for Centerpiece
+function initMonolithTilt() {
+  const monolith = document.getElementById('interactiveMonolith');
+  if (!monolith) return;
 
   window.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 28;
-    const y = (window.innerHeight / 2 - e.clientY) / 28;
-    card.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
+    const x = (window.innerWidth / 2 - e.clientX) / 24;
+    const y = (window.innerHeight / 2 - e.clientY) / 24;
+    monolith.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
   });
 }
 
-// Background Clean 3D Geometric Canvas
-function initBackgroundCanvas() {
-  const canvas = document.getElementById('canvas3d');
+// Universal Tilt for Cards
+function initTiltCards() {
+  const tiltBoxes = document.querySelectorAll('.tilt-box');
+  tiltBoxes.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      card.style.transform = `perspective(1000px) rotateY(${x / 20}deg) rotateX(${-y / 20}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)`;
+    });
+  });
+}
+
+// Interactive 3D Vector Ambient Engine (Pure Native Canvas)
+function initAmbient3DCanvas() {
+  const canvas = document.getElementById('ambient3D');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
@@ -127,171 +155,175 @@ function initBackgroundCanvas() {
   });
 
   const nodes = [];
-  const nodeCount = 35;
+  const nodeCount = 42;
 
   for (let i = 0; i < nodeCount; i++) {
     nodes.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      r: Math.random() * 2.5 + 1.5
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+      radius: Math.random() * 2.5 + 1.5
     });
   }
 
-  function loop() {
+  function frameLoop() {
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i];
-      n.x += n.vx;
-      n.y += n.vy;
+      const node = nodes[i];
+      node.x += node.vx;
+      node.y += node.vy;
 
-      if (n.x < 0 || n.x > width) n.vx *= -1;
-      if (n.y < 0 || n.y > height) n.vy *= -1;
+      if (node.x < 0 || node.x > width) node.vx *= -1;
+      if (node.y < 0 || node.y > height) node.vy *= -1;
 
-      ctx.fillStyle = 'rgba(29, 78, 216, 0.35)';
+      ctx.fillStyle = 'rgba(29, 78, 216, 0.4)';
       ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
       ctx.fill();
 
       for (let j = i + 1; j < nodes.length; j++) {
-        const n2 = nodes[j];
-        const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
-        if (dist < 140) {
-          ctx.strokeStyle = `rgba(29, 78, 216, ${0.12 * (1 - dist / 140)})`;
+        const node2 = nodes[j];
+        const dist = Math.hypot(node.x - node2.x, node.y - node2.y);
+        if (dist < 145) {
+          ctx.strokeStyle = `rgba(29, 78, 216, ${0.14 * (1 - dist / 145)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(n2.x, n2.y);
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(node2.x, node2.y);
           ctx.stroke();
         }
       }
     }
-    requestAnimationFrame(loop);
+    requestAnimationFrame(frameLoop);
   }
-  loop();
+  frameLoop();
 }
 
-// Certificate Verification Fetcher
-function verifyCertificate() {
-  const idInput = document.getElementById('certInput');
-  const feedback = document.getElementById('verifyFeedback');
-  const id = idInput.value.trim();
+// Real-Time Smart-Seal Verification Engine
+function verifyCredential() {
+  const queryField = document.getElementById('certQuery');
+  const outputDiv = document.getElementById('verifyOutput');
+  const id = queryField.value.trim();
 
   if (!id) {
-    feedback.innerHTML = `<p style="color: #dc2626; margin-top: 14px; font-weight: 600;">Please enter a certificate ID.</p>`;
+    outputDiv.innerHTML = `<p style="color: #dc2626; margin-top: 15px; font-weight: 700;"><i class="fa-solid fa-triangle-exclamation"></i> Please enter an issued certificate number.</p>`;
     return;
   }
 
-  feedback.innerHTML = `<p style="color: var(--primary); margin-top: 14px; font-weight: 600;"><i class="fa-solid fa-spinner fa-spin"></i> Querying cloud database...</p>`;
+  outputDiv.innerHTML = `<p style="color: var(--primary); margin-top: 15px; font-weight: 700;"><i class="fa-solid fa-circle-notch fa-spin"></i> Contacting Decentralized Ledger Records...</p>`;
 
   const endpoint = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
 
   fetch(endpoint)
     .then(res => res.text())
-    .then(text => {
-      const json = JSON.parse(text.substr(47).slice(0, -2));
-      const rows = json.table.rows;
-      let record = null;
+    .then(raw => {
+      const parsed = JSON.parse(raw.substr(47).slice(0, -2));
+      const records = parsed.table.rows;
+      let matched = null;
 
-      for (let i = 0; i < rows.length; i++) {
-        const c = rows[i].c;
-        if (c && c[0] && c[0].v && c[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
-          record = {
-            id: c[0].v,
-            name: c[1] ? c[1].v : "Candidate Record",
-            course: c[2] ? c[2].v : "Program Name",
-            date: c[3] ? c[3].v : "Verified Date"
+      for (let i = 0; i < records.length; i++) {
+        const cells = records[i].c;
+        if (cells && cells[0] && cells[0].v && cells[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
+          matched = {
+            id: cells[0].v,
+            name: cells[1] ? cells[1].v : "Candidate Record",
+            course: cells[2] ? cells[2].v : "Program Track",
+            date: cells[3] ? cells[3].v : "Authenticated Date"
           };
           break;
         }
       }
 
-      if (record) {
-        feedback.innerHTML = `
-          <div class="cert-card-3d">
-            <div class="cert-header">
+      if (matched) {
+        outputDiv.innerHTML = `
+          <div class="holo-seal-card">
+            <div class="holo-header">
               <div>
-                <span class="cert-id-tag">${record.id}</span>
+                <span class="holo-id">${matched.id}</span>
                 <h4 style="margin-top: 6px; color: #16a34a;"><i class="fa-solid fa-circle-check"></i> Authenticated Credential</h4>
               </div>
-              <i class="fa-solid fa-award" style="font-size: 2.2rem; color: var(--gold);"></i>
+              <i class="fa-solid fa-award holo-gold-icon"></i>
             </div>
-            <div class="cert-row">
+            <div class="holo-row">
               <label>Candidate Name</label>
-              <div>${record.name}</div>
+              <div>${matched.name}</div>
             </div>
-            <div class="cert-row">
-              <label>Program / Track</label>
-              <div>${record.course}</div>
+            <div class="holo-row">
+              <label>Specialization Program</label>
+              <div>${matched.course}</div>
             </div>
-            <div class="cert-row">
-              <label>Completion Date</label>
-              <div>${record.date}</div>
+            <div class="holo-row">
+              <label>Issuance & Completion Date</label>
+              <div>${matched.date}</div>
             </div>
           </div>
         `;
       } else {
-        feedback.innerHTML = `
-          <div style="background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 14px; border-radius: 10px; margin-top: 16px;">
-            <i class="fa-solid fa-circle-xmark"></i> No valid record found for ID "<strong>${id}</strong>".
+        outputDiv.innerHTML = `
+          <div style="background: #fee2e2; border: 1px solid #f87171; color: #b91c1c; padding: 16px; border-radius: 12px; margin-top: 18px; font-weight: 600;">
+            <i class="fa-solid fa-circle-xmark"></i> Verification Failed: No active credentials matching "<strong>${id}</strong>".
           </div>
         `;
       }
     })
     .catch(err => {
       console.error(err);
-      feedback.innerHTML = `<p style="color: #dc2626; margin-top: 14px; font-weight: 600;">Unable to connect to verification database.</p>`;
+      outputDiv.innerHTML = `<p style="color: #dc2626; margin-top: 15px; font-weight: 700;">Database communication offline. Please verify link sharing permissions.</p>`;
     });
 }
 
-// Authentication & Portal Access
-let activeRole = "";
+// Authentication Terminal Modal
+let activePortal = "";
 
-function openLoginModal(role) {
-  activeRole = role;
-  document.getElementById('modalRole').innerText = `${role} Portal`;
+function triggerLogin(portalRole) {
+  activePortal = portalRole;
+  document.getElementById('modalTitle').innerText = `${portalRole} Authentication`;
   document.getElementById('loginModal').style.display = 'flex';
 }
 
-function closeLoginModal() {
+function dismissLogin() {
   document.getElementById('loginModal').style.display = 'none';
-  document.getElementById('passkeyInput').value = '';
+  document.getElementById('authKeyInput').value = '';
 }
 
-function togglePassVisibility() {
-  const input = document.getElementById('passkeyInput');
+function togglePassEye() {
+  const input = document.getElementById('authKeyInput');
   input.type = input.type === 'password' ? 'text' : 'password';
 }
 
-function authenticatePortal() {
-  const key = document.getElementById('passkeyInput').value;
-  
-  if (activeRole === 'Admin' && key === 'santhassk') {
-    closeLoginModal();
-    showAdminDashboard();
-  } else if (activeRole === 'Staff' && key === 'SKAITECH2026') {
-    closeLoginModal();
-    showUserDashboard('Staff');
-  } else if (activeRole === 'Student' && key === 'skaistudent') {
-    closeLoginModal();
-    showUserDashboard('Student');
+function verifyAuthKey() {
+  const key = document.getElementById('authKeyInput').value;
+
+  if (activePortal === 'Admin' && key === 'santhassk') {
+    dismissLogin();
+    renderAdminTerminal();
+  } else if (activePortal === 'Staff' && key === 'SKAITECH2026') {
+    dismissLogin();
+    renderUserTerminal('Staff');
+  } else if (activePortal === 'Student' && key === 'skaistudent') {
+    dismissLogin();
+    renderUserTerminal('Student');
   } else {
-    alert("Authentication failed: Invalid key.");
+    alert("Authentication Failed: Security key mismatch.");
   }
 }
 
-function showUserDashboard(role) {
+function renderUserTerminal(role) {
   const panel = document.getElementById('userDashboard');
   panel.style.display = 'block';
   panel.innerHTML = `
-    <div class="dash-box">
-      <h2 style="color: var(--primary); margin-bottom: 8px;">${role} Attendance</h2>
-      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Session check-in timestamp.</p>
-      <input type="text" id="traineeName" placeholder="Enter Full Name">
-      <button class="btn-3d btn-primary btn-full" onclick="recordAttendance('${role}')">Mark Present</button>
-      <button class="btn-3d btn-outline btn-full" style="margin-top: 10px;" onclick="location.reload()">Exit Portal</button>
+    <div class="terminal-card">
+      <h2 style="color: var(--primary); margin-bottom: 8px;">${role} Attendance Logger</h2>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">Secure daily session attendance record.</p>
+      <input type="text" id="traineeName" placeholder="Enter full registered name">
+      <button class="btn-neo btn-primary-3d full-width" onclick="recordAttendance('${role}')">
+        <span>Confirm Session Presence</span>
+      </button>
+      <button class="btn-neo btn-ghost-3d full-width" style="margin-top: 12px;" onclick="location.reload()">
+        <span>Exit Terminal</span>
+      </button>
     </div>
   `;
 }
@@ -299,22 +331,22 @@ function showUserDashboard(role) {
 function recordAttendance(role) {
   const name = document.getElementById('traineeName').value.trim();
   if (!name) return alert("Please enter your name.");
-  alert(`Attendance marked for ${name} [${role}].`);
+  alert(`Attendance recorded successfully for ${name} [${role}].`);
   location.reload();
 }
 
-function showAdminDashboard() {
+function renderAdminTerminal() {
   const panel = document.getElementById('adminDashboard');
   panel.style.display = 'block';
   panel.innerHTML = `
-    <div class="container" style="max-width: 600px; margin-top: 60px;">
+    <div class="terminal-card" style="max-width: 600px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
         <h2>Admin Management</h2>
-        <button class="btn-3d btn-outline" onclick="location.reload()">Exit</button>
+        <button class="btn-neo btn-ghost-3d" onclick="location.reload()">Exit</button>
       </div>
-      <p style="color: var(--text-muted); margin-bottom: 20px;">Manage student data and cloud certificate records:</p>
-      <button class="btn-3d btn-primary btn-full" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
-        <i class="fa-solid fa-table"></i> Open Google Cloud Sheet
+      <p style="color: var(--text-muted); margin-bottom: 24px;">Direct master database spreadsheet management:</p>
+      <button class="btn-neo btn-primary-3d full-width" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
+        <span><i class="fa-solid fa-table"></i> Open Google Cloud Sheet Database</span>
       </button>
     </div>
   `;
