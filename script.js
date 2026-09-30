@@ -1,218 +1,323 @@
-// Google Cloud Sheet ID reference for credential verification
+// Google Cloud Sheet ID for Real-Time Credential Querying
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
 
-// Institutional Programs Catalog (Categorized)
-const courseData = [
-    { title: "Artificial Intelligence", category: "ai", desc: "Master advanced Neural Networks, Natural Language Processing, and Vision pipelines.\nDeploy production-ready predictive models across secure cloud environments." },
-    { title: "Machine Learning", category: "ai", desc: "Build predictive engines using robust supervised and unsupervised learning algorithms.\nOptimize complex statistical data modeling pathways for strategic enterprise execution." },
-    { title: "Deep Learning (DL)", category: "ai", desc: "Study complex neural network layers and state-of-the-art computational graphs.\nTrain generative architectures and deep computational models for multi-dimensional data." },
-    { title: "Data Science", category: "ai", desc: "Architect data preprocessing pipelines and feature engineering workflows.\nFormulate Business Intelligence strategies leveraging modern visualization models." },
-    { title: "Cyber Security", category: "security", desc: "Implement defensive operations using cutting-edge ethical hacking frameworks.\nSecure distributed networks against zero-day threat vectors and unauthorized intrusions." },
-    { title: "Blockchain Tech", category: "security", desc: "Develop secure distributed ledger layers using smart contracts and consensus algorithms.\nArchitect decentralized applications for high-throughput trust verification." },
-    { title: "Python Programming", category: "dev", desc: "Master object-oriented system architectures and automation scripts.\nBuild microservice logical engines utilizing performant computational libraries." },
-    { title: "Power BI & Tableau", category: "finance", desc: "Design interactive corporate dashboard configurations and live connections.\nTranslate tabular analytical sets into scalable operational decision panels." },
-    { title: "Java Programming", category: "dev", desc: "Engineer enterprise software using clean object-oriented design and multi-threading.\nDevelop platform-independent application layers backed by structural database interfaces." },
-    { title: "Cloud Computing", category: "security", desc: "Architect serverless computing infrastructures and multi-zone deployment matrices.\nManage application layers across secure virtualization networks." },
-    { title: "Internet of Things", category: "dev", desc: "Design smart connected node network architectures.\nDeploy sensory grid environments backed by robust edge analytics computing." },
-    { title: "Embedded IoT", category: "dev", desc: "Program microcontrollers and low-level operational firmware protocols.\nOptimize hardware telemetry streams with low-latency communication channels." },
-    { title: "Financial Analyst", category: "finance", desc: "Master corporate valuation models and macroeconomic indicators.\nPerform equity research alongside quantitative portfolio tracking algorithms." },
-    { title: "Digital Marketing", category: "finance", desc: "Build ROI-focused multi-channel consumer engagement campaigns.\nLeverage web analytics architectures and automated funnel optimizations." },
-    { title: "Financial Data Engineering", category: "finance", desc: "Architect time-series pipelines for high-frequency market data ticks.\nOptimize relational data stores utilizing specialized Python analytics libraries." },
-    { title: "Banking Analytics & Risk", category: "finance", desc: "Deploy classification models to predict loan default metrics.\nBuild real-time anomaly detection pipelines to mitigate operational exposure." },
-    { title: "Next-Gen FinTech", category: "finance", desc: "Develop secure distributed ledger layers for investment clearing networks.\nImplement automated smart contracts and intelligent OCR banking engines." },
-    { title: "Data Analytics", category: "ai", desc: "Translate historical metrics into clear corporate strategy trends.\nBuild structured database layers alongside enterprise-level visual analytics." },
-    { title: "Data Engineer", category: "ai", desc: "Construct multi-gigabyte ingestion networks and data transformations.\nMaintain low-latency server configurations for enterprise engineering models." },
-    { title: "Full Stack Development", category: "dev", desc: "Engineer responsive client-side interfaces and modular user flows.\nDeploy scalable backend APIs backed by cloud deployment strategies." },
-    { title: "Modern Web Development", category: "dev", desc: "Design responsive grid applications with fluid typography and layout rules.\nImplement performant data fetching mechanisms using vanilla engine frameworks." }
+// Institutional Matrix Catalog (Internships, Workshops, and Professional Courses)
+const academicModules = [
+    { title: "Applied Artificial Intelligence", type: "course", duration: "12 Weeks", tag: "AI & Neural Nets", desc: "Build convolutional architectures, transformer NLP networks, and deploy containerized models to cloud endpoints." },
+    { title: "Deep Learning Model Engineering", type: "internship", duration: "8 Weeks", tag: "Production AI", desc: "Train generative adversarials and multi-layer perception algorithms. Work with real-world computer vision pipelines." },
+    { title: "Zero-Day Cyber Defense Masterclass", type: "workshop", duration: "3 Days", tag: "Security", desc: "Live attack emulation, penetration testing workflows, packet inspection, and digital forensics mitigation." },
+    { title: "Machine Learning Foundations", type: "course", duration: "10 Weeks", tag: "Predictive Analytics", desc: "Supervised and unsupervised regression algorithms, cluster optimizations, and predictive statistical frameworks." },
+    { title: "Full-Stack Enterprise Development", type: "internship", duration: "12 Weeks", tag: "Web Architecture", desc: "Architect responsive user interfaces connected to scalable microservice backends with automated deployment pipelines." },
+    { title: "Industrial Embedded IoT Systems", type: "workshop", duration: "4 Days", tag: "Hardware & Telemetry", desc: "Microcontroller flashing, edge sensor nodes, and streaming telemetry over low-latency MQTT networks." },
+    { title: "FinTech & Quantitative Risk Modeling", type: "internship", duration: "6 Weeks", tag: "Finance & Analytics", desc: "Predict loan default parameters, assess portfolio credit exposure, and deploy automated OCR ledger verification." },
+    { title: "Power BI & Corporate Intelligence", type: "course", duration: "6 Weeks", tag: "Business Analytics", desc: "Formulate executive decision matrix dashboards, manage data warehouses, and map complex KPIs." },
+    { title: "Decentralized Blockchain Architectures", type: "course", duration: "8 Weeks", tag: "Web3 & Ledger", desc: "Smart contract logic, decentralized application development, consensus verification, and immutability security." },
+    { title: "Data Science & Feature Engineering", type: "internship", duration: "8 Weeks", tag: "Data Engineering", desc: "ETL pipelines, data cleaning protocols, multi-dimensional array preprocessing, and data storytelling." },
+    { title: "Python Automation & System Design", type: "course", duration: "8 Weeks", tag: "Core Programming", desc: "Object-oriented design patterns, concurrency frameworks, modular package distribution, and system scripting." },
+    { title: "Enterprise Cloud Virtualization", type: "workshop", duration: "3 Days", tag: "Cloud & DevOps", desc: "Multi-zone serverless clusters, VPC configurations, identity access management, and automated scaling." },
+    { title: "Modern Web Engineering", type: "course", duration: "6 Weeks", tag: "Frontend Systems", desc: "Dynamic asynchronous data hydration, high-performance styling rules, and native API consumption." },
+    { title: "Banking Analytics & Anomaly Detection", type: "workshop", duration: "2 Days", tag: "FinTech", desc: "Deploy classification engines to locate anomalous transaction patterns in simulated high-frequency banking feeds." },
+    { title: "Core Java & Multi-Threaded Services", type: "course", duration: "10 Weeks", tag: "Enterprise Backend", desc: "Thread pools, memory management, structural relational database layers, and cross-platform architecture." },
+    { title: "IoT Firmware & Embedded C", type: "internship", duration: "8 Weeks", tag: "Hardware", desc: "Real-time operating systems (RTOS), hardware interrupts, protocol decoders, and sensor calibration." },
+    { title: "Digital Marketing Analytics & Funnels", type: "workshop", duration: "2 Days", tag: "Growth Analytics", desc: "Algorithmic conversion funnel tracking, attribution modeling, and automated consumer re-engagement strategies." },
+    { title: "Financial Analyst Valuation Track", type: "course", duration: "8 Weeks", tag: "Investment Research", desc: "Discounted cash flows (DCF), macroeconomic indicator synthesis, and equity research analytics." },
+    { title: "Data Engineering Pipeline Ingestion", type: "internship", duration: "10 Weeks", tag: "Big Data", desc: "Construct multi-gigabyte ingestion pipes, relational schematics, and optimize low-latency server configurations." },
+    { title: "High-Frequency Financial Data Engines", type: "workshop", duration: "3 Days", tag: "Algorithmic Trading", desc: "Architect streaming time-series analysis for tick-level currency and equity transactions using Python libraries." },
+    { title: "Applied Ethical Hacking & Audits", type: "internship", duration: "6 Weeks", tag: "Cyber Security", desc: "Perform compliance audits, patch vulnerability vectors, and harden infrastructure against brute-force intrusion." }
 ];
 
-let currentFilter = 'all';
+let activeTrack = 'all';
 
-// Initialize Layout, Filters, and Observers
+// Initialize Three.js 3D Background Engine, Perspective Listeners & Modules
 document.addEventListener("DOMContentLoaded", () => {
-    initCanvasParticles();
-    renderCourseGrid(courseData);
-    initStatsObserver();
+    init3DBackground();
+    init3DTilt();
+    renderModules(academicModules);
+    initCounters();
 
-    // Check URL parameters for direct verification queries
-    const urlParams = new URLSearchParams(window.location.search);
-    const certIdFromUrl = urlParams.get('id');
-    if (certIdFromUrl) {
+    // Check for direct URL certificate verification
+    const params = new URLSearchParams(window.location.search);
+    const certId = params.get('id');
+    if (certId) {
         const verifySection = document.getElementById('verify');
         if (verifySection) verifySection.scrollIntoView({ behavior: 'smooth' });
-        document.getElementById('certId').value = certIdFromUrl;
-        setTimeout(() => { manualVerify(); }, 400);
+        document.getElementById('certInput').value = certId;
+        setTimeout(() => { verifyCertificate(); }, 350);
     }
 });
 
-// Render Program Cards
-function renderCourseGrid(list) {
-    const mainGrid = document.getElementById('mainGrid');
-    if (!mainGrid) return;
-    
-    if (list.length === 0) {
-        mainGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No programs found matching criteria.</div>`;
+// 1. Three.js Spatial Background Layer (Eliminates dead empty space)
+function init3DBackground() {
+    const container = document.getElementById('canvas3d-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 25;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Dynamic 3D Particle Cloud
+    const particleCount = 850;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+
+    const goldColor = new THREE.Color(0xf5c518);
+    const cyanColor = new THREE.Color(0x00f2fe);
+
+    for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 60;
+        positions[i + 1] = (Math.random() - 0.5) * 60;
+        positions[i + 2] = (Math.random() - 0.5) * 50;
+
+        const mixed = Math.random() > 0.4 ? goldColor : cyanColor;
+        colors[i] = mixed.r;
+        colors[i + 1] = mixed.g;
+        colors[i + 2] = mixed.b;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+        size: 0.18,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.75
+    });
+
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+
+    // Subtle 3D Geometric Torus Grid in depth
+    const torusGeo = new THREE.TorusGeometry(14, 0.05, 16, 100);
+    const torusMat = new THREE.MeshBasicMaterial({ color: 0xf5c518, wireframe: true, transparent: true, opacity: 0.15 });
+    const torus = new THREE.Mesh(torusGeo, torusMat);
+    scene.add(torus);
+
+    // Mouse movement parallax
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+    });
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        particles.rotation.y += 0.0008;
+        particles.rotation.x += 0.0004;
+
+        torus.rotation.x += 0.001;
+        torus.rotation.y += 0.001;
+
+        camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 15 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+// 2. Interactive 3D Perspective Tilt on Elements
+function init3DTilt() {
+    const tiltElements = document.querySelectorAll('[data-tilt]');
+    tiltElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -12;
+            const rotateY = ((x - centerX) / centerX) * 12;
+
+            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+    });
+}
+
+// 3. Render Academic & Industrial Matrix
+function renderModules(data) {
+    const grid = document.getElementById('portalGrid');
+    if (!grid) return;
+
+    if (data.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 50px;">No programs found matching criteria.</div>`;
         return;
     }
 
-    mainGrid.innerHTML = list.map(c => `
-        <div class="card course-card">
-            <span class="badge">${getCategoryName(c.category)}</span>
-            <h3>${c.title}</h3>
-            <p>${c.desc.replace(/\n/g, '<br>')}</p>
-            <div class="course-footer">
-                <span><i class="fas fa-layer-group"></i> Project-Based</span>
-                <span>Verified Certificate <i class="fas fa-arrow-right"></i></span>
+    grid.innerHTML = data.map(m => `
+        <div class="module-card" data-tilt>
+            <div>
+                <div class="module-meta-top">
+                    <span class="badge-tag ${m.type}">${m.type}</span>
+                    <span class="module-duration"><i class="fas fa-clock"></i> ${m.duration}</span>
+                </div>
+                <h3>${m.title}</h3>
+                <p>${m.desc}</p>
+            </div>
+            <div class="module-footer-action">
+                <span class="live-indicator">Admissions Active</span>
+                <a href="https://wa.me/919361483073?text=I%20want%20to%20register%20for%20${encodeURIComponent(m.title)}" target="_blank" class="module-link">
+                    Apply Now <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     `).join('');
+
+    init3DTilt(); // Rebind tilt listeners for newly generated cards
 }
 
-function getCategoryName(cat) {
-    switch (cat) {
-        case 'ai': return 'AI & Data';
-        case 'dev': return 'Software & Web';
-        case 'security': return 'Cloud & Security';
-        case 'finance': return 'FinTech & Analytics';
-        default: return 'Specialization';
-    }
+// 4. Tab & Live Query Filter
+function switchTrack(trackType, btn) {
+    activeTrack = trackType;
+    document.querySelectorAll('.track-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterModules();
 }
 
-// Course Filters
-function setCategory(cat, element) {
-    currentFilter = cat;
-    document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('active'));
-    element.classList.add('active');
-    filterCourses();
-}
-
-function filterCourses() {
-    const query = document.getElementById('courseSearch').value.toLowerCase().trim();
-    const filtered = courseData.filter(c => {
-        const matchesCategory = (currentFilter === 'all') || (c.category === currentFilter);
-        const matchesQuery = c.title.toLowerCase().includes(query) || c.desc.toLowerCase().includes(query);
-        return matchesCategory && matchesQuery;
+function filterModules() {
+    const query = document.getElementById('moduleSearch').value.toLowerCase().trim();
+    const filtered = academicModules.filter(m => {
+        const matchesTrack = (activeTrack === 'all') || (m.type === activeTrack);
+        const matchesQuery = m.title.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query) || m.tag.toLowerCase().includes(query);
+        return matchesTrack && matchesQuery;
     });
-    renderCourseGrid(filtered);
+    renderModules(filtered);
 }
 
-// Responsive Navbar Toggle
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('open');
-}
-
-// Animated Stat Counters
-function initStatsObserver() {
-    const statsSection = document.getElementById('stats');
-    if (!statsSection) return;
-
-    let executed = false;
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !executed) {
-            executed = true;
-            document.querySelectorAll('.metric-number').forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'), 10);
-                let current = 0;
-                const increment = Math.ceil(target / 45);
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.innerText = target;
-                        clearInterval(timer);
-                    } else {
-                        counter.innerText = current;
-                    }
-                }, 30);
-            });
-        }
-    }, { threshold: 0.3 });
-
-    observer.observe(statsSection);
-}
-
-// Interactive Certificate Verification
-function manualVerify() {
-    const idInput = document.getElementById('certId');
+// 5. Holographic Certificate Verification
+function verifyCertificate() {
+    const idInput = document.getElementById('certInput');
     const id = idInput.value.trim();
-    const resultDiv = document.getElementById('verifyResult');
+    const feedback = document.getElementById('verifyFeedback');
 
     if (!id) {
-        resultDiv.innerHTML = `<div style="color: #ef4444; margin-top: 15px; font-weight: 600;"><i class="fas fa-triangle-exclamation"></i> Please input a valid Certificate ID.</div>`;
+        feedback.innerHTML = `<div style="color: #ef4444; margin-top: 15px; font-weight: 700;"><i class="fas fa-triangle-exclamation"></i> Input a valid Certificate/Registration ID.</div>`;
         return;
     }
 
-    resultDiv.innerHTML = `
-        <div style="color: var(--gold); margin-top: 20px; font-weight: 600;">
-            <i class="fas fa-circle-notch fa-spin"></i> Contacting Decentralized Ledger Records...
-        </div>`;
+    feedback.innerHTML = `<div style="color: var(--gold); margin-top: 18px; font-weight: 600;"><i class="fas fa-spinner fa-spin"></i> Authenticating with Cloud Ledger Database...</div>`;
 
     const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
 
     fetch(targetUrl)
         .then(res => res.text())
         .then(data => {
-            const tempJson = JSON.parse(data.substr(47).slice(0, -2));
-            const rows = tempJson.table.rows;
+            const rawJson = JSON.parse(data.substr(47).slice(0, -2));
+            const rows = rawJson.table.rows;
             let record = null;
 
             for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].c;
-                if (cells && cells[0] && cells[0].v && cells[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
+                const c = rows[i].c;
+                if (c && c[0] && c[0].v && c[0].v.toString().trim().toLowerCase() === id.toLowerCase()) {
                     record = {
-                        id: cells[0].v,
-                        name: cells[1] ? cells[1].v : "N/A",
-                        course: cells[2] ? cells[2].v : "N/A",
-                        date: cells[3] ? cells[3].v : "N/A"
+                        id: c[0].v,
+                        name: c[1] ? c[1].v : "N/A",
+                        course: c[2] ? c[2].v : "N/A",
+                        date: c[3] ? c[3].v : "N/A"
                     };
                     break;
                 }
             }
 
             if (record) {
-                resultDiv.innerHTML = `
-                    <div class="verify-badge-card">
-                        <div class="verify-header">
+                feedback.innerHTML = `
+                    <div class="holo-badge-card">
+                        <div class="holo-head">
                             <div>
-                                <span class="verify-id-pill">${record.id}</span>
-                                <h3 style="margin-top: 8px; color: #4ade80;"><i class="fas fa-circle-check"></i> Certified Credential</h3>
+                                <span class="holo-id">${record.id}</span>
+                                <h4 style="color: #4ade80; margin-top: 4px;"><i class="fas fa-certificate"></i> Verified Credential</h4>
                             </div>
-                            <i class="fas fa-shield-halved" style="font-size: 2.2rem; color: var(--gold);"></i>
+                            <i class="fas fa-award" style="font-size: 2.4rem; color: var(--gold);"></i>
                         </div>
-                        <div class="verify-field">
-                            <label>Candidate Name</label>
+                        <div class="holo-field">
+                            <label>Awarded Candidate</label>
                             <div>${record.name}</div>
                         </div>
-                        <div class="verify-field">
-                            <label>Specialization Completed</label>
+                        <div class="holo-field">
+                            <label>Completed Track / Specialization</label>
                             <div>${record.course}</div>
                         </div>
-                        <div class="verify-field">
+                        <div class="holo-field">
                             <label>Issuance & Completion Date</label>
                             <div>${record.date}</div>
                         </div>
                     </div>`;
             } else {
-                resultDiv.innerHTML = `
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px; border-radius: 10px; color: #f87171; margin-top: 20px;">
-                        <i class="fas fa-circle-xmark"></i> Verification Failed: No active credentials found matching "<strong>${id}</strong>".
+                feedback.innerHTML = `
+                    <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); padding: 16px; border-radius: 12px; color: #f87171; margin-top: 20px;">
+                        <i class="fas fa-circle-xmark"></i> Verification Error: No active records matching <strong>"${id}"</strong> found on the registry.
                     </div>`;
             }
         })
         .catch(err => {
             console.error("Cloud Connection Exception:", err);
-            resultDiv.innerHTML = `
-                <div style="color: #ef4444; margin-top: 20px; font-weight: 600;">
-                    <i class="fas fa-triangle-exclamation"></i> Database Offline. Ensure the reference spreadsheet has link-sharing set to "Anyone with the link".
-                </div>`;
+            feedback.innerHTML = `<div style="color: #ef4444; margin-top: 15px; font-weight: 700;"><i class="fas fa-triangle-exclamation"></i> Network Error: Check spreadsheet link sharing permissions.</div>`;
         });
 }
 
-// Authentication Modal Logic
-let currentPortalType = "";
+// 6. Viewport Animated Counters
+function initCounters() {
+    const statsSec = document.getElementById('stats');
+    if (!statsSec) return;
 
-function togglePasswordVisibility(id, icon) {
-    const input = document.getElementById(id);
+    let triggered = false;
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !triggered) {
+            triggered = true;
+            document.querySelectorAll('.stat-counter').forEach(c => {
+                const target = parseInt(c.getAttribute('data-count'), 10);
+                let current = 0;
+                const increment = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        c.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        c.innerText = current;
+                    }
+                }, 30);
+            });
+        }
+    }, { threshold: 0.3 });
+
+    observer.observe(statsSec);
+}
+
+// 7. Security Gateway Authentication Logic
+let currentPortalRole = "";
+
+function openAuthModal(role) {
+    currentPortalRole = role;
+    document.getElementById('authTitle').innerText = `${role} Gateway`;
+    document.getElementById('authModal').style.display = 'flex';
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+    document.getElementById('authKey').value = '';
+}
+
+function togglePassEye() {
+    const input = document.getElementById('authKey');
+    const icon = document.querySelector('.toggle-key');
     if (input.type === "password") {
         input.type = "text";
         icon.classList.replace('fa-eye-slash', 'fa-eye');
@@ -222,130 +327,60 @@ function togglePasswordVisibility(id, icon) {
     }
 }
 
-function openLogin(type) {
-    currentPortalType = type;
-    document.getElementById('modalTitle').innerText = `${type} Portal Authentication`;
-    document.getElementById('loginModal').style.display = 'flex';
-}
-
-function closeLogin() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('portalPass').value = '';
-}
-
-function checkPass() {
-    const pass = document.getElementById('portalPass').value;
-    // Client-side authentication wrapper
-    if (currentPortalType === 'Admin' && pass === "santhassk") {
-        closeLogin();
-        showAdminPanel();
-    } else if (currentPortalType === 'Staff' && pass === "SKAITECH2026") {
-        closeLogin();
-        showUserPortal('Staff');
-    } else if (currentPortalType === 'Student' && pass === "skaistudent") {
-        closeLogin();
-        showUserPortal('Student');
+function authenticateUser() {
+    const key = document.getElementById('authKey').value;
+    if (currentPortalRole === 'Admin' && key === "santhassk") {
+        closeAuthModal();
+        showAdminControl();
+    } else if (currentPortalRole === 'Staff' && key === "SKAITECH2026") {
+        closeAuthModal();
+        showAttendanceInterface('Staff');
+    } else if (currentPortalRole === 'Student' && key === "skaistudent") {
+        closeAuthModal();
+        showAttendanceInterface('Student');
     } else {
-        alert("Authentication failed: Invalid credentials.");
+        alert("Authentication failed: Access passkey invalid.");
     }
 }
 
-function showUserPortal(type) {
-    const panel = document.getElementById('userDashboard');
+function showAttendanceInterface(role) {
+    const panel = document.getElementById('attendancePanel');
     panel.style.display = 'block';
     panel.innerHTML = `
-        <div class="attendance-card">
-            <h2 class="accent">${type} Check-In</h2>
-            <p style="margin: 15px 0 25px; color: var(--text-muted);">Secure digital attendance timestamp.</p>
-            <input type="text" id="userName" placeholder="Type your full registered name">
-            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="markAttendance('${type}')">Record Status</button>
-            <button class="btn-secondary" style="width: 100%; margin-top: 12px; justify-content: center;" onclick="location.reload()">Exit Portal</button>
+        <div class="modal-card" style="margin: 100px auto;" data-tilt>
+            <h2 class="accent-gold">${role} Check-In</h2>
+            <p style="margin: 10px 0 20px; color: var(--text-muted);">Timestamped Daily Log Terminal</p>
+            <input type="text" id="attName" placeholder="Enter Full Legal Name" style="width:100%; padding:14px; background:rgba(0,0,0,0.5); border:1px solid var(--glass-border); border-radius:10px; color:white; outline:none; margin-bottom:15px;">
+            <button class="btn-3d btn-primary-3d" style="width:100%" onclick="recordLog('${role}')">Record Attendance</button>
+            <button class="btn-3d btn-glass-3d" style="width:100%; margin-top:10px;" onclick="location.reload()">Exit Gateway</button>
         </div>`;
+    init3DTilt();
 }
 
-function markAttendance(type) {
-    const name = document.getElementById('userName').value.trim();
-    if (!name) return alert("Please enter your name.");
-    alert(`Attendance marked successfully for ${name} [${type}].`);
+function recordLog(role) {
+    const name = document.getElementById('attName').value.trim();
+    if (!name) return alert("Please specify full name.");
+    alert(`Success: Attendance registered for ${name} [${role}] on the local session.`);
     location.reload();
 }
 
-function showAdminPanel() {
-    const panel = document.getElementById('adminDashboard');
+function showAdminControl() {
+    const panel = document.getElementById('adminPanel');
     panel.style.display = 'block';
     panel.innerHTML = `
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                <h2 class="accent">Administrative Operations</h2>
-                <button class="btn-secondary" onclick="location.reload()">Exit Console</button>
+        <div class="section-container" style="padding-top: 100px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 30px;">
+                <h2 class="accent-gold">Administrative Systems Console</h2>
+                <button class="btn-3d btn-glass-3d" onclick="location.reload()">Exit Console</button>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Use cloud sheet direct link to edit active verification records and manage roles.</p>
-            <button class="btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
-                <i class="fas fa-arrow-up-right-from-square"></i> Open Google Cloud Sheet
+            <p style="color:var(--text-muted); margin-bottom:20px;">Use the cloud connector below to modify the verification records directly on the Google Sheet database.</p>
+            <button class="btn-3d btn-primary-3d" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
+                <span><i class="fas fa-database"></i> Launch Google Cloud Database</span>
             </button>
         </div>`;
 }
 
-// Background Neural Particle Visualizer
-function initCanvasParticles() {
-    const canvas = document.getElementById('neuralCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    });
-
-    const particles = [];
-    const count = Math.min(Math.floor(width / 18), 65);
-
-    for (let i = 0; i < count; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.8,
-            vy: (Math.random() - 0.5) * 0.8,
-            radius: Math.random() * 2 + 1
-        });
-    }
-
-    function render() {
-        ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-
-            if (p.x < 0 || p.x > width) p.vx *= -1;
-            if (p.y < 0 || p.y > height) p.vy *= -1;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(212, 175, 55, 0.7)';
-            ctx.fill();
-
-            for (let j = i + 1; j < particles.length; j++) {
-                const p2 = particles[j];
-                const dx = p.x - p2.x;
-                const dy = p.y - p2.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < 130) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.strokeStyle = `rgba(212, 175, 55, ${0.25 * (1 - dist / 130)})`;
-                    ctx.lineWidth = 0.7;
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(render);
-    }
-    render();
+function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
 }
