@@ -1,122 +1,295 @@
 // Google Cloud Sheet Target for Public Credential Queries
 const GOOGLE_SHEET_ID = "1s90ibbiPYos-cEapdJlO4g8J67AmhVqehllCXZKhw_w";
 
-// Distinct Technology Domains (Without workshop/internship/course tags)
-const domainCatalog = [
-  {
+// Comprehensive Curriculum Matrix - 21 Tracks
+const programCatalog = [
+  // 1. Industrial Internships
+  { 
     id: 1,
-    title: "Artificial Intelligence",
-    icon: "fa-solid fa-brain",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=700&q=80",
-    desc: "Autonomous agents, transformer models, inference pipelines, and production generative intelligence architectures.",
-    tags: ["LLMs", "RAG Pipelines", "Agents", "LangChain"]
+    title: "AI & Neural Networks Internship", 
+    type: "internship", 
+    duration: "8-12 Weeks", 
+    mode: "Cloud GPU Labs", 
+    desc: "Build production deep learning pipelines, CNN vision classifiers, and automated LLM fine-tuning pipelines on cloud servers.",
+    sprints: [
+      { name: "Phase 1: Deep Matrix Mathematics", desc: "Tensors, backprop optimization, autograd graph computations." },
+      { name: "Phase 2: Computer Vision & Attention Layers", desc: "Object classification, transfer learning, transformer architectures." },
+      { name: "Phase 3: Production Endpoint Deployments", desc: "Dockerized inference clusters and cloud model monitoring." }
+    ]
   },
-  {
+  { 
     id: 2,
-    title: "Machine Learning",
-    icon: "fa-solid fa-chart-diagram",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=700&q=80",
-    desc: "Supervised and unsupervised models, gradient descent algorithms, XGBoost, and hyperparameter tuning engines.",
-    tags: ["Scikit-Learn", "Ensembles", "Feature Pipelines"]
+    title: "Full Stack Cloud Development Internship", 
+    type: "internship", 
+    duration: "8 Weeks", 
+    mode: "Live Repository", 
+    desc: "Engineer responsive interfaces and modular REST API microservices backed by PostgreSQL and container workflows.",
+    sprints: [
+      { name: "Phase 1: Architecture & Data Modeling", desc: "Database schemas, relational entity indexes, clean route handlers." },
+      { name: "Phase 2: Microservice API Orchestration", desc: "JWT security tokens, caching layers, performant background queues." },
+      { name: "Phase 3: Multi-Zone Cloud Deployment", desc: "CI/CD automated testing runners and static edge caching." }
+    ]
   },
-  {
+  { 
     id: 3,
-    title: "Deep Learning",
-    icon: "fa-solid fa-network-wired",
-    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=700&q=80",
-    desc: "Computational graphs, convolution architectures, backpropagation loss functions, and vision classifiers.",
-    tags: ["PyTorch", "TensorFlow", "CNNs", "Diffusion Models"]
+    title: "Data Science & BI Strategy Internship", 
+    type: "internship", 
+    duration: "6 Weeks", 
+    mode: "Corporate Desk", 
+    desc: "Model multi-gigabyte datasets, curate predictive business models, and translate insights into scalable reporting.",
+    sprints: [
+      { name: "Phase 1: Feature Extraction & Scrubbing", desc: "Handling outliers, imputation, categorical dimensionality reduction." },
+      { name: "Phase 2: Statistical Predictive Modeling", desc: "Regression pipelines, random forests, classification validation." },
+      { name: "Phase 3: Corporate Decision Dashboards", desc: "Power BI streaming feeds and executive analytical matrixes." }
+    ]
   },
-  {
+  { 
     id: 4,
-    title: "Data Science",
-    icon: "fa-solid fa-database",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80",
-    desc: "Statistical exploratory analysis, predictive hypothesis validation, multi-dimensional modeling, and insights extraction.",
-    tags: ["Pandas", "NumPy", "Statistical Inference", "EDA"]
+    title: "Cyber Defense & PenTesting Internship", 
+    type: "internship", 
+    duration: "8 Weeks", 
+    mode: "Isolated Sandbox", 
+    desc: "Conduct active network scans, audit firewall configurations, and automate zero-day intrusion defense scripts.",
+    sprints: [
+      { name: "Phase 1: Reconnaissance & Port Scanning", desc: "Network footprinting, vulnerability exploitation benchmarks." },
+      { name: "Phase 2: Intrusion Defense & Packet Analysis", desc: "Wireshark packet sniffing, defensive honey-pot routing." },
+      { name: "Phase 3: Compliance & Security Forensics", desc: "Incident response runbooks and cryptographic credential safeguards." }
+    ]
   },
-  {
+  { 
     id: 5,
-    title: "Full Stack Development",
-    icon: "fa-solid fa-code",
-    image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?auto=format&fit=crop&w=700&q=80",
-    desc: "Modern responsive web applications, secure REST microservices, relational databases, and edge caching layers.",
-    tags: ["React", "Node.js", "PostgreSQL", "REST APIs"]
+    title: "FinTech & Quantitative Risk Internship", 
+    type: "internship", 
+    duration: "8 Weeks", 
+    mode: "Analytics Desk", 
+    desc: "Engineer loan default classification models and analyze market transaction logs using quantitative Python packages.",
+    sprints: [
+      { name: "Phase 1: Time-Series Market Modeling", desc: "Statistical stationary tests, volatility clustering, alpha indicators." },
+      { name: "Phase 2: Anomaly & Fraud Detection", desc: "Isolation forests and neural autoencoders on high-frequency transactions." },
+      { name: "Phase 3: Backtesting & Risk Metric Engines", desc: "Monte Carlo simulation and Sharpe ratio portfolio metrics." }
+    ]
   },
-  {
+  { 
     id: 6,
-    title: "Digital Marketing",
-    icon: "fa-solid fa-bullhorn",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80",
-    desc: "Multi-touch conversion tracking, tag manager architectures, programmatic funnel optimization, and growth attribution.",
-    tags: ["Conversion Funnels", "Attribution", "SEO Analytics"]
+    title: "Embedded Systems & IoT Internship", 
+    type: "internship", 
+    duration: "6 Weeks", 
+    mode: "Hardware Kit", 
+    desc: "Program microcontrollers, configure sensory grids, and establish real-time telemetry streams over low-latency MQTT networks.",
+    sprints: [
+      { name: "Phase 1: Microcontroller Firmware", desc: "GPIO interfaces, I2C, SPI communication protocols and interrupts." },
+      { name: "Phase 2: Sensory Streaming & Edge Queues", desc: "Lightweight MQTT brokers, local threshold analytics." },
+      { name: "Phase 3: Cloud Telemetry Dashboarding", desc: "Real-time edge ingestion into cloud visual interfaces." }
+    ]
   },
-  {
+
+  // 2. Sprint Workshops
+  { 
     id: 7,
-    title: "Cloud Computing",
-    icon: "fa-solid fa-cloud",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80",
-    desc: "Multi-region virtual subnets, serverless microservices, auto-scaling architectures, and container clusters.",
-    tags: ["AWS", "Docker", "Kubernetes", "Serverless"]
+    title: "Transformer Networks & GenAI", 
+    type: "workshop", 
+    duration: "2-Day Sprint", 
+    mode: "Hands-on", 
+    desc: "Intensive deep-dive into transformer layers, custom vector embeddings, tokenizer optimizations, and inference endpoints.",
+    sprints: [
+      { name: "Day 1: Attention Graphs & Tokenization", desc: "Multi-head attention mechanisms and custom embedding models." },
+      { name: "Day 2: Vector DBs & Retrieval Pipelines", desc: "Building RAG applications and low-latency API serving." }
+    ]
   },
-  {
+  { 
     id: 8,
-    title: "Embedded Systems & IoT",
-    icon: "fa-solid fa-microchip",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80",
-    desc: "Microcontroller firmware development, I2C/SPI protocols, edge queues, and real-time sensory telemetry over MQTT.",
-    tags: ["Firmware", "MQTT", "ESP32", "Sensors"]
+    title: "Power BI & Tableau Decision Matrix", 
+    type: "workshop", 
+    duration: "3-Day Sprint", 
+    mode: "Corporate Lab", 
+    desc: "Rapidly translate raw database extracts into interactive decision panels with dynamic drill-down hierarchies.",
+    sprints: [
+      { name: "Day 1: DAX Formulas & Star Schemas", desc: "Calculated columns, measures, and relational matrix setups." },
+      { name: "Day 2: Dynamic User Parameters", desc: "What-if parameter controls and KPI alert rules." },
+      { name: "Day 3: Executive Reporting Panels", desc: "Publishing live dashboards to corporate workspaces." }
+    ]
   },
-  {
+  { 
     id: 9,
-    title: "Java Enterprise",
-    icon: "fa-brands fa-java",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=700&q=80",
-    desc: "High-concurrency enterprise architectures, Spring Boot ecosystems, transactional persistence, and JVM memory tuning.",
-    tags: ["Spring Boot", "Hibernate", "JVM Internals", "JPA"]
+    title: "Ethical Hacking & Network Forensics", 
+    type: "workshop", 
+    duration: "2-Day Sprint", 
+    mode: "Virtual Lab", 
+    desc: "Practical intrusion detection, port vulnerability auditing, credential attack defenses, and forensic analysis.",
+    sprints: [
+      { name: "Day 1: Offensive Attack Vectors", desc: "Payload delivery, brute force defense, and sandbox isolation." },
+      { name: "Day 2: Forensics & Memory Dumps", desc: "Tracking malicious binaries and validating zero-trust networks." }
+    ]
   },
-  {
+  { 
     id: 10,
-    title: "Python Engineering",
-    icon: "fa-brands fa-python",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=700&q=80",
-    desc: "Asynchronous concurrency, decorator patterns, high-speed API microservices, and backend performance pipelines.",
-    tags: ["AsyncIO", "FastAPI", "OOP Architecture", "Pydantic"]
+    title: "High-Frequency Financial Data Pipelines", 
+    type: "workshop", 
+    duration: "2-Day Sprint", 
+    mode: "Code Bootcamp", 
+    desc: "Stream financial ticks into Python time-series arrays and generate statistical indicators in real-time.",
+    sprints: [
+      { name: "Day 1: WebSocket Feeds & Micro-Bucketing", desc: "Handling millisecond order books and parsing depth feeds." },
+      { name: "Day 2: Real-time Signal Processing", desc: "VWAP, momentum indicators, and order-routing triggers." }
+    ]
   },
-  {
+
+  // 3. Full Certification Programs
+  { 
     id: 11,
-    title: "Data Analytics",
-    icon: "fa-solid fa-chart-line",
-    image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=700&q=80",
-    desc: "Interactive business decision models, star-schema data modeling, dynamic DAX measures, and real-time dashboards.",
-    tags: ["Power BI", "Tableau", "DAX Formulas", "SQL"]
+    title: "Machine Learning Masterclass", 
+    type: "course", 
+    duration: "16 Weeks", 
+    mode: "Instructor-Led", 
+    desc: "Comprehensive exploration of supervised, unsupervised, and reinforcement algorithms with mathematical loss function proofs.",
+    sprints: [
+      { name: "Module 1-4: Mathematical Foundations", desc: "Linear algebra, matrix calculus, gradient descent variations." },
+      { name: "Module 5-10: Classical & Ensemble Models", desc: "SVMs, Random Forests, XGBoost, and hyperparameter tuning." },
+      { name: "Module 11-16: Model Operations & CI/CD", desc: "Model registry, drift detection, and automated retraining." }
+    ]
   },
-  {
+  { 
     id: 12,
-    title: "Cyber Security",
-    icon: "fa-solid fa-shield-halved",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=700&q=80",
-    desc: "Intrusion analysis, vulnerability assessments, network packet inspection, isolated sandboxes, and zero-day defense.",
-    tags: ["Penetration Testing", "Wireshark", "Firewalls", "SOC"]
+    title: "Blockchain & Ledger Protocols", 
+    type: "course", 
+    duration: "12 Weeks", 
+    mode: "Virtual Lab", 
+    desc: "Design immutable smart contracts, consensus mechanisms, and high-throughput decentralized applications.",
+    sprints: [
+      { name: "Module 1-4: Cryptographic Primitives", desc: "Merkle trees, SHA-256 proofs, public-private key cryptography." },
+      { name: "Module 5-8: Smart Contract Engineering", desc: "Solidity logic, reentrancy guards, and unit testing." },
+      { name: "Module 9-12: Decentralized Applications", desc: "Frontend Web3 integrations and gas optimization." }
+    ]
   },
-  {
+  { 
     id: 13,
-    title: "Quantum Computing",
-    icon: "fa-solid fa-atom",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=700&q=80",
-    desc: "Qubit state vectors, superposition, entanglement gates, and quantum algorithm simulation using modern frameworks.",
-    tags: ["Qiskit", "Qubits", "Quantum Circuits", "Superposition"]
+    title: "Enterprise Cloud Computing Architecture", 
+    type: "course", 
+    duration: "10 Weeks", 
+    mode: "Cloud Console", 
+    desc: "Architect serverless computing infrastructures and automated multi-zone deployment workflows.",
+    sprints: [
+      { name: "Module 1-3: Virtual Networks & Subnets", desc: "VPCs, security groups, gateways, and routing tables." },
+      { name: "Module 4-7: Serverless Microservices", desc: "Lambda triggers, message queues, and API gateways." },
+      { name: "Module 8-10: High Availability & Scaling", desc: "Load balancing, auto-scaling groups, and multi-region failovers." }
+    ]
+  },
+  { 
+    id: 14,
+    title: "Core & Advanced Python Engineering", 
+    type: "course", 
+    duration: "8 Weeks", 
+    mode: "Hands-on", 
+    desc: "Master object-oriented structures, async multi-threading, and performant backend microservice architectures.",
+    sprints: [
+      { name: "Module 1-2: Core OOP Architecture", desc: "Dunder methods, class decorators, memory management." },
+      { name: "Module 3-5: Asynchronous Concurrency", desc: "Asyncio event loops, coroutines, thread pooling." },
+      { name: "Module 6-8: REST Engines & Caching", desc: "FastAPI frameworks, Pydantic validation, Redis caching." }
+    ]
+  },
+  { 
+    id: 15,
+    title: "Modern Java Enterprise Systems", 
+    type: "course", 
+    duration: "10 Weeks", 
+    mode: "Hands-on", 
+    desc: "Develop multi-threaded enterprise software layers using modern Spring Boot patterns and database connectors.",
+    sprints: [
+      { name: "Module 1-3: JVM Internals & Multithreading", desc: "Memory models, thread safety, synchronization primitives." },
+      { name: "Module 4-7: Spring Boot Microservices", desc: "Dependency injection, JPA Hibernate, transactional integrity." },
+      { name: "Module 8-10: Production Monitoring", desc: "Actuator health metrics, Dockerization, logging aggregation." }
+    ]
+  },
+  { 
+    id: 16,
+    title: "Deep Learning Computational Graphs", 
+    type: "course", 
+    duration: "12 Weeks", 
+    mode: "GPU Lab", 
+    desc: "Study generative adversarial models, diffusion mathematics, and recurrent attention sequences.",
+    sprints: [
+      { name: "Module 1-4: Advanced Backpropagation", desc: "Custom loss functions, custom PyTorch autograd layers." },
+      { name: "Module 5-8: Generative Models", desc: "Variational autoencoders and latent diffusion architectures." },
+      { name: "Module 9-12: Quantization & Pruning", desc: "ONNX exports, edge inference acceleration." }
+    ]
+  },
+  { 
+    id: 17,
+    title: "Digital Marketing Analytics & Funnels", 
+    type: "course", 
+    duration: "6 Weeks", 
+    mode: "Live Campaigns", 
+    desc: "Master quantitative multi-channel campaign architectures, tag managers, and conversion optimizations.",
+    sprints: [
+      { name: "Module 1-2: Multi-Touch Attribution", desc: "Attribution modeling, UTM architectures, tracking setups." },
+      { name: "Module 3-4: Funnel Analytics & Drop-off", desc: "Cohort retention analysis and behavioral clustering." },
+      { name: "Module 5-6: Automated Growth Engines", desc: "A/B testing statistics and programmatic email automations." }
+    ]
+  },
+  { 
+    id: 18,
+    title: "Banking Analytics & Risk Engines", 
+    type: "course", 
+    duration: "8 Weeks", 
+    mode: "Corporate Data", 
+    desc: "Deploy classification models to identify financial distress, mitigate fraud, and audit regulatory baselines.",
+    sprints: [
+      { name: "Module 1-3: Credit Scoring Scorecards", desc: "Weight-of-evidence, Information Value calculations." },
+      { name: "Module 4-6: Fraud Detection Systems", desc: "Real-time streaming classification rules and anomaly metrics." },
+      { name: "Module 7-8: Regulatory Stress-Testing", desc: "Basel regulatory metrics and probability of default forecasts." }
+    ]
+  },
+  { 
+    id: 19,
+    title: "Next-Gen Financial Technologies", 
+    type: "course", 
+    duration: "10 Weeks", 
+    mode: "FinTech Sandbox", 
+    desc: "Build automated clearing ledger systems, financial OCR pipelines, and algorithmic scoring engines.",
+    sprints: [
+      { name: "Module 1-3: Payment Gateways & APIs", desc: "Webhooks, idempotent transactions, clearing workflows." },
+      { name: "Module 4-7: Financial Document OCR", desc: "Tesseract & vision models parsing unstructured financial statements." },
+      { name: "Module 8-10: Automated Compliance Checks", desc: "Sanction screening logic and AML rules engines." }
+    ]
+  },
+  { 
+    id: 20,
+    title: "Big Data Engineering Infrastructure", 
+    type: "course", 
+    duration: "12 Weeks", 
+    mode: "Cluster Labs", 
+    desc: "Ingest, transform, and store terabyte-scale distributed data using modern stream processing models.",
+    sprints: [
+      { name: "Module 1-4: Distributed Ingestion", desc: "Apache Kafka topics, partitions, and consumer groups." },
+      { name: "Module 5-8: Stream & Batch Processing", desc: "PySpark transformations and distributed cluster nodes." },
+      { name: "Module 9-12: Data Warehousing & Delta Lakes", desc: "Parquet schemas, ACID transactions on object storage." }
+    ]
+  },
+  { 
+    id: 21,
+    title: "Modern Web Front-End Architecture", 
+    type: "course", 
+    duration: "8 Weeks", 
+    mode: "Interface Lab", 
+    desc: "Design high-performance modern user interfaces utilizing responsive grids and performant event loops.",
+    sprints: [
+      { name: "Module 1-3: Modern CSS Layout Engines", desc: "Subgrid, container queries, and hardware-accelerated animations." },
+      { name: "Module 4-6: State Management & Workers", desc: "Web workers, performance budgets, virtual DOM diffing." },
+      { name: "Module 7-8: Progressive Web Apps", desc: "Service workers, offline caching strategies, lighthouse 100 audits." }
+    ]
   }
 ];
+
+let currentFilter = 'all';
 
 // Bootstrapping Engine
 document.addEventListener("DOMContentLoaded", () => {
   initAmbient3DCanvas();
   initMonolithTilt();
-  renderDomainGrid(domainCatalog);
+  renderOfferingsMatrix(programCatalog);
   initTiltCards();
 
-  // Certificate auto-query via URL
+  // Auto-scan URL params for direct certificate queries
   const urlParams = new URLSearchParams(window.location.search);
   const certParam = urlParams.get('id');
   if (certParam) {
@@ -136,28 +309,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Render Thematic Domain Cards (Zero empty space, No blueprint popups)
-function renderDomainGrid(items) {
+// Render Dynamic Grid
+function renderOfferingsMatrix(items) {
   const grid = document.getElementById('matrixGrid');
   if (!grid) return;
 
   if (items.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No domains found matching criteria.</div>`;
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 50px;">No programs found matching criteria.</div>`;
     return;
   }
 
   grid.innerHTML = items.map(item => `
-    <div class="domain-card tilt-box">
-      <div class="domain-media-wrapper">
-        <img src="${item.image}" alt="${item.title}" class="domain-banner-img" loading="lazy">
-        <div class="domain-icon-floating"><i class="${item.icon}"></i></div>
-      </div>
-      <div class="domain-body">
+    <div class="offering-pod tilt-box" onclick="openBlueprint(${item.id})">
+      <div>
+        <div class="pod-header">
+          <span class="pod-badge ${item.type}">${item.type}</span>
+          <span class="pod-mode"><i class="fa-solid fa-layer-group"></i> ${item.mode}</span>
+        </div>
         <h3>${item.title}</h3>
         <p>${item.desc}</p>
-        <div class="domain-tags">
-          ${item.tags.map(t => `<span class="domain-tag">${t}</span>`).join('')}
-        </div>
+      </div>
+      <div class="pod-footer">
+        <span><i class="fa-regular fa-clock"></i> ${item.duration}</span>
+        <span>View Blueprint <i class="fa-solid fa-arrow-right"></i></span>
       </div>
     </div>
   `).join('');
@@ -165,16 +339,51 @@ function renderDomainGrid(items) {
   initTiltCards();
 }
 
-// Search Dispatcher
+// Interactive Blueprint Modal
+function openBlueprint(id) {
+  const item = programCatalog.find(p => p.id === id);
+  if (!item) return;
+
+  document.getElementById('bpBadge').innerText = item.type.toUpperCase();
+  document.getElementById('bpBadge').className = `pod-badge ${item.type}`;
+  document.getElementById('bpTitle').innerText = item.title;
+  document.getElementById('bpDesc').innerText = `${item.desc} | Duration: ${item.duration} (${item.mode})`;
+
+  const timelineContainer = document.getElementById('bpTimeline');
+  timelineContainer.innerHTML = item.sprints.map(s => `
+    <div class="timeline-sprint">
+      <h4>${s.name}</h4>
+      <p>${s.desc}</p>
+    </div>
+  `).join('');
+
+  document.getElementById('blueprintModal').style.display = 'flex';
+}
+
+function closeBlueprint() {
+  document.getElementById('blueprintModal').style.display = 'none';
+}
+
+// Search & Filter Dispatchers
+function setProgramFilter(type, buttonEl) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-pills-row .pill-btn').forEach(btn => btn.classList.remove('active'));
+  buttonEl.classList.add('active');
+  executeCatalogFilter();
+}
+
 function handleSearch() {
-  const query = document.getElementById('domainSearch').value.toLowerCase().trim();
-  const results = domainCatalog.filter(item => {
-    const titleMatch = item.title.toLowerCase().includes(query);
-    const descMatch = item.desc.toLowerCase().includes(query);
-    const tagMatch = item.tags.some(tag => tag.toLowerCase().includes(query));
-    return titleMatch || descMatch || tagMatch;
+  executeCatalogFilter();
+}
+
+function executeCatalogFilter() {
+  const query = document.getElementById('offeringSearch').value.toLowerCase().trim();
+  const results = programCatalog.filter(item => {
+    const matchCategory = (currentFilter === 'all') || (item.type === currentFilter);
+    const matchQuery = item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+    return matchCategory && matchQuery;
   });
-  renderDomainGrid(results);
+  renderOfferingsMatrix(results);
 }
 
 // Interactive 3D Cursor Tilt for Centerpiece
@@ -205,7 +414,7 @@ function initTiltCards() {
   });
 }
 
-// Physics Canvas Background
+// Interactive 3D Physics Canvas Engine with Cursor Attraction
 function initAmbient3DCanvas() {
   const canvas = document.getElementById('ambient3D');
   if (!canvas) return;
@@ -232,15 +441,16 @@ function initAmbient3DCanvas() {
   });
 
   const nodes = [];
-  const nodeCount = 42;
+  const nodeCount = 45;
 
   for (let i = 0; i < nodeCount; i++) {
     nodes.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.55,
-      vy: (Math.random() - 0.5) * 0.55,
-      radius: Math.random() * 2.5 + 1.2
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      radius: Math.random() * 2.5 + 1.5,
+      originalRadius: Math.random() * 2.5 + 1.5
     });
   }
 
@@ -250,13 +460,14 @@ function initAmbient3DCanvas() {
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
 
+      // Mouse attraction physics
       if (mouse.active) {
         const dx = mouse.x - node.x;
         const dy = mouse.y - node.y;
         const dist = Math.hypot(dx, dy);
         if (dist < 180) {
-          node.x += (dx / dist) * 0.7;
-          node.y += (dy / dist) * 0.7;
+          node.x += (dx / dist) * 0.8;
+          node.y += (dy / dist) * 0.8;
         }
       }
 
@@ -266,7 +477,7 @@ function initAmbient3DCanvas() {
       if (node.x < 0 || node.x > width) node.vx *= -1;
       if (node.y < 0 || node.y > height) node.vy *= -1;
 
-      ctx.fillStyle = 'rgba(29, 78, 216, 0.35)';
+      ctx.fillStyle = 'rgba(29, 78, 216, 0.4)';
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
       ctx.fill();
@@ -274,8 +485,8 @@ function initAmbient3DCanvas() {
       for (let j = i + 1; j < nodes.length; j++) {
         const node2 = nodes[j];
         const dist = Math.hypot(node.x - node2.x, node.y - node2.y);
-        if (dist < 140) {
-          ctx.strokeStyle = `rgba(29, 78, 216, ${0.12 * (1 - dist / 140)})`;
+        if (dist < 145) {
+          ctx.strokeStyle = `rgba(29, 78, 216, ${0.14 * (1 - dist / 145)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
@@ -317,7 +528,7 @@ function verifyCredential() {
           matched = {
             id: cells[0].v,
             name: cells[1] ? cells[1].v : "Candidate Record",
-            course: cells[2] ? cells[2].v : "Specialization",
+            course: cells[2] ? cells[2].v : "Program Track",
             date: cells[3] ? cells[3].v : "Authenticated Date"
           };
           break;
@@ -340,7 +551,7 @@ function verifyCredential() {
               <div>${matched.name}</div>
             </div>
             <div class="holo-row">
-              <label>Specialization Domain</label>
+              <label>Specialization Program</label>
               <div>${matched.course}</div>
             </div>
             <div class="holo-row">
@@ -363,81 +574,81 @@ function verifyCredential() {
     });
 }
 
-// ----------------------------------------------------
-// INTELLIGENT AI ASSISTANT (Fee Query & Institute Bot)
-// ----------------------------------------------------
-function toggleAiDrawer() {
-  const drawer = document.getElementById('aiDrawer');
-  if (drawer.style.display === 'flex') {
-    drawer.style.display = 'none';
+// Authentication Terminal Modal
+let activePortal = "";
+
+function triggerLogin(portalRole) {
+  activePortal = portalRole;
+  document.getElementById('modalTitle').innerText = `${portalRole} Authentication`;
+  document.getElementById('loginModal').style.display = 'flex';
+}
+
+function dismissLogin() {
+  document.getElementById('loginModal').style.display = 'none';
+  document.getElementById('authKeyInput').value = '';
+}
+
+function togglePassEye() {
+  const input = document.getElementById('authKeyInput');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function verifyAuthKey() {
+  const key = document.getElementById('authKeyInput').value;
+
+  if (activePortal === 'Admin' && key === 'santhassk') {
+    dismissLogin();
+    renderAdminTerminal();
+  } else if (activePortal === 'Staff' && key === 'SKAITECH2026') {
+    dismissLogin();
+    renderUserTerminal('Staff');
+  } else if (activePortal === 'Student' && key === 'skaistudent') {
+    dismissLogin();
+    renderUserTerminal('Student');
   } else {
-    drawer.style.display = 'flex';
-    document.getElementById('aiInput').focus();
+    alert("Authentication Failed: Security key mismatch.");
   }
 }
 
-function handleAiKey(event) {
-  if (event.key === 'Enter') {
-    submitAiQuery();
-  }
+function renderUserTerminal(role) {
+  const panel = document.getElementById('userDashboard');
+  panel.style.display = 'block';
+  panel.innerHTML = `
+    <div class="terminal-card">
+      <h2 style="color: var(--primary); margin-bottom: 4px;">SK SMART AI TECHNOLOGIES</h2>
+      <h4 style="color: var(--text-muted); margin-bottom: 12px;">${role} Attendance Logger</h4>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">Secure daily session attendance record.</p>
+      <input type="text" id="traineeName" placeholder="Enter full registered name">
+      <button class="btn-neo btn-primary-3d full-width" onclick="recordAttendance('${role}')">
+        <span>Confirm Session Presence</span>
+      </button>
+      <button class="btn-neo btn-ghost-3d full-width" style="margin-top: 12px;" onclick="location.reload()">
+        <span>Exit Terminal</span>
+      </button>
+    </div>
+  `;
 }
 
-function sendQuickPrompt(promptText) {
-  document.getElementById('aiInput').value = promptText;
-  submitAiQuery();
+function recordAttendance(role) {
+  const name = document.getElementById('traineeName').value.trim();
+  if (!name) return alert("Please enter your name.");
+  alert(`Attendance recorded successfully for ${name} [${role}].`);
+  location.reload();
 }
 
-function submitAiQuery() {
-  const inputEl = document.getElementById('aiInput');
-  const chatBody = document.getElementById('aiChatBody');
-  const query = inputEl.value.trim();
-  if (!query) return;
-
-  // Add User Bubble
-  const userBubble = document.createElement('div');
-  userBubble.className = 'ai-msg user';
-  userBubble.innerText = query;
-  chatBody.appendChild(userBubble);
-  inputEl.value = '';
-  chatBody.scrollTop = chatBody.scrollHeight;
-
-  // Generate Automated AI Response
-  setTimeout(() => {
-    const botBubble = document.createElement('div');
-    botBubble.className = 'ai-msg bot';
-    botBubble.innerHTML = generateAssistantResponse(query);
-    chatBody.appendChild(botBubble);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }, 400);
+function renderAdminTerminal() {
+  const panel = document.getElementById('adminDashboard');
+  panel.style.display = 'block';
+  panel.innerHTML = `
+    <div class="terminal-card" style="max-width: 600px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <h2>SK SMART AI TECHNOLOGIES - Admin</h2>
+        <button class="btn-neo btn-ghost-3d" onclick="location.reload()">Exit</button>
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">Direct master database spreadsheet management:</p>
+      <button class="btn-neo btn-primary-3d full-width" onclick="window.open('https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}', '_blank')">
+        <span><i class="fa-solid fa-table"></i> Open Google Cloud Sheet Database</span>
+      </button>
+    </div>
+  `;
 }
-
-function generateAssistantResponse(prompt) {
-  const lower = prompt.toLowerCase();
-
-  // FEE INQUIRIES REQUIREMENT
-  if (lower.includes('fee') || lower.includes('cost') || lower.includes('price') || lower.includes('charge') || lower.includes('payment') || lower.includes('how much')) {
-    return `For detailed fee structures, concessions, and enrollment schedules, please contact our admissions coordinator directly at <strong>+91 93614 83073</strong> or email <strong>sksmartaitechnologies@gmail.com</strong>.`;
-  }
-
-  // DOMAIN QUERIES
-  if (lower.includes('domain') || lower.includes('course') || lower.includes('topic') || lower.includes('program') || lower.includes('track')) {
-    return `We offer hands-on immersion across 13 core disciplines:<br>• Artificial Intelligence & Generative AI<br>• Machine Learning & Deep Learning<br>• Data Science & Analytics<br>• Full Stack Development<br>• Cloud Computing<br>• Embedded Systems & IoT<br>• Java Enterprise & Python<br>• Cyber Security<br>• Quantum Computing<br><br>Type any domain to learn more!`;
-  }
-
-  // CERTIFICATION VERIFICATION
-  if (lower.includes('verify') || lower.includes('certificate') || lower.includes('smart-seal') || lower.includes('validate')) {
-    return `You can verify any issued certificate instantly using our <strong>Smart-Seal Validation</strong> tool on this page. Just enter the candidate Registration ID (e.g., SK-AI-101) to verify cryptographic authenticity.`;
-  }
-
-  // LOCATION & ACCREDITATION
-  if (lower.includes('where') || lower.includes('location') || lower.includes('address') || lower.includes('place')) {
-    return `SK SMART AI TECHNOLOGIES is located in Tamil Nadu, India. We are an officially registered MSME institution (Reg: UDYAM-TN-36-0058719) providing global-standard engineering labs.`;
-  }
-
-  // ADMISSION / CONTACT
-  if (lower.includes('contact') || lower.includes('join') || lower.includes('enroll') || lower.includes('admission') || lower.includes('number')) {
-    return `You can connect directly with our admissions and technical desk at <strong>+91 93614 83073</strong> or via email at <strong>sksmartaitechnologies@gmail.com</strong>.`;
-  }
-
-  // DEFAULT CONTEXTUAL
-  return `Thank you for reaching out to <strong>SK SMART AI TECHNOLOGIES</strong>! We have trained over <strong>1000+ engineers</strong> across AI, Full Stack, Cloud, Embedded IoT, Cyber Security, and Quantum systems. For fee inquiries, please contact <strong>+91 93614 83073</strong>.
