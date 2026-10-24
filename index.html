@@ -1,796 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK SMART AI TECHNOLOGIES</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK SMART AI TECHNOLOGIES | Next-Gen IT Academy & Innovation Hub</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Pro CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light-3d-theme">
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div class="contact-snippets">
-                <span><i class="fas fa-phone-alt"></i> +91 93614 83073</span>
-                <span><i class="fas fa-envelope"></i> sksmartaitechnologies@gmail.com</span>
-                <span class="msme-badge"><i class="fas fa-certificate"></i> MSME Reg: UDYAM-TN-36-0058719</span>
-            </div>
-            <div class="social-links">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
+  <!-- Interactive 3D Depth Particle & Vector Physics Canvas -->
+  <canvas id="ambient3D"></canvas>
+  <div class="mesh-aurora aurora-1"></div>
+  <div class="mesh-aurora aurora-2"></div>
+  <div class="mesh-aurora aurora-3"></div>
+
+  <!-- Sticky Glassmorphic Navbar -->
+  <header class="glass-header">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-badge">
+        <img src="logo.png" alt="SK Smart AI Technologies Logo" class="brand-logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex'">
+        <div class="cube-icon-3d" id="logoFallback" style="display:none;">
+          <div class="cube-inner"><i class="fa-solid fa-microchip"></i></div>
         </div>
-    </div>
+        <div class="brand-text">
+          <span class="brand-title">SK SMART AI TECHNOLOGIES</span>
+          <span class="reg-indicator"><i class="fa-solid fa-certificate"></i> MSME · UDYAM-TN-36-0058719</span>
+        </div>
+      </a>
 
-    <!-- NAVBAR -->
-    <nav class="navbar glass">
-        <div class="container nav-container">
-            <a href="#" class="brand-logo">
-                <div class="logo-icon"><i class="fas fa-brain"></i></div>
-                <div class="brand-text">
-                    <h2>SK SMART AI</h2>
-                    <span>TECHNOLOGIES</span>
-                </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#offerings" class="nav-item">Programs & Internships</a>
+        <a href="#workshops" class="nav-item">Workshops</a>
+        <a href="#verify" class="nav-item">Smart-Seal</a>
+        <a href="#portals" class="portal-chip"><i class="fa-solid fa-fingerprint"></i> Portals</a>
+        <a href="tel:9361483073" class="call-pill"><i class="fa-solid fa-phone"></i> +91 93614 83073</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Live Infinite Running Ticker -->
+  <div class="ticker-shelf">
+    <div class="ticker-slider">
+      <div class="ticker-item"><i class="fa-solid fa-microchip"></i> APPLIED AI & DEEP LEARNING WORKSHOPS</div>
+      <div class="ticker-item"><i class="fa-solid fa-bolt"></i> 2026 INDUSTRIAL INTERNSHIPS ENROLLING</div>
+      <div class="ticker-item"><i class="fa-solid fa-shield-halved"></i> ETHICAL HACKING & ZERO-DAY DEFENSE</div>
+      <div class="ticker-item"><i class="fa-solid fa-chart-line"></i> QUANTITATIVE FINTECH COMPUTING</div>
+      <div class="ticker-item"><i class="fa-solid fa-microchip"></i> APPLIED AI & DEEP LEARNING WORKSHOPS</div>
+      <div class="ticker-item"><i class="fa-solid fa-bolt"></i> 2026 INDUSTRIAL INTERNSHIPS ENROLLING</div>
+      <div class="ticker-item"><i class="fa-solid fa-shield-halved"></i> ETHICAL HACKING & ZERO-DAY DEFENSE</div>
+      <div class="ticker-item"><i class="fa-solid fa-chart-line"></i> QUANTITATIVE FINTECH COMPUTING</div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 3D Hero Section -->
+    <section class="hero-stage">
+      <div class="hero-grid">
+        
+        <div class="hero-content">
+          <div class="status-pill-3d">
+            <span class="live-dot"></span>
+            <span>Government Registered MSME Training Institution</span>
+          </div>
+
+          <h1 class="hero-title">
+            Step Into The <br>
+            <span class="holographic-text">Dimension of AI</span> & Engineering.
+          </h1>
+
+          <p class="hero-description">
+            <strong>SK SMART AI TECHNOLOGIES</strong> bridges academia and the global tech market through project-driven <strong>Industrial Internships</strong>, accelerated <strong>Live Workshops</strong>, and cryptographically verified <strong>Certification Programs</strong>.
+          </p>
+
+          <div class="hero-btn-array">
+            <a href="#offerings" class="btn-neo btn-primary-3d">
+              <span><i class="fa-solid fa-rocket"></i> Explore 21 Pathways</span>
             </a>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li class="dropdown">
-                    <a href="#services">Our Services <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#services">Website Building</a>
-                        <a href="#services">Mobile App Development</a>
-                        <a href="#services">Data Analytics</a>
-                        <a href="#services">Data Visualization</a>
-                        <a href="#services">Business Analytics</a>
-                        <a href="#services">Software Development</a>
-                        <a href="#services">AI Content</a>
-                        <a href="#services">Digital Marketing</a>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#courses">Courses <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#courses">Artificial Intelligence</a>
-                        <a href="#courses">Machine Learning</a>
-                        <a href="#courses">Deep Learning</a>
-                        <a href="#courses">Data Science</a>
-                        <a href="#courses">Data Analytics</a>
-                        <a href="#courses">Business Analytics</a>
-                        <a href="#courses">Full Stack</a>
-                        <a href="#courses">Digital Marketing</a>
-                        <a href="#courses">Java</a>
-                        <a href="#courses">Python</a>
-                        <a href="#courses">IoT</a>
-                    </div>
-                </li>
-                <li><a href="#consulting">IT Consulting & Training</a></li>
-                <li><a href="#internships">Internships & Verify</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#verify" class="btn-neo btn-ghost-3d">
+              <span><i class="fa-solid fa-shield-check"></i> Smart-Seal Validation</span>
+            </a>
+            <a href="https://wa.me/919361483073?text=Hello%20SK%20SMART%20AI%20TECHNOLOGIES,%20I%20am%20interested%20in%20Internships%20and%20Courses." target="_blank" class="btn-neo btn-whatsapp-3d">
+              <span><i class="fa-brands fa-whatsapp"></i> Chat On WhatsApp</span>
+            </a>
+          </div>
 
-            <div class="nav-actions">
-                <!-- 3-Dot LMS Menu -->
-                <div class="lms-menu-container">
-                    <button class="lms-trigger-btn" id="lmsTriggerBtn" title="LMS / Portals">
-                        <i class="fas fa-ellipsis-v"></i>
-                        <span>LMS / Portals</span>
-                    </button>
-                    <div class="lms-dropdown" id="lmsDropdown">
-                        <div class="lms-header">Portal Access</div>
-                        <a href="#" onclick="openAuthModal('student')"><i class="fas fa-user-graduate"></i> Student Portal</a>
-                        <a href="#" onclick="openAuthModal('staff')"><i class="fas fa-chalkboard-teacher"></i> Staff Portal</a>
-                        <a href="#" onclick="openAuthModal('admin')"><i class="fas fa-user-shield"></i> Admin Portal</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" onclick="openAuthModal('register')"><i class="fas fa-user-plus"></i> New Register</a>
-                    </div>
-                </div>
-                <div class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
-                    <i class="fas fa-bars"></i>
-                </div>
+          <div class="hero-stats-deck">
+            <div class="stat-cube">
+              <span class="cube-val">150+</span>
+              <span class="cube-lbl">Engineers Trained</span>
             </div>
+            <div class="cube-separator"></div>
+            <div class="stat-cube">
+              <span class="cube-val">50+</span>
+              <span class="cube-lbl">Live Internships</span>
+            </div>
+            <div class="cube-separator"></div>
+            <div class="stat-cube">
+              <span class="cube-val">100%</span>
+              <span class="cube-lbl">Smart-Seal Verified</span>
+            </div>
+          </div>
         </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <header id="home" class="hero-section">
-        <div class="hero-glow"></div>
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="badge-pill">
-                    <i class="fas fa-star"></i> MSME Certified Training & Tech Hub
-                </div>
-                <h1>Empowering the Future with <span>Next-Gen AI</span> & IT Excellence</h1>
-                <p>Welcome to SK SMART AI TECHNOLOGIES. We deliver cutting-edge IT services, industry-grade training, AI solutions, and professional internships designed to fast-track your tech career.</p>
-                <div class="hero-cta">
-                    <button class="btn btn-primary" onclick="openRegisterModal()">Register Now <i class="fas fa-arrow-right"></i></button>
-                    <a href="#courses" class="btn btn-outline">Explore Courses</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-card glass">
-                        <h3>10,000+</h3>
-                        <p>Trainees Trained</p>
-                    </div>
-                    <div class="stat-card glass">
-                        <h3>250+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat-card glass">
-                        <h3>UDYAM-TN-36</h3>
-                        <p>MSME Registered</p>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-badge top-badge"><i class="fas fa-robot"></i> AI & ML Experts</div>
-                <div class="floating-badge bottom-badge"><i class="fas fa-shield-alt"></i> 100% Verified Certificates</div>
-                <div class="ai-orbit-container">
-                    <div class="orbit-ring"></div>
-                    <div class="core-orb"><i class="fas fa-microchip"></i></div>
-                </div>
-            </div>
-        </div>
-    </header>
+        <!-- 3D Holographic Monolith Centerpiece -->
+        <div class="hero-card-viewport">
+          <div class="monolith-3d" id="interactiveMonolith">
+            <div class="monolith-face">
+              <div class="monolith-tag">ACCREDITED INNOVATION</div>
+              <div class="monolith-logo-wrap">
+                <img src="logo.png" alt="SK Smart Logo" class="monolith-logo" onerror="this.style.display='none'">
+              </div>
+              <h3 class="monolith-brand">SK SMART AI TECHNOLOGIES</h3>
+              <p>Autonomous AI Systems • Cloud Architecture • Distributed Ledgers</p>
+              
+              <div class="monolith-badges">
+                <span><i class="fa-solid fa-cube"></i> Production Labs</span>
+                <span><i class="fa-solid fa-code-branch"></i> Live CI/CD</span>
+              </div>
 
-    <!-- ABOUT US SECTION -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>About <span>SK SMART AI</span> Technologies</h2>
-                <p>Pioneering technological advancement and skill development across India.</p>
+              <div class="monolith-footer">
+                <span class="pulse-indicator"></span> 2026 Enrollment Active
+              </div>
             </div>
-            <div class="about-grid">
-                <div class="about-card glass">
-                    <div class="icon-box"><i class="fas fa-bullseye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>To democratize advanced technical education in Artificial Intelligence, Machine Learning, and Software Development, nurturing industry-ready professionals.</p>
-                </div>
-                <div class="about-card glass">
-                    <div class="icon-box"><i class="fas fa-rocket"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>Bridging the gap between academia and industry through hands-on project training, expert IT consulting, and real-world innovation challenges.</p>
-                </div>
-                <div class="about-card glass">
-                    <div class="icon-box"><i class="fas fa-award"></i></div>
-                    <h3>MSME Excellence</h3>
-                    <p>Officially registered under the Ministry of Micro, Small and Medium Enterprises (UDYAM-TN-36-0058719), ensuring authentic, government-recognized credentials.</p>
-                </div>
-            </div>
+          </div>
         </div>
+
+      </div>
     </section>
 
-    <!-- COURSES SECTION -->
-    <section id="courses" class="courses-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Professional <span>Courses</span></h2>
-                <p>Industry-aligned curriculum with live projects and expert mentorship.</p>
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Courses</button>
-                <button class="filter-btn" data-filter="ai">AI & Data</button>
-                <button class="filter-btn" data-filter="dev">Development</button>
-                <button class="filter-btn" data-filter="business">Business & Marketing</button>
-            </div>
-            <div class="courses-grid">
-                <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-brain"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Advanced</span>
-                        <h3>Artificial Intelligence</h3>
-                        <p>Master neural networks, computer vision, NLP, and intelligent agent systems.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 3 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-network-wired"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Popular</span>
-                        <h3>Machine Learning</h3>
-                        <p>Supervised/unsupervised learning, scikit-learn, regression, and model tuning.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 3 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-project-diagram"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Expert</span>
-                        <h3>Deep Learning</h3>
-                        <p>TensorFlow, PyTorch, CNN, RNN, GANs, and transformer architectures.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 2 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-chart-pie"></i></div>
-                    <div class="course-body">
-                        <span class="badge">High Demand</span>
-                        <h3>Data Science</h3>
-                        <p>Python for data science, Pandas, NumPy, statistical modeling, and predictive analytics.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 4 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-chart-line"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Core</span>
-                        <h3>Data Analytics</h3>
-                        <p>SQL, Tableau, Power BI, Excel analytics, and dashboard storytelling.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 3 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="business" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-briefcase"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Management</span>
-                        <h3>Business Analytics</h3>
-                        <p>Data-driven decision making, market research, financial modeling, and KPIs.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 2 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="dev" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-laptop-code"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Popular</span>
-                        <h3>Full Stack Development</h3>
-                        <p>HTML5, CSS3, JavaScript, React, Node.js, Express, and MongoDB databases.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 4 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="business" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-bullhorn"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Trending</span>
-                        <h3>Digital Marketing</h3>
-                        <p>SEO, SEM, social media management, performance marketing, and AI content strategy.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 2 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="dev" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fab fa-java"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Foundation</span>
-                        <h3>Java Programming</h3>
-                        <p>Core Java, OOPs concepts, collections, multithreading, and Spring Boot.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 3 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="dev" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fab fa-python"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Foundation</span>
-                        <h3>Python Programming</h3>
-                        <p>Python syntax, data structures, algorithms, file handling, and API integration.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 2 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="course-card glass" data-category="dev" onclick="openRegisterModal()">
-                    <div class="course-img"><i class="fas fa-wifi"></i></div>
-                    <div class="course-body">
-                        <span class="badge">Hardware + AI</span>
-                        <h3>Internet of Things (IoT)</h3>
-                        <p>Arduino, Raspberry Pi, sensors, cloud telemetry, and smart automation.</p>
-                        <div class="course-footer">
-                            <span><i class="far fa-clock"></i> 3 Months</span>
-                            <span class="view-blueprint">Enroll Now <i class="fas fa-chevron-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- About Section -->
+    <section class="content-block" id="about">
+      <div class="section-badge-center">ABOUT THE ACADEMY</div>
+      <h2 class="section-title-center">Engineered For <span class="accent-gradient">High Impact</span></h2>
+      <p class="section-sub-center">Moving candidates from static syntax directly into scalable cloud workflows.</p>
+
+      <div class="pillars-deck">
+        <div class="pillar-card tilt-box">
+          <div class="pillar-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Simulated Corporate Labs</h3>
+          <p>Trainees execute version-controlled code, multi-tenant database clusters, and cloud server provisioning from day one.</p>
         </div>
+
+        <div class="pillar-card tilt-box">
+          <div class="pillar-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>Hardware & Edge Telemetry</h3>
+          <p>Direct exposure to IoT microcontrollers, high-frequency time-series datasets, and edge intelligence deployment.</p>
+        </div>
+
+        <div class="pillar-card tilt-box">
+          <div class="pillar-icon"><i class="fa-solid fa-stamp"></i></div>
+          <h3>Tamper-Proof Smart-Seal</h3>
+          <p>Every certificate is cryptographically recorded for transparent validation by global hiring recruiters.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our IT <span>Services</span></h2>
-                <p>Enterprise-grade digital solutions built by expert engineers.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-globe"></i></div>
-                    <h3>Website Building</h3>
-                    <p>Responsive, lightning-fast, SEO-optimized business websites and web portals.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Mobile App Development</h3>
-                    <p>Cross-platform iOS and Android applications with sleek UI and robust backends.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-database"></i></div>
-                    <h3>Data Analytics</h3>
-                    <p>Transform raw enterprise data into actionable insights and strategic advantages.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Data Visualization</h3>
-                    <p>Interactive executive dashboards using Tableau, Power BI, and custom D3 charts.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3>Business Analytics</h3>
-                    <p>Optimize operations, forecast trends, and maximize ROI with advanced metrics.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-code"></i></div>
-                    <h3>Software Development</h3>
-                    <p>Custom enterprise software, ERPs, CRM systems, and cloud-native solutions.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-feather-alt"></i></div>
-                    <h3>AI Content</h3>
-                    <p>Generative AI copywriting, SEO blog scaling, and automated marketing copy.</p>
-                </div>
-                <div class="service-card glass" onclick="openRegisterModal()">
-                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3>Digital Marketing</h3>
-                    <p>Complete digital presence enhancement, social media branding, and PPC campaigns.</p>
-                </div>
-            </div>
+    <!-- Comprehensive Offerings Matrix -->
+    <section class="content-block bg-accented" id="offerings">
+      <div class="section-badge-center">CURRICULUM MATRIX</div>
+      <h2 class="section-title-center">Programs, Internships & <span class="accent-gradient">Workshops</span></h2>
+      <p class="section-sub-center">Click on any pathway to inspect the deep-dive syllabus blueprint.</p>
+
+      <!-- Search & Filters -->
+      <div class="hub-controls">
+        <div class="search-bubble">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="offeringSearch" placeholder="Search AI, Python, FinTech, Cyber Security..." oninput="handleSearch()">
         </div>
+
+        <div class="filter-pills-row">
+          <button class="pill-btn active" onclick="setProgramFilter('all', this)">All Offerings (21)</button>
+          <button class="pill-btn" onclick="setProgramFilter('internship', this)">Internships (Experience)</button>
+          <button class="pill-btn" onclick="setProgramFilter('workshop', this)">Sprint Workshops</button>
+          <button class="pill-btn" onclick="setProgramFilter('course', this)">Full Certifications</button>
+        </div>
+      </div>
+
+      <!-- Matrix Grid -->
+      <div class="offerings-matrix-grid" id="matrixGrid"></div>
     </section>
 
-    <!-- IT CONSULTING & STUDENT TRAINING SECTION -->
-    <section id="consulting" class="consulting-section">
-        <div class="container consulting-grid">
-            <div class="consulting-card glass">
-                <div class="icon-title"><i class="fas fa-handshake"></i></div>
-                <h3>IT Consulting</h3>
-                <p>We help businesses modernize their tech stacks, adopt cloud architecture, implement AI automation, and scale secure digital infrastructure.</p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Tech Stack Audits & Upgrades</li>
-                    <li><i class="fas fa-check-circle"></i> AI Workflow Integration</li>
-                    <li><i class="fas fa-check-circle"></i> Cloud Migration & DevOps</li>
-                </ul>
-            </div>
-            <div class="consulting-card glass" id="internships">
-                <div class="icon-title"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Student Training & Internships</h3>
-                <p>Gain real-world industry exposure with our certified internship programs. Work on live client projects under senior tech mentors.</p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> 100% Live Project Experience</li>
-                    <li><i class="fas fa-check-circle"></i> Government MSME Certified Certificates</li>
-                    <li><i class="fas fa-check-circle"></i> Placement Assistance & Resume Building</li>
-                </ul>
-                <div class="verify-box">
-                    <h4>Certificate Verification</h4>
-                    <div class="verify-input-group">
-                        <input type="text" id="certIdInput" placeholder="Enter Certificate ID (e.g., SKAI-2026-9081)">
-                        <button class="btn btn-primary" onclick="verifyCertificate()">Verify</button>
-                    </div>
-                    <div id="verifyResult" class="verify-result"></div>
-                </div>
-            </div>
+    <!-- Dedicated Workshops Showcase -->
+    <section class="content-block" id="workshops">
+      <div class="section-badge-center">BOOTCAMPS & WORKSHOPS</div>
+      <h2 class="section-title-center">Hands-On Weekend <span class="accent-gradient">Sprints</span></h2>
+      <p class="section-sub-center">Fast-track high-demand technical capabilities over intensive weekend sandboxes.</p>
+
+      <div class="workshops-row">
+        <div class="workshop-monolith tilt-box">
+          <span class="workshop-badge">Weekend Sprint</span>
+          <div class="workshop-ico"><i class="fa-solid fa-brain"></i></div>
+          <h3>Transformer Networks & GenAI</h3>
+          <p>Build custom retrieval-augmented generation (RAG) pipelines, fine-tune transformer attention heads, and deploy micro-models on GPU instances.</p>
+          <div class="workshop-points">
+            <div><i class="fa-solid fa-check"></i> Vector DBs & Tokenizers</div>
+            <div><i class="fa-solid fa-check"></i> Production API Endpoints</div>
+            <div><i class="fa-solid fa-check"></i> Verified Workshop Seal</div>
+          </div>
+          <a href="tel:9361483073" class="btn-neo btn-primary-3d full-width"><span>Register Seat</span></a>
         </div>
+
+        <div class="workshop-monolith tilt-box featured">
+          <span class="workshop-badge popular">Most Demanded</span>
+          <div class="workshop-ico"><i class="fa-solid fa-microchip"></i></div>
+          <h3>Embedded IoT & Telemetry Queues</h3>
+          <p>Flash firmware onto low-power microcontrollers, configure sensory networks, and push low-latency telemetry over MQTT channels.</p>
+          <div class="workshop-points">
+            <div><i class="fa-solid fa-check"></i> Physical Kit Provided</div>
+            <div><i class="fa-solid fa-check"></i> Real-Time Cloud Telemetry</div>
+            <div><i class="fa-solid fa-check"></i> Verified Workshop Seal</div>
+          </div>
+          <a href="tel:9361483073" class="btn-neo btn-primary-3d full-width"><span>Register Seat</span></a>
+        </div>
+
+        <div class="workshop-monolith tilt-box">
+          <span class="workshop-badge">Security Sandbox</span>
+          <div class="workshop-ico"><i class="fa-solid fa-shield-virus"></i></div>
+          <h3>Ethical Hacking & Forensics</h3>
+          <p>Simulate security breaches inside isolated virtual machines, audit corporate firewall rules, and decode malware network packets.</p>
+          <div class="workshop-points">
+            <div><i class="fa-solid fa-check"></i> Pen-testing Checklists</div>
+            <div><i class="fa-solid fa-check"></i> Live Defense Scenarios</div>
+            <div><i class="fa-solid fa-check"></i> Verified Workshop Seal</div>
+          </div>
+          <a href="tel:9361483073" class="btn-neo btn-primary-3d full-width"><span>Register Seat</span></a>
+        </div>
+      </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our <span>Students & Clients</span> Say</h2>
-                <p>Trusted by thousands of learners and business partners worldwide.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card glass">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p>"The Artificial Intelligence and Machine Learning course at SK Smart AI Technologies transformed my career. The hands-on projects gave me the confidence to crack my first Data Scientist interview!"</p>
-                    <div class="client-info">
-                        <div class="avatar">AK</div>
-                        <div>
-                            <h4>Arun Kumar</h4>
-                            <span>AI Trainee & Software Engineer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p>"We hired SK Smart AI for our enterprise mobile app and web portal development. Delivered ahead of schedule with immaculate code quality and responsive support. Highly recommended!"</p>
-                    <div class="client-info">
-                        <div class="avatar">PS</div>
-                        <div>
-                            <h4>Priya Sundaram</h4>
-                            <span>Startup Founder</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                    </div>
-                    <p>"The Full Stack Development internship provided real industry exposure. Building live APIs and integrating databases under mentor guidance was an incredible learning curve."</p>
-                    <div class="client-info">
-                        <div class="avatar">DV</div>
-                        <div>
-                            <h4>Deepika V.</h4>
-                            <span>Full Stack Intern</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p>"Their data analytics training and Tableau dashboards workshop helped me transition from a non-tech background into a thriving Business Analyst role. Thank you SK Smart AI!"</p>
-                    <div class="client-info">
-                        <div class="avatar">RM</div>
-                        <div>
-                            <h4>Ramesh Muthu</h4>
-                            <span>Business Analyst</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                    </div>
-                    <p>"Professional IT consulting. They audited our cloud architecture and integrated AI content workflows that boosted our online visibility by 200%. Exceptional team!"</p>
-                    <div class="client-info">
-                        <div class="avatar">SN</div>
-                        <div>
-                            <h4>Senthil Nathan</h4>
-                            <span>Operations Director</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Smart-Seal 3D Verification Engine -->
+    <section class="content-block bg-accented" id="verify">
+      <div class="section-badge-center">INTEGRITY ENGINE</div>
+      <h2 class="section-title-center">Smart-Seal <span class="accent-gradient">Validation</span></h2>
+      <p class="section-sub-center">Authenticate student credentials directly against our decentralized cloud ledger.</p>
+
+      <div class="verify-chassis">
+        <div class="verify-field-wrapper">
+          <i class="fa-solid fa-fingerprint"></i>
+          <input type="text" id="certQuery" placeholder="Enter Registration ID (e.g. SK-AI-101)">
+          <button class="btn-neo btn-primary-3d" onclick="verifyCredential()">
+            <span><i class="fa-solid fa-search"></i> Validate</span>
+          </button>
         </div>
+
+        <div id="verifyOutput"></div>
+      </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get In <span>Touch</span></h2>
-                <p>Have questions or ready to start your project? Reach out to us today.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info-card glass">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-building"></i> <strong>SK SMART AI TECHNOLOGIES</strong></p>
-                    <p><i class="fas fa-certificate"></i> MSME Reg: UDYAM-TN-36-0058719</p>
-                    <p><i class="fas fa-phone-alt"></i> +91 93614 83073</p>
-                    <p><i class="fas fa-envelope"></i> sksmartaitechnologies@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
-                </div>
-                <form class="contact-form glass" onsubmit="handleContactSubmit(event)">
-                    <h3>Send Us a Message</h3>
-                    <div class="form-group">
-                        <input type="text" required placeholder="Your Full Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" required placeholder="Your Email Address">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" required placeholder="Phone Number">
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" required placeholder="Your Message / Inquiry"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
+    <!-- Institutional Portals -->
+    <section class="content-block" id="portals">
+      <div class="section-badge-center">OPERATIONAL ACCESS</div>
+      <h2 class="section-title-center">Institutional <span class="accent-gradient">Gateways</span></h2>
+      <p class="section-sub-center">Controlled access terminals for candidates, faculty, and administrative staff.</p>
+
+      <div class="portals-array">
+        <div class="portal-chassis tilt-box" onclick="triggerLogin('Admin')">
+          <div class="portal-ico"><i class="fa-solid fa-user-shield"></i></div>
+          <h3>Admin Console</h3>
+          <p>Database synchronization, candidate roster oversight, and certification records.</p>
+          <span class="portal-action-link">Open Terminal <i class="fa-solid fa-arrow-right"></i></span>
         </div>
+
+        <div class="portal-chassis tilt-box" onclick="triggerLogin('Staff')">
+          <div class="portal-ico"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h3>Staff Gateway</h3>
+          <p>Log cohort attendance, track sprint reviews, and manage laboratory submissions.</p>
+          <span class="portal-action-link">Open Terminal <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+
+        <div class="portal-chassis tilt-box" onclick="triggerLogin('Student')">
+          <div class="portal-ico"><i class="fa-solid fa-user-graduate"></i></div>
+          <h3>Student Portal</h3>
+          <p>Mark daily session presence, access code repositories, and verify modules.</p>
+          <span class="portal-action-link">Open Terminal <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <h2>SK SMART AI TECHNOLOGIES</h2>
-                <p>MSME Registered Educational Institution & Innovation Hub (UDYAM-TN-36-0058719). Empowering innovators worldwide.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#courses">Courses</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-contact">
-                <h4>Connect</h4>
-                <p><i class="fas fa-phone"></i> +91 93614 83073</p>
-                <p><i class="fas fa-envelope"></i> sksmartaitechnologies@gmail.com</p>
-                <div class="social-links" style="margin-top: 15px;">
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 SK SMART AI TECHNOLOGIES. All rights reserved. | MSME Reg: UDYAM-TN-36-0058719</p>
-        </div>
-    </footer>
-
-    <!-- FLOATING GLOWING "REGISTER NOW" BUTTON -->
-    <button class="floating-register-btn" onclick="openRegisterModal()" title="Register Now">
-        <i class="fas fa-user-plus"></i>
-        <span>Register Now</span>
-    </button>
-
-    <!-- AI CHATBOT WIDGET -->
-    <div class="chatbot-widget">
-        <button class="chatbot-toggle-btn" id="chatbotToggleBtn" title="AI Assistant">
-            <i class="fas fa-robot"></i>
-        </button>
-        <div class="chatbot-window glass" id="chatbotWindow">
-            <div class="chatbot-header">
-                <div class="bot-info">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h4>SK AI Assistant</h4>
-                        <span>Online | MSME Expert</span>
-                    </div>
-                </div>
-                <button class="close-bot" id="closeBotBtn"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    Hello! Welcome to SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719). How can I assist you today with our courses, services, internships, or admissions?
-                </div>
-            </div>
-            <div class="chatbot-input-area">
-                <input type="text" id="chatUserInput" placeholder="Ask about AI courses, services, fees..." onkeypress="handleChatKeyPress(event)">
-                <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
+  <!-- Interactive Curriculum Blueprint Drawer Modal -->
+  <div class="modal-dimmer" id="blueprintModal">
+    <div class="modal-box-3d blueprint-box">
+      <button class="modal-close-trigger" onclick="closeBlueprint()">&times;</button>
+      <div class="blueprint-header">
+        <span class="pod-badge" id="bpBadge">TRACK</span>
+        <h3 id="bpTitle">Curriculum Blueprint</h3>
+        <p id="bpDesc" class="modal-subtext"></p>
+      </div>
+      <div class="blueprint-timeline" id="bpTimeline"></div>
+      <div class="blueprint-actions">
+        <a href="tel:9361483073" class="btn-neo btn-primary-3d"><span><i class="fa-solid fa-phone"></i> Inquire Direct</span></a>
+        <a href="https://wa.me/919361483073" target="_blank" class="btn-neo btn-whatsapp-3d"><span><i class="fa-brands fa-whatsapp"></i> Chat On WhatsApp</span></a>
+      </div>
     </div>
+  </div>
 
-    <!-- MODALS -->
-
-    <!-- 1. AUTHENTICATION & LMS PORTAL MODAL -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal-content glass auth-modal-content">
-            <button class="modal-close" onclick="closeModal('authModal')"><i class="fas fa-times"></i></button>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="student" onclick="switchAuthTab('student')">Student</button>
-                <button class="auth-tab" data-tab="staff" onclick="switchAuthTab('staff')">Staff</button>
-                <button class="auth-tab" data-tab="admin" onclick="switchAuthTab('admin')">Admin</button>
-                <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">New Register</button>
-            </div>
-
-            <div class="auth-pane active" id="pane-student">
-                <h3>Student Portal Login</h3>
-                <form onsubmit="handleLoginSubmit(event, 'student')">
-                    <div class="form-group">
-                        <input type="email" required placeholder="Student Email ID">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" required placeholder="Password">
-                    </div>
-                    <div class="auth-links-row">
-                        <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login to Student Dashboard</button>
-                </form>
-            </div>
-
-            <div class="auth-pane" id="pane-staff">
-                <h3>Staff Portal Login</h3>
-                <form onsubmit="handleLoginSubmit(event, 'staff')">
-                    <div class="form-group">
-                        <input type="email" required placeholder="Staff Email ID">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" required placeholder="Password">
-                    </div>
-                    <div class="auth-links-row">
-                        <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login to Staff Dashboard</button>
-                </form>
-            </div>
-
-            <div class="auth-pane" id="pane-admin">
-                <h3>Admin Portal Login</h3>
-                <form onsubmit="handleAdminLogin(event)">
-                    <div class="form-group">
-                        <input type="text" id="adminUser" required placeholder="Admin Username (admin12345)">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="adminPass" required placeholder="Password (admin12345)">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login as Administrator</button>
-                </form>
-            </div>
-
-            <div class="auth-pane" id="pane-register">
-                <h3>New User Registration</h3>
-                <form onsubmit="handleAuthRegisterSubmit(event)">
-                    <div class="form-group">
-                        <label>Select Role:</label>
-                        <select id="authRegRole" required>
-                            <option value="Student">Student</option>
-                            <option value="Staff">Staff</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group"><input type="text" required placeholder="First Name"></div>
-                        <div class="form-group"><input type="text" required placeholder="Last Name"></div>
-                    </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="">Select Course / Department</option>
-                            <option>Artificial Intelligence</option>
-                            <option>Machine Learning</option>
-                            <option>Data Science</option>
-                            <option>Full Stack Development</option>
-                            <option>Digital Marketing</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><input type="email" required placeholder="Email Address"></div>
-                    <div class="form-group"><input type="tel" required placeholder="Phone Number"></div>
-                    <div class="form-row">
-                        <div class="form-group"><input type="password" required placeholder="Password"></div>
-                        <div class="form-group"><input type="password" required placeholder="Confirm Password"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit & Save Registration</button>
-                </form>
-            </div>
+  <!-- Modern Clean Footer -->
+  <footer class="glass-footer">
+    <div class="footer-layout">
+      <div class="footer-brand-side">
+        <div class="brand-badge">
+          <img src="logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+          <span class="brand-title">SK SMART AI TECHNOLOGIES</span>
         </div>
+        <p class="footer-summary">
+          Recognized Indian technical education facility dedicated to high-impact software, distributed systems, artificial intelligence, and applied computing.
+        </p>
+        <div class="footer-msme"><i class="fa-solid fa-stamp"></i> Reg: UDYAM-TN-36-0058719</div>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Navigation</h4>
+        <a href="#about">About Institute</a>
+        <a href="#offerings">Programs & Internships</a>
+        <a href="#workshops">Intensive Bootcamps</a>
+        <a href="#verify">Verify Certificate</a>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4>Direct Contact</h4>
+        <p><i class="fa-solid fa-phone"></i> +91 93614 83073</p>
+        <p><i class="fa-solid fa-envelope"></i> sksmartaitechnologies@gmail.com</p>
+        <p><i class="fa-solid fa-location-dot"></i> Tamil Nadu, India</p>
+      </div>
     </div>
-
-    <!-- 2. FORGOT PASSWORD MODAL (OTP FLOW) -->
-    <div class="modal-overlay" id="forgotModal">
-        <div class="modal-content glass auth-modal-content">
-            <button class="modal-close" onclick="closeModal('forgotModal')"><i class="fas fa-times"></i></button>
-            <div id="forgotStep1">
-                <h3>Reset Password</h3>
-                <p>Enter your registered email address to receive a 4-digit OTP.</p>
-                <form onsubmit="handleSendOtp(event)">
-                    <div class="form-group">
-                        <input type="email" id="forgotEmail" required placeholder="Registered Email ID">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send OTP</button>
-                </form>
-            </div>
-
-            <div id="forgotStep2" style="display: none;">
-                <h3>Verify OTP</h3>
-                <p>Enter the 4-digit OTP sent to your email. (Simulated OTP: <strong style="color:var(--accent);">1234</strong>)</p>
-                <form onsubmit="handleVerifyOtp(event)">
-                    <div class="form-group">
-                        <input type="text" id="otpInput" maxlength="4" required placeholder="Enter 4-digit OTP" style="text-align: center; letter-spacing: 5px; font-size: 1.2rem;">
-                    </div>
-                    <div class="otp-timer-container">
-                        <span id="otpTimerDisplay">Time Remaining: 02:00</span>
-                        <button type="button" id="resendOtpBtn" class="btn-link" style="display:none;" onclick="resendOtp()">Resend OTP</button>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Verify OTP</button>
-                </form>
-            </div>
-
-            <div id="forgotStep3" style="display: none;">
-                <h3>Set New Password</h3>
-                <form onsubmit="handleUpdatePassword(event)">
-                    <div class="form-group">
-                        <input type="password" required placeholder="New Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" required placeholder="Confirm New Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Update Password</button>
-                </form>
-            </div>
-        </div>
+    
+    <div class="footer-copyright">
+      <p>&copy; 2026 SK SMART AI TECHNOLOGIES. All rights reserved. Powered by Interactive WebGL Physics Engine.</p>
     </div>
+  </footer>
 
-    <!-- 3. FLOATING / GENERAL "REGISTER NOW" MODAL (CONDITIONAL FIELDS) -->
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal-content glass register-modal-content">
-            <button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
-            <h3>Register Now</h3>
-            <p>Join SK Smart AI Technologies. Fill in your details below.</p>
-            <form onsubmit="handleGeneralRegisterSubmit(event)">
-                <div class="form-row">
-                    <div class="form-group"><input type="text" required placeholder="First Name"></div>
-                    <div class="form-group"><input type="text" required placeholder="Last Name"></div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group"><input type="email" required placeholder="Email ID"></div>
-                    <div class="form-group"><input type="tel" required placeholder="Phone Number"></div>
-                </div>
-                <div class="form-group">
-                    <select required>
-                        <option value="">Select Course</option>
-                        <option>Artificial Intelligence</option>
-                        <option>Machine Learning</option>
-                        <option>Deep Learning</option>
-                        <option>Data Science</option>
-                        <option>Data Analytics</option>
-                        <option>Business Analytics</option>
-                        <option>Full Stack Development</option>
-                        <option>Digital Marketing</option>
-                        <option>Java Programming</option>
-                        <option>Python Programming</option>
-                        <option>Internet of Things (IoT)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Current Status:</label>
-                    <select id="currentStatusSelect" onchange="toggleConditionalFields()" required>
-                        <option value="">Select Status</option>
-                        <option value="Studying">Studying</option>
-                        <option value="Job">Job / Working Professional</option>
-                    </select>
-                </div>
+  <!-- Floating 3D Action Dock -->
+  <div class="floating-dock">
+    <a href="https://wa.me/919361483073?text=Hello%20SK%20SMART%20AI%20TECHNOLOGIES,%20I%20am%20interested%20in%20Internships%20and%20Courses." target="_blank" class="dock-btn dock-whatsapp" aria-label="WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:9361483073" class="dock-btn dock-phone" aria-label="Call Direct">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
 
-                <div id="studyingConditionalFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <select id="ugPgSelect">
-                                <option value="">Select UG / PG</option>
-                                <option>Undergraduate (UG)</option>
-                                <option>Postgraduate (PG)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Year of Studying (e.g., 3rd Year)">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group"><input type="text" placeholder="Specialization / Branch"></div>
-                        <div class="form-group"><input type="text" placeholder="College Name"></div>
-                    </div>
-                </div>
+  <!-- Gateway Authentication Modal -->
+  <div class="modal-dimmer" id="loginModal">
+    <div class="modal-box-3d">
+      <button class="modal-close-trigger" onclick="dismissLogin()">&times;</button>
+      <div class="modal-seal"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="modalTitle">Gateway Authentication</h3>
+      <p class="modal-subtext">Provide your verified key to gain access.</p>
+      
+      <div class="pass-input-pod">
+        <input type="password" id="authKeyInput" placeholder="Enter authorization key">
+        <i class="fa-solid fa-eye pass-eye-btn" onclick="togglePassEye()"></i>
+      </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Submit Registration</button>
-            </form>
-        </div>
+      <button class="btn-neo btn-primary-3d full-width" style="margin-top: 18px;" onclick="verifyAuthKey()">
+        <span>Authorize Access</span>
+      </button>
     </div>
+  </div>
 
-    <!-- 4. DASHBOARD VIEW MODAL -->
-    <div class="modal-overlay" id="dashboardModal">
-        <div class="modal-content glass dashboard-modal-content">
-            <button class="modal-close" onclick="closeModal('dashboardModal')"><i class="fas fa-times"></i></button>
-            <div id="dashboardContent"></div>
-        </div>
-    </div>
+  <!-- Dynamic Attendance Overlay -->
+  <div class="terminal-overlay" id="userDashboard" style="display: none;"></div>
+  <!-- Admin Console Overlay -->
+  <div class="terminal-overlay" id="adminDashboard" style="display: none;"></div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
