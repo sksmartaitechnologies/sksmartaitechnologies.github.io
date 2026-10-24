@@ -200,8 +200,8 @@ function renderDashboard(role) {
             </div>
             <div class="certificate-section">
                 <h3>Certificate Verification & Download</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Your verified MSME course completion certificate is ready.</p>
-                <button class="btn btn-primary" onclick="alert('Downloading verified MSME certificate PDF...')"><i class="fas fa-download"></i> Download Verified Certificate</button>
+                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Your verified course completion certificate is ready.</p>
+                <button class="btn btn-primary" onclick="alert('Downloading verified certificate PDF...')"><i class="fas fa-download"></i> Download Verified Certificate</button>
             </div>
         `;
     } else if (role === 'staff') {
@@ -229,7 +229,7 @@ function renderDashboard(role) {
             <div class="dashboard-header">
                 <div>
                     <h2>Admin Master Control Dashboard</h2>
-                    <p style="color:var(--text-secondary);">SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719)</p>
+                    <p style="color:var(--text-secondary);">SK SMART AI TECHNOLOGIES</p>
                 </div>
                 <span class="badge" style="background:var(--accent); color:#0a0f1d;">Administrator</span>
             </div>
@@ -264,7 +264,7 @@ function verifyCertificate() {
         resultDiv.innerHTML = `<span style="color:#ef4444;">Please enter a valid Certificate ID.</span>`;
         return;
     }
-    resultDiv.innerHTML = `<span style="color:var(--success);"><i class="fas fa-check-circle"></i> Certificate ID <strong>${certId}</strong> is <strong>VERIFIED & AUTHENTIC</strong>. Issued by SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719).</span>`;
+    resultDiv.innerHTML = `<span style="color:var(--success);"><i class="fas fa-check-circle"></i> Certificate ID <strong>${certId}</strong> is <strong>VERIFIED & AUTHENTIC</strong>. Issued by SK SMART AI TECHNOLOGIES.</span>`;
 }
 
 // --- General Submissions ---
@@ -316,14 +316,14 @@ function sendChatMessage() {
 function generateBotResponse(query) {
     const q = query.toLowerCase();
     if (q.includes('course') || q.includes('ai') || q.includes('python')) {
-        return "We offer professional courses in AI, ML, DL, Data Science, Full Stack, Java, Python, and IoT with MSME certification (UDYAM-TN-36-0058719).";
+        return "We offer professional courses in AI, ML, DL, Data Science, Full Stack, Java, Python, and IoT.";
     } else if (q.includes('service') || q.includes('website') || q.includes('app')) {
         return "Our IT services include Website Building, Mobile Apps, Data Analytics, Visualization, Business Analytics, Software Development, AI Content, and Digital Marketing.";
     } else if (q.includes('internship') || q.includes('training')) {
-        return "Our student training and internship programs provide 100% live project experience under expert mentors with verified MSME certificates.";
+        return "Our student training and internship programs provide 100% live project experience under expert mentors.";
     } else if (q.includes('contact') || q.includes('phone')) {
         return "You can reach us at +91 93614 83073 or email sksmartaitechnologies@gmail.com.";
     } else {
-        return "Welcome to SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719). How can we help you advance your career today?";
+        return "Welcome to SK SMART AI TECHNOLOGIES. How can we help you advance your career today?";
     }
 }
