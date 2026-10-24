@@ -77,19 +77,19 @@
             </ul>
 
             <div class="nav-actions">
-                <!-- 3-Dot Menu -->
+                <!-- Menu Dropdown -->
                 <div class="lms-menu-container">
-                    <button class="lms-trigger-btn" id="lmsTriggerBtn" title="Menu">
+                    <button class="lms-trigger-btn" id="lmsTriggerBtn" type="button">
                         <i class="fas fa-ellipsis-v"></i>
                         <span>Menu</span>
                     </button>
                     <div class="lms-dropdown" id="lmsDropdown">
                         <div class="lms-header">Portal Access</div>
-                        <a href="#" onclick="openAuthModal('student')"><i class="fas fa-user-graduate"></i> Student Portal</a>
-                        <a href="#" onclick="openAuthModal('staff')"><i class="fas fa-chalkboard-teacher"></i> Staff Portal</a>
-                        <a href="#" onclick="openAuthModal('admin')"><i class="fas fa-user-shield"></i> Admin Portal</a>
+                        <a href="javascript:void(0)" onclick="openAuthModal('student')"><i class="fas fa-user-graduate"></i> Student Portal</a>
+                        <a href="javascript:void(0)" onclick="openAuthModal('staff')"><i class="fas fa-chalkboard-teacher"></i> Staff Portal</a>
+                        <a href="javascript:void(0)" onclick="openAuthModal('admin')"><i class="fas fa-user-shield"></i> Admin Portal</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" onclick="openAuthModal('register')"><i class="fas fa-user-plus"></i> New Register</a>
+                        <a href="javascript:void(0)" onclick="openAuthModal('register')"><i class="fas fa-user-plus"></i> New Register</a>
                     </div>
                 </div>
                 <div class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
@@ -99,7 +99,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Empty spaces removed, centered layout) -->
+    <!-- HERO SECTION -->
     <header id="home" class="hero-section">
         <div class="container hero-container-single">
             <div class="hero-content center-align">
@@ -109,7 +109,7 @@
                 <h1>Empowering the Future with <span>Next-Gen AI</span> & <strong>IT Solution</strong> Excellence</h1>
                 <p>Welcome to SK SMART AI TECHNOLOGIES. We deliver cutting-edge <strong>IT Solution</strong> services, industry-grade training, AI solutions, and professional internships designed to fast-track your tech career.</p>
                 <div class="hero-cta center-cta">
-                    <button class="btn btn-primary" onclick="openRegisterModal()">Register Now <i class="fas fa-arrow-right"></i></button>
+                    <button class="btn btn-primary" type="button" onclick="openRegisterModal()">Register Now <i class="fas fa-arrow-right"></i></button>
                     <a href="#courses" class="btn btn-outline">Explore Courses</a>
                 </div>
                 <div class="hero-stats-center">
@@ -165,10 +165,10 @@
                 <p>Industry-aligned curriculum with live projects and expert mentorship.</p>
             </div>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Courses</button>
-                <button class="filter-btn" data-filter="ai">AI & Data</button>
-                <button class="filter-btn" data-filter="dev">Development</button>
-                <button class="filter-btn" data-filter="business">Business & Marketing</button>
+                <button class="filter-btn active" data-filter="all" type="button">All Courses</button>
+                <button class="filter-btn" data-filter="ai" type="button">AI & Data</button>
+                <button class="filter-btn" data-filter="dev" type="button">Development</button>
+                <button class="filter-btn" data-filter="business" type="button">Business & Marketing</button>
             </div>
             <div class="courses-grid">
                 <div class="course-card glass" data-category="ai" onclick="openRegisterModal()">
@@ -374,7 +374,7 @@
                     <h4>Certificate Verification</h4>
                     <div class="verify-input-group">
                         <input type="text" id="certIdInput" placeholder="Enter Certificate ID (e.g., SKAI-2026-9081)">
-                        <button class="btn btn-primary" onclick="verifyCertificate()">Verify</button>
+                        <button class="btn btn-primary" type="button" onclick="verifyCertificate()">Verify</button>
                     </div>
                     <div id="verifyResult" class="verify-result"></div>
                 </div>
@@ -527,14 +527,14 @@
     </footer>
 
     <!-- FLOATING GLOWING "REGISTER NOW" BUTTON -->
-    <button class="floating-register-btn" onclick="openRegisterModal()" title="Register Now">
+    <button class="floating-register-btn" type="button" onclick="openRegisterModal()" title="Register Now">
         <i class="fas fa-user-plus"></i>
         <span>Register Now</span>
     </button>
 
     <!-- AI CHATBOT WIDGET -->
     <div class="chatbot-widget">
-        <button class="chatbot-toggle-btn" id="chatbotToggleBtn" title="AI Assistant">
+        <button class="chatbot-toggle-btn" id="chatbotToggleBtn" type="button" title="AI Assistant">
             <i class="fas fa-robot"></i>
         </button>
         <div class="chatbot-window glass" id="chatbotWindow">
@@ -546,7 +546,7 @@
                         <span>Online | AI Expert</span>
                     </div>
                 </div>
-                <button class="close-bot" id="closeBotBtn"><i class="fas fa-times"></i></button>
+                <button class="close-bot" id="closeBotBtn" type="button"><i class="fas fa-times"></i></button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
                 <div class="message bot-message">
@@ -555,7 +555,7 @@
             </div>
             <div class="chatbot-input-area">
                 <input type="text" id="chatUserInput" placeholder="Ask about AI courses, services, fees..." onkeypress="handleChatKeyPress(event)">
-                <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                <button type="button" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
@@ -563,12 +563,12 @@
     <!-- MODALS -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-content glass auth-modal-content">
-            <button class="modal-close" onclick="closeModal('authModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" type="button" onclick="closeModal('authModal')"><i class="fas fa-times"></i></button>
             <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="student" onclick="switchAuthTab('student')">Student</button>
-                <button class="auth-tab" data-tab="staff" onclick="switchAuthTab('staff')">Staff</button>
-                <button class="auth-tab" data-tab="admin" onclick="switchAuthTab('admin')">Admin</button>
-                <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">New Register</button>
+                <button class="auth-tab active" data-tab="student" type="button" onclick="switchAuthTab('student')">Student</button>
+                <button class="auth-tab" data-tab="staff" type="button" onclick="switchAuthTab('staff')">Staff</button>
+                <button class="auth-tab" data-tab="admin" type="button" onclick="switchAuthTab('admin')">Admin</button>
+                <button class="auth-tab" data-tab="register" type="button" onclick="switchAuthTab('register')">New Register</button>
             </div>
 
             <div class="auth-pane active" id="pane-student">
@@ -581,7 +581,7 @@
                         <input type="password" required placeholder="Password">
                     </div>
                     <div class="auth-links-row">
-                        <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
+                        <a href="javascript:void(0)" onclick="openForgotPasswordModal()">Forgot Password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Login to Student Dashboard</button>
                 </form>
@@ -597,7 +597,7 @@
                         <input type="password" required placeholder="Password">
                     </div>
                     <div class="auth-links-row">
-                        <a href="#" onclick="openForgotPasswordModal()">Forgot Password?</a>
+                        <a href="javascript:void(0)" onclick="openForgotPasswordModal()">Forgot Password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Login to Staff Dashboard</button>
                 </form>
@@ -655,7 +655,7 @@
     <!-- FORGOT PASSWORD MODAL -->
     <div class="modal-overlay" id="forgotModal">
         <div class="modal-content glass auth-modal-content">
-            <button class="modal-close" onclick="closeModal('forgotModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" type="button" onclick="closeModal('forgotModal')"><i class="fas fa-times"></i></button>
             <div id="forgotStep1">
                 <h3>Reset Password</h3>
                 <p>Enter your registered email address to receive a 4-digit OTP.</p>
@@ -700,7 +700,7 @@
     <!-- REGISTER NOW MODAL -->
     <div class="modal-overlay" id="registerModal">
         <div class="modal-content glass register-modal-content">
-            <button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" type="button" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
             <h3>Register Now</h3>
             <p>Join SK Smart AI Technologies. Fill in your details below.</p>
             <form onsubmit="handleGeneralRegisterSubmit(event)">
@@ -764,7 +764,7 @@
     <!-- DASHBOARD VIEW MODAL -->
     <div class="modal-overlay" id="dashboardModal">
         <div class="modal-content glass dashboard-modal-content">
-            <button class="modal-close" onclick="closeModal('dashboardModal')"><i class="fas fa-times"></i></button>
+            <button class="modal-close" type="button" onclick="closeModal('dashboardModal')"><i class="fas fa-times"></i></button>
             <div id="dashboardContent"></div>
         </div>
     </div>
