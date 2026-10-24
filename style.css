@@ -27,7 +27,7 @@ body {
     min-height: 100vh;
 }
 
-/* 3D Glassmorphism Utilities with Depth Shadows */
+/* Glassmorphism Utilities with Depth Shadows */
 .glass {
     background: var(--card-bg);
     backdrop-filter: blur(14px);
@@ -47,27 +47,14 @@ body {
 .top-bar {
     background: #e2e8f0;
     border-bottom: 1px solid var(--card-border);
-    padding: 8px 0;
-    font-size: 0.95rem;
+    padding: 6px 0;
+    font-size: 0.9rem;
 }
 
-.top-bar-content {
+.top-bar-content.right-only {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-}
-
-.contact-snippets {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-    color: var(--text-secondary);
-}
-
-.contact-snippets i {
-    color: var(--accent);
-    margin-right: 5px;
 }
 
 .social-links {
@@ -283,15 +270,12 @@ body {
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-primary);
 }
 
-/* HERO SECTION (Centered Single-Column, Empty Space Removed) */
+/* HERO SECTION (Compact spacing, zero gaps) */
 .hero-section {
     position: relative;
-    padding: 60px 0 40px;
+    padding: 50px 0 30px;
     overflow: hidden;
     text-align: center;
 }
@@ -317,15 +301,15 @@ body {
     border-radius: 30px;
     font-size: 0.95rem;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: bold;
 }
 
 .hero-content h1 {
-    font-size: 3.4rem;
+    font-size: 3.2rem;
     font-weight: bold;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--text-primary);
 }
 
@@ -337,15 +321,15 @@ body {
 
 .hero-content p {
     color: var(--text-secondary);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     max-width: 700px;
 }
 
 .center-cta {
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .btn {
@@ -392,7 +376,7 @@ body {
 }
 
 .stat-card {
-    padding: 20px;
+    padding: 15px;
     text-align: center;
 }
 
@@ -408,21 +392,21 @@ body {
     margin: 0;
 }
 
-/* SECTIONS & GRIDS */
+/* SECTIONS & GRIDS (Compact padding to remove gaps) */
 section {
-    padding: 80px 0;
+    padding: 50px 0;
 }
 
 .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto 35px;
 }
 
 .section-header h2 {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: var(--text-primary);
 }
 
@@ -434,7 +418,7 @@ section {
 
 .section-header p {
     color: var(--text-secondary);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
 }
 
 /* ABOUT */
@@ -485,7 +469,7 @@ section {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     flex-wrap: wrap;
 }
 
@@ -858,14 +842,14 @@ section {
 .footer {
     background: #e2e8f0;
     border-top: 1px solid var(--card-border);
-    padding: 60px 0 20px;
+    padding: 40px 0 20px;
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
     gap: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .footer-brand h2 {
@@ -1302,23 +1286,4 @@ section {
 .data-table th {
     color: var(--text-secondary);
     font-weight: bold;
-}
-
-/* RESPONSIVE DESIGN */
-@media(max-width: 1024px) {
-    .hero-stats-center { grid-template-columns: 1fr; }
-    .about-grid, .courses-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .consulting-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-}
-
-@media(max-width: 768px) {
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #ffffff; flex-direction: column; padding: 20px; border-bottom: 1px solid var(--card-border); }
-    .nav-links.active { display: flex; }
-    .menu-toggle { display: block; }
-    .about-grid, .courses-grid, .testimonials-grid, .services-grid { grid-template-columns: 1fr; }
-    .hero-content h1 { font-size: 2.3rem; }
-    .footer-content { grid-template-columns: 1fr; }
-    .auth-tabs { grid-template-columns: repeat(2, 1fr); }
 }
