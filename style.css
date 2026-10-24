@@ -1,14 +1,14 @@
 :root {
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
-    --card-bg: rgba(255, 255, 255, 0.85);
+    --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+    --card-bg: rgba(255, 255, 255, 0.92);
     --card-border: rgba(2, 132, 199, 0.2);
     --text-primary: #0f172a;
-    --text-secondary: #475569;
+    --text-secondary: #334155;
     --accent: #0284c7;
     --accent-glow: rgba(2, 132, 199, 0.25);
     --purple: #7c3aed;
     --success: #059669;
-    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-main: "Times New Roman", Times, serif;
 }
 
 * {
@@ -22,19 +22,19 @@ body {
     background: var(--bg-gradient) !important;
     background-attachment: fixed !important;
     color: var(--text-primary) !important;
-    font-family: var(--font-main);
+    font-family: var(--font-main) !important;
     overflow-x: hidden;
     min-height: 100vh;
 }
 
-/* 3D Glassmorphism Utilities */
+/* 3D Glassmorphism Utilities with Depth Shadows */
 .glass {
     background: var(--card-bg);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid var(--card-border);
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08), 0 5px 15px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08), 0 5px 15px rgba(2, 132, 199, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .container {
@@ -45,10 +45,10 @@ body {
 
 /* TOP BAR */
 .top-bar {
-    background: rgba(226, 232, 240, 0.9);
+    background: #e2e8f0;
     border-bottom: 1px solid var(--card-border);
     padding: 8px 0;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 .top-bar-content {
@@ -93,7 +93,7 @@ body {
     border-left: none;
     border-right: none;
     padding: 15px 0;
-    background: rgba(248, 250, 252, 0.92);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(16px);
 }
 
@@ -125,14 +125,14 @@ body {
 }
 
 .brand-text h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: 0.5px;
     color: var(--text-primary);
 }
 
 .brand-text span {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--accent);
     letter-spacing: 1.5px;
     font-weight: 600;
@@ -148,8 +148,8 @@ body {
 .nav-links a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 1.05rem;
     transition: color 0.3s;
 }
 
@@ -184,7 +184,7 @@ body {
     display: block;
     padding: 10px 20px;
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: all 0.2s;
 }
 
@@ -244,7 +244,7 @@ body {
 
 .lms-header {
     padding: 8px 15px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -259,7 +259,7 @@ body {
     padding: 10px 15px;
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: background 0.2s;
 }
 
@@ -288,16 +288,6 @@ body {
     overflow: hidden;
 }
 
-.hero-glow {
-    position: absolute;
-    top: -20%;
-    left: 20%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, rgba(248, 250, 252, 0) 70%);
-    z-index: -1;
-}
-
 .hero-container {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -313,15 +303,15 @@ body {
     border: 1px solid rgba(2, 132, 199, 0.3);
     padding: 6px 16px;
     border-radius: 30px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--accent);
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .hero-content h1 {
     font-size: 3.2rem;
-    font-weight: 900;
+    font-weight: bold;
     line-height: 1.2;
     margin-bottom: 20px;
     color: var(--text-primary);
@@ -335,7 +325,7 @@ body {
 
 .hero-content p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
 }
@@ -349,7 +339,7 @@ body {
 .btn {
     padding: 12px 28px;
     border-radius: 30px;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
@@ -357,7 +347,8 @@ body {
     align-items: center;
     gap: 8px;
     border: none;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
+    font-family: var(--font-main);
 }
 
 .btn-primary {
@@ -393,13 +384,13 @@ body {
 }
 
 .stat-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--accent);
-    font-weight: 800;
+    font-weight: bold;
 }
 
 .stat-card p {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     margin: 0;
 }
@@ -454,8 +445,8 @@ body {
     border: 1px solid var(--card-border);
     padding: 10px 18px;
     border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: bold;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
     display: flex;
     align-items: center;
@@ -481,8 +472,8 @@ section {
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 2.6rem;
+    font-weight: bold;
     margin-bottom: 15px;
     color: var(--text-primary);
 }
@@ -495,7 +486,7 @@ section {
 
 .section-header p {
     color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
 }
 
 /* ABOUT */
@@ -529,14 +520,15 @@ section {
 }
 
 .about-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: 12px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .about-card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     line-height: 1.5;
 }
 
@@ -556,8 +548,10 @@ section {
     padding: 8px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: bold;
     transition: all 0.3s;
+    font-family: var(--font-main);
+    font-size: 1rem;
 }
 
 .filter-btn.active, .filter-btn:hover {
@@ -608,21 +602,22 @@ section {
     color: var(--purple);
     padding: 4px 10px;
     border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: bold;
     margin-bottom: 10px;
     width: max-content;
 }
 
 .course-body h3 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     margin-bottom: 10px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .course-body p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.4;
     margin-bottom: 20px;
     flex-grow: 1;
@@ -632,7 +627,7 @@ section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     border-top: 1px solid var(--card-border);
     padding-top: 12px;
@@ -640,12 +635,12 @@ section {
 
 .view-blueprint {
     color: var(--accent);
-    font-weight: 600;
+    font-weight: bold;
 }
 
 /* SERVICES */
 .services-section {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .services-grid {
@@ -673,14 +668,15 @@ section {
 }
 
 .service-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .service-card p {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.4;
 }
 
@@ -702,15 +698,17 @@ section {
 }
 
 .consulting-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 15px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .consulting-card p {
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 20px;
+    font-size: 1.05rem;
 }
 
 .consulting-card ul {
@@ -723,7 +721,7 @@ section {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
 }
 
@@ -732,7 +730,7 @@ section {
 }
 
 .verify-box {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
     padding: 20px;
     border-radius: 12px;
     border: 1px solid var(--card-border);
@@ -740,8 +738,9 @@ section {
 
 .verify-box h4 {
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .verify-input-group {
@@ -756,17 +755,18 @@ section {
     padding: 10px 15px;
     border-radius: 8px;
     color: var(--text-primary);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
 }
 
 .verify-result {
     margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 /* TESTIMONIALS */
 .testimonials-section {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .testimonials-grid {
@@ -785,12 +785,12 @@ section {
 .stars {
     color: #d97706;
     margin-bottom: 15px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .testimonial-card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     line-height: 1.6;
     margin-bottom: 20px;
     font-style: italic;
@@ -811,19 +811,20 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: bold;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .client-info h4 {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     margin-bottom: 2px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .client-info span {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
 }
 
@@ -839,9 +840,10 @@ section {
 }
 
 .contact-info-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .contact-info-card p {
@@ -850,7 +852,7 @@ section {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 .contact-info-card i {
@@ -863,9 +865,10 @@ section {
 }
 
 .contact-form h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .form-group {
@@ -885,7 +888,7 @@ section {
     padding: 12px 15px;
     border-radius: 8px;
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-family: var(--font-main);
 }
 
@@ -897,14 +900,15 @@ section {
 
 .form-group label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 /* FOOTER */
 .footer {
-    background: #e2e8f0;
+    background: #cbd5e1;
     border-top: 1px solid var(--card-border);
     padding: 60px 0 20px;
 }
@@ -917,21 +921,23 @@ section {
 }
 
 .footer-brand h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 15px;
     color: var(--accent);
+    font-weight: bold;
 }
 
 .footer-brand p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
 }
 
 .footer-links h4, .footer-contact h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 15px;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .footer-links a {
@@ -939,7 +945,7 @@ section {
     color: var(--text-secondary);
     text-decoration: none;
     margin-bottom: 8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: color 0.2s;
 }
 
@@ -949,7 +955,7 @@ section {
 
 .footer-contact p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -961,7 +967,7 @@ section {
     border-top: 1px solid var(--card-border);
     padding-top: 20px;
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 /* FLOATING REGISTER BUTTON */
@@ -974,7 +980,7 @@ section {
     border: none;
     padding: 12px 24px;
     border-radius: 30px;
-    font-weight: 700;
+    font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 25px var(--accent-glow);
     display: flex;
@@ -983,6 +989,8 @@ section {
     z-index: 999;
     animation: pulseGlow 2s infinite;
     transition: transform 0.3s;
+    font-family: var(--font-main);
+    font-size: 1.05rem;
 }
 
 .floating-register-btn:hover {
@@ -1064,12 +1072,13 @@ section {
 }
 
 .bot-info h4 {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .bot-info span {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--success);
 }
 
@@ -1078,7 +1087,7 @@ section {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .chatbot-messages {
@@ -1094,7 +1103,7 @@ section {
     max-width: 80%;
     padding: 10px 14px;
     border-radius: 12px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.4;
 }
 
@@ -1127,7 +1136,8 @@ section {
     padding: 8px 12px;
     border-radius: 20px;
     color: var(--text-primary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
 }
 
 .chatbot-input-area button {
@@ -1199,7 +1209,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: background 0.2s;
 }
 
@@ -1224,11 +1234,12 @@ section {
     border: none;
     color: var(--text-secondary);
     padding: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: var(--font-main);
 }
 
 .auth-tab.active {
@@ -1253,7 +1264,7 @@ section {
 .auth-links-row a {
     color: var(--accent);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 .otp-timer-container {
@@ -1261,7 +1272,7 @@ section {
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
 }
 
@@ -1271,7 +1282,8 @@ section {
     color: var(--accent);
     cursor: pointer;
     text-decoration: underline;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
 }
 
 /* DASHBOARD STYLES */
@@ -1299,14 +1311,15 @@ section {
 }
 
 .dash-card h4 {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
 .dash-card h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--accent);
+    font-weight: bold;
 }
 
 .attendance-section, .certificate-section, .admin-database-section {
@@ -1319,8 +1332,9 @@ section {
 
 .attendance-section h3, .certificate-section h3, .admin-database-section h3 {
     margin-bottom: 15px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-primary);
+    font-weight: bold;
 }
 
 .data-table {
@@ -1333,13 +1347,13 @@ section {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid var(--card-border);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-primary);
 }
 
 .data-table th {
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: bold;
 }
 
 /* RESPONSIVE DESIGN */
