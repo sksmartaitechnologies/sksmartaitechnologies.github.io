@@ -1,591 +1,1362 @@
-// --- DOMContentLoaded & Navigation ---
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-
-    const lmsTriggerBtn = document.getElementById('lmsTriggerBtn');
-    const lmsDropdown = document.getElementById('lmsDropdown');
-    if (lmsTriggerBtn && lmsDropdown) {
-        lmsTriggerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            lmsDropdown.classList.toggle('show');
-        });
-        document.addEventListener('click', () => {
-            lmsDropdown.classList.remove('show');
-        });
-    }
-
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const courseCards = document.querySelectorAll('.course-card');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-            courseCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
-    const chatbotWindow = document.getElementById('chatbotWindow');
-    const closeBotBtn = document.getElementById('closeBotBtn');
-    if (chatbotToggleBtn && chatbotWindow) {
-        chatbotToggleBtn.addEventListener('click', () => {
-            chatbotWindow.classList.toggle('open');
-        });
-        closeBotBtn.addEventListener('click', () => {
-            chatbotWindow.classList.remove('open');
-        });
-    }
-});
-
-// --- Modal Controls ---
-function openModal(modalId) {
-    document.getElementById(modalId).classList.add('open');
+:root {
+    --bg-primary: #0a0f1d;
+    --bg-secondary: #121a2e;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --purple: #8b5cf6;
+    --success: #10b981;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-function closeModal(modalId) {
-    document.getElementById(modalId).classList.remove('open');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-function openAuthModal(tabName) {
-    openModal('authModal');
-    switchAuthTab(tabName);
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    overflow-x: hidden;
 }
 
-function openRegisterModal() {
-    openModal('registerModal');
+/* Glassmorphism & Layout Utilities */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
 }
 
-function switchAuthTab(tabName) {
-    const tabs = document.querySelectorAll('.auth-tab');
-    const panes = document.querySelectorAll('.auth-pane');
-    
-    tabs.forEach(t => {
-        if (t.getAttribute('data-tab') === tabName) {
-            t.classList.add('active');
-        } else {
-            t.classList.remove('active');
-        }
-    });
-
-    panes.forEach(p => p.classList.remove('active'));
-    const activePane = document.getElementById('pane-' + tabName);
-    if (activePane) activePane.classList.add('active');
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-// --- Detailed Blueprints Data ---
-const blueprints = {
-    "Artificial Intelligence (AI)": {
-        title: "Artificial Intelligence (AI) - Master Curriculum",
-        duration: "3 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Foundations of AI & Python for AI",
-            "Module 2: Search Algorithms, Heuristics & Knowledge Representation",
-            "Module 3: Computer Vision & OpenCV",
-            "Module 4: Natural Language Processing (NLP) & LLM Integrations",
-            "Module 5: Capstone Project: Autonomous Agent or Smart Vision System"
-        ],
-        outcomes: "Build intelligent systems, understand neural network foundations, and deploy generative AI solutions."
-    },
-    "Machine Learning (ML)": {
-        title: "Machine Learning (ML) - Professional Curriculum",
-        duration: "3 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Exploratory Data Analysis & Feature Engineering",
-            "Module 2: Supervised Learning (Regression & Classification)",
-            "Module 3: Unsupervised Learning (Clustering & Dimensionality Reduction)",
-            "Module 4: Model Evaluation, Hyperparameter Tuning & Scikit-Learn",
-            "Module 5: Real-World Industry ML Deployment Project"
-        ],
-        outcomes: "Expertise in training predictive models, evaluating performance, and productionizing ML algorithms."
-    },
-    "Deep Learning (DL)": {
-        title: "Deep Learning (DL) - Expert Curriculum",
-        duration: "2 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Neural Network Architecture & Backpropagation",
-            "Module 2: Convolutional Neural Networks (CNN) for Image Recognition",
-            "Module 3: Recurrent Neural Networks (RNN, LSTM, GRU) for Sequence Data",
-            "Module 4: Transformers & Generative Adversarial Networks (GANs)",
-            "Module 5: PyTorch & TensorFlow Advanced Model Training"
-        ],
-        outcomes: "Design and train state-of-the-art deep neural networks for complex computer vision and NLP problems."
-    },
-    "Data Science": {
-        title: "Data Science - Comprehensive Blueprint",
-        duration: "4 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Advanced Python, Pandas, NumPy & SciPy",
-            "Module 2: SQL & NoSQL Database querying for Data Science",
-            "Module 3: Statistical Hypothesis Testing & Probability",
-            "Module 4: Machine Learning Modeling & Validation",
-            "Module 5: Big Data Tools & End-to-End Data Science Portfolio Project"
-        ],
-        outcomes: "End-to-end mastery of extracting insights, building data pipelines, and predictive data modeling."
-    },
-    "Data Analytics": {
-        title: "Data Analytics - Professional Blueprint",
-        duration: "3 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Advanced Excel & Business Metrics",
-            "Module 2: Relational Databases & SQL Queries",
-            "Module 3: Data Visualization with Tableau & Power BI",
-            "Module 4: Exploratory Data Analysis & Storytelling with Data",
-            "Module 5: Live Business Dashboard Capstone Project"
-        ],
-        outcomes: "Transform raw datasets into interactive dashboards and drive corporate decision-making."
-    },
-    "Business Analytics": {
-        title: "Business Analytics - Management Curriculum",
-        duration: "2 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Financial Modeling & KPI Tracking",
-            "Module 2: Market Research & Consumer Behavior Analytics",
-            "Module 3: Predictive Business Forecasting",
-            "Module 4: Strategic Decision Frameworks using Data"
-        ],
-        outcomes: "Bridge business strategy and data analytics to optimize operations and maximize enterprise ROI."
-    },
-    "Full Stack Development": {
-        title: "Full Stack Development - Complete Blueprint",
-        duration: "4 Months",
-        type: "Course",
-        modules: [
-            "Module 1: HTML5, CSS3, Modern JavaScript (ES6+)",
-            "Module 2: Frontend Architecture with React.js & Tailwind CSS",
-            "Module 3: Backend Development with Node.js & Express.js",
-            "Module 4: Database Management with MongoDB & SQL",
-            "Module 5: Full Stack Deployment & DevOps Basics"
-        ],
-        outcomes: "Build, test, and deploy scalable full-stack web applications from scratch."
-    },
-    "Digital Marketing": {
-        title: "Digital Marketing - Growth Curriculum",
-        duration: "2 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Search Engine Optimization (SEO) & Technical Audits",
-            "Module 2: Social Media Marketing & Branding",
-            "Module 3: Performance Marketing (PPC, Google Ads, Meta Ads)",
-            "Module 4: AI Content Generation & Copywriting Scaling"
-        ],
-        outcomes: "Execute high-converting digital campaigns and scale online brand presence exponentially."
-    },
-    "Java Programming": {
-        title: "Java Programming - Foundation to Advanced",
-        duration: "3 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Core Java & Object-Oriented Programming Principles",
-            "Module 2: Java Collections Framework & Exception Handling",
-            "Module 3: Multithreading & JDBC Database Connectivity",
-            "Module 4: Spring Boot & Enterprise REST API Development"
-        ],
-        outcomes: "Write robust, enterprise-grade Java applications and backend microservices."
-    },
-    "Python Programming": {
-        title: "Python Programming - Complete Bootcamp",
-        duration: "2 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Python Syntax, Control Flow & Data Structures",
-            "Module 2: Functions, Modules & Object-Oriented Python",
-            "Module 3: File Handling, Error Management & Libraries",
-            "Module 4: REST APIs & Mini-Project Development"
-        ],
-        outcomes: "Gain fluency in Python for automation, scripting, and backend development."
-    },
-    "Internet of Things (IoT)": {
-        title: "Internet of Things (IoT) - Hardware & Cloud",
-        duration: "3 Months",
-        type: "Course",
-        modules: [
-            "Module 1: Microcontrollers (Arduino & Raspberry Pi)",
-            "Module 2: Sensors, Actuators & Circuit Design",
-            "Module 3: MQTT Protocol & IoT Cloud Telemetry",
-            "Module 4: Smart Home Automation Capstone Project"
-        ],
-        outcomes: "Design smart connected devices and integrate hardware with cloud dashboards."
-    },
-    // Services
-    "Website Building": {
-        title: "Website Building Services - Blueprint",
-        duration: "2 - 4 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: Requirement Analysis & UI/UX Wireframing",
-            "Phase 2: Responsive Frontend Development",
-            "Phase 3: CMS Integration & SEO Optimization",
-            "Phase 4: Security Hardening & Deployment"
-        ],
-        outcomes: "High-performing, ultra-responsive, SEO-optimized business websites."
-    },
-    "Mobile App Development": {
-        title: "Mobile App Development Services - Blueprint",
-        duration: "4 - 8 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: App Architecture & UX Design",
-            "Phase 2: Cross-Platform Development (Flutter / React Native)",
-            "Phase 3: Backend REST API & Database Integration",
-            "Phase 4: Play Store & App Store Publishing Support"
-        ],
-        outcomes: "Sleek, native-performance iOS & Android applications."
-    },
-    "Data Analytics": {
-        title: "Data Analytics Services - Blueprint",
-        duration: "2 - 6 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: Data Audit & Cleaning Pipelines",
-            "Phase 2: Statistical Modeling & Trend Analysis",
-            "Phase 3: Automated Insight Generation"
-        ],
-        outcomes: "Clear data intelligence that drives profitable business decisions."
-    },
-    "Data Visualization": {
-        title: "Data Visualization Services - Blueprint",
-        duration: "2 - 4 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: Metric Definition & KPI Mapping",
-            "Phase 2: Interactive Dashboard Design in Tableau & Power BI",
-            "Phase 3: Executive Reporting Setup"
-        ],
-        outcomes: "Stunning, real-time executive dashboards."
-    },
-    "Business Analytics": {
-        title: "Business Analytics Services - Blueprint",
-        duration: "3 - 6 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: Operational Efficiency Assessment",
-            "Phase 2: Predictive Financial Modeling",
-            "Phase 3: Strategic Growth Recommendations"
-        ],
-        outcomes: "Optimized operational workflows and maximum financial ROI."
-    },
-    "Software Development": {
-        title: "Software Development Services - Blueprint",
-        duration: "6 - 12 Weeks Delivery",
-        type: "Service",
-        modules: [
-            "Phase 1: Enterprise System Architecture Design",
-            "Phase 2: Custom ERP/CRM Development",
-            "Phase 3: Cloud Deployment & QA Testing"
-        ],
-        outcomes: "Secure, scalable enterprise software solutions."
-    },
-    "AI Content": {
-        title: "AI Content Services - Blueprint",
-        duration: "Ongoing / Project Based",
-        type: "Service",
-        modules: [
-            "Phase 1: Brand Voice Training & Prompt Engineering",
-            "Phase 2: Automated SEO Blog & Article Scaling",
-            "Phase 3: Marketing Copy Optimization"
-        ],
-        outcomes: "High-engagement AI-powered content at scale."
-    },
-    "Digital Marketing": {
-        title: "Digital Marketing Services - Blueprint",
-        duration: "Monthly Retainer",
-        type: "Service",
-        modules: [
-            "Phase 1: Digital Footprint Audit & Keyword Strategy",
-            "Phase 2: Social Media Branding & PPC Campaign Management",
-            "Phase 3: Conversion Rate Optimization & Monthly Analytics Reporting"
-        ],
-        outcomes: "Exponential online growth and sustained customer acquisition."
-    }
-};
-
-function openCourseModal(courseName) {
-    renderDetailModal(blueprints[courseName]);
+/* TOP BAR */
+.top-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    padding: 8px 0;
+    font-size: 0.85rem;
 }
 
-function openServiceModal(serviceName) {
-    renderDetailModal(blueprints[serviceName]);
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-function renderDetailModal(data) {
-    const body = document.getElementById('detailModalBody');
-    let modulesHtml = data.modules.map(m => `<li><i class="fas fa-check-circle" style="color:var(--accent); margin-right:8px;"></i>${m}</li>`).join('');
-    
-    body.innerHTML = `
-        <span class="badge">${data.type} Blueprint</span>
-        <h2 style="margin: 15px 0 10px; font-size: 1.8rem;">${data.title}</h2>
-        <p style="color: var(--accent); margin-bottom: 20px;"><i class="far fa-clock"></i> Duration: <strong>${data.duration}</strong></p>
-        <h3 style="margin-bottom: 12px; font-size: 1.1rem;">Curriculum / Execution Phases:</h3>
-        <ul style="list-style: none; margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px;">
-            ${modulesHtml}
-        </ul>
-        <div style="background: rgba(56, 189, 248, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3); margin-bottom: 25px;">
-            <h4 style="color: var(--accent); margin-bottom: 5px;">Key Outcome</h4>
-            <p style="color: var(--text-primary); font-size: 0.95rem;">${data.outcomes}</p>
-        </div>
-        <button class="btn btn-primary" style="width: 100%;" onclick="closeModal('detailModal'); openRegisterModal();">Enroll / Request Service Now</button>
-    `;
-    openModal('detailModal');
+.contact-snippets {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--text-secondary);
 }
 
-// --- Conditional Fields ---
-function toggleConditionalFields() {
-    const status = document.getElementById('currentStatusSelect').value;
-    const condDiv = document.getElementById('studyingConditionalFields');
-    condDiv.style.display = (status === 'Studying') ? 'block' : 'none';
+.contact-snippets i {
+    color: var(--accent);
+    margin-right: 5px;
 }
 
-// --- OTP & Forgot Password ---
-let otpTimer = null;
-let secondsLeft = 120;
-
-function openForgotPasswordModal() {
-    closeModal('authModal');
-    openModal('forgotModal');
-    document.getElementById('forgotStep1').style.display = 'block';
-    document.getElementById('forgotStep2').style.display = 'none';
-    document.getElementById('forgotStep3').style.display = 'none';
+.msme-badge {
+    color: var(--success);
+    font-weight: 650;
 }
 
-function handleSendOtp(e) {
-    e.preventDefault();
-    document.getElementById('forgotStep1').style.display = 'none';
-    document.getElementById('forgotStep2').style.display = 'block';
-    startOtpTimer();
+.social-links {
+    display: flex;
+    gap: 15px;
 }
 
-function startOtpTimer() {
-    secondsLeft = 120;
-    const timerDisplay = document.getElementById('otpTimerDisplay');
-    const resendBtn = document.getElementById('resendOtpBtn');
-    resendBtn.style.display = 'none';
-    timerDisplay.style.display = 'inline';
-
-    if (otpTimer) clearInterval(otpTimer);
-
-    otpTimer = setInterval(() => {
-        secondsLeft--;
-        let m = Math.floor(secondsLeft / 60);
-        let s = secondsLeft % 60;
-        timerDisplay.textContent = `Time Remaining: ${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-
-        if (secondsLeft <= 0) {
-            clearInterval(otpTimer);
-            timerDisplay.style.display = 'none';
-            resendBtn.style.display = 'inline';
-        }
-    }, 1000);
+.social-links a {
+    color: var(--text-secondary);
+    transition: color 0.3s;
 }
 
-function resendOtp() {
-    alert("New 4-digit OTP sent successfully! (Simulated OTP: 1234)");
-    startOtpTimer();
+.social-links a:hover {
+    color: var(--accent);
 }
 
-function handleVerifyOtp(e) {
-    e.preventDefault();
-    const otp = document.getElementById('otpInput').value;
-    if (otp === '1234') {
-        clearInterval(otpTimer);
-        document.getElementById('forgotStep2').style.display = 'none';
-        document.getElementById('forgotStep3').style.display = 'block';
-    } else {
-        alert("Invalid OTP! Please enter 1234 for simulation.");
-    }
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: 15px 0;
+    background: rgba(10, 15, 29, 0.85);
+    backdrop-filter: blur(16px);
 }
 
-function handleUpdatePassword(e) {
-    e.preventDefault();
-    alert("Password updated successfully!");
-    closeModal('forgotModal');
-    openAuthModal('student');
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-// --- Login & Dashboards ---
-function handleLoginSubmit(e, role) {
-    e.preventDefault();
-    closeModal('authModal');
-    renderDashboard(role);
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
 }
 
-function handleAdminLogin(e) {
-    e.preventDefault();
-    const u = document.getElementById('adminUser').value;
-    const p = document.getElementById('adminPass').value;
-    if (u === 'admin12345' && p === 'admin12345') {
-        closeModal('authModal');
-        renderDashboard('admin');
-    } else {
-        alert("Invalid Admin credentials! Use Username: admin12345 and Password: admin12345");
-    }
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #fff;
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
-function renderDashboard(role) {
-    const content = document.getElementById('dashboardContent');
-    if (role === 'student') {
-        content.innerHTML = `
-            <div class="dashboard-header">
-                <div>
-                    <h2>Student Dashboard</h2>
-                    <p style="color:var(--text-secondary);">Welcome back, Arun Kumar | Course: Artificial Intelligence</p>
-                </div>
-                <span class="badge" style="background:var(--success); color:#fff;">Active Student</span>
-            </div>
-            <div class="dashboard-stats-grid">
-                <div class="dash-card"><h4>Attendance Rate</h4><h2>94%</h2></div>
-                <div class="dash-card"><h4>Course Progress</h4><h2>78%</h2></div>
-                <div class="dash-card"><h4>Live Projects</h4><h2>3 Completed</h2></div>
-            </div>
-            <div class="attendance-section">
-                <h3>Daily Attendance Logger</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Mark your daily training/class attendance.</p>
-                <button class="btn btn-primary" onclick="alert('Attendance marked successfully!')"><i class="fas fa-check"></i> Check-In Today</button>
-            </div>
-            <div class="certificate-section">
-                <h3>Certificate Verification & Download</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Your verified MSME course completion certificate is ready.</p>
-                <button class="btn btn-primary" onclick="alert('Downloading verified MSME certificate PDF...')"><i class="fas fa-download"></i> Download Verified Certificate</button>
-            </div>
-        `;
-    } else if (role === 'staff') {
-        content.innerHTML = `
-            <div class="dashboard-header">
-                <div>
-                    <h2>Staff Portal Dashboard</h2>
-                    <p style="color:var(--text-secondary);">Welcome, Prof. Rajesh | Department: AI & ML Training</p>
-                </div>
-                <span class="badge" style="background:var(--purple); color:#fff;">Senior Trainer</span>
-            </div>
-            <div class="dashboard-stats-grid">
-                <div class="dash-card"><h4>Assigned Batches</h4><h2>4 Batches</h2></div>
-                <div class="dash-card"><h4>Total Trainees</h4><h2>140 Students</h2></div>
-                <div class="dash-card"><h4>Avg. Attendance</h4><h2>91%</h2></div>
-            </div>
-            <div class="attendance-section">
-                <h3>Staff Attendance Tracker</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Log your daily staff login and review batch attendance.</p>
-                <button class="btn btn-primary" onclick="alert('Staff attendance recorded successfully!')"><i class="fas fa-clipboard-check"></i> Log Staff Attendance</button>
-            </div>
-        `;
-    } else if (role === 'admin') {
-        content.innerHTML = `
-            <div class="dashboard-header">
-                <div>
-                    <h2>Admin Master Control Dashboard</h2>
-                    <p style="color:var(--text-secondary);">SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719)</p>
-                </div>
-                <span class="badge" style="background:var(--accent); color:#0a0f1d;">Administrator</span>
-            </div>
-            <div class="dashboard-stats-grid">
-                <div class="dash-card"><h4>Total Registrations</h4><h2>1,248</h2></div>
-                <div class="dash-card"><h4>Active Courses</h4><h2>11 Programs</h2></div>
-                <div class="dash-card"><h4>Database Sync</h4><h2>Google Sheets Connected</h2></div>
-            </div>
-            <div class="admin-database-section">
-                <h3>Recent Database Records & Submissions</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr><th>ID</th><th>Name</th><th>Role / Course</th><th>Status</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>#SK-9081</td><td>Arun Kumar</td><td>Artificial Intelligence</td><td><span style="color:var(--success);">Verified</span></td><td><button class="btn-link" onclick="alert('Viewing record')">View</button></td></tr>
-                        <tr><td>#SK-9082</td><td>Priya Sundaram</td><td>Website Building</td><td><span style="color:var(--success);">Client</span></td><td><button class="btn-link" onclick="alert('Viewing record')">View</button></td></tr>
-                        <tr><td>#SK-9083</td><td>Deepika V.</td><td>Full Stack Dev</td><td><span style="color:var(--accent);">Intern</span></td><td><button class="btn-link" onclick="alert('Viewing record')">View</button></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        `;
-    }
-    openModal('dashboardModal');
+.brand-text h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
 }
 
-// --- Certificate Verification ---
-function verifyCertificate() {
-    const certId = document.getElementById('certIdInput').value.trim();
-    const resultDiv = document.getElementById('verifyResult');
-    if (!certId) {
-        resultDiv.innerHTML = `<span style="color:#ef4444;">Please enter a valid Certificate ID.</span>`;
-        return;
-    }
-    resultDiv.innerHTML = `<span style="color:var(--success);"><i class="fas fa-check-circle"></i> Certificate ID <strong>${certId}</strong> is <strong>VERIFIED & AUTHENTIC</strong>. Issued by SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719).</span>`;
+.brand-text span {
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    font-weight: 600;
 }
 
-// --- General Submissions ---
-function handleAuthRegisterSubmit(e) {
-    e.preventDefault();
-    alert("Registration data saved successfully! Simulated integration with Google Sheets completed.");
-    closeModal('authModal');
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
 }
 
-function handleGeneralRegisterSubmit(e) {
-    e.preventDefault();
-    alert("Our team will contact you shortly.");
-    closeModal('registerModal');
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
 }
 
-function handleContactSubmit(e) {
-    e.preventDefault();
-    alert("Thank you for contacting SK SMART AI TECHNOLOGIES. We have received your message.");
-    e.target.reset();
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent);
 }
 
-// --- AI Chatbot ---
-function handleChatKeyPress(e) {
-    if (e.key === 'Enter') sendChatMessage();
+/* Dropdown */
+.dropdown {
+    position: relative;
 }
 
-function sendChatMessage() {
-    const input = document.getElementById('chatUserInput');
-    const msgText = input.value.trim();
-    if (!msgText) return;
-
-    const messagesContainer = document.getElementById('chatbotMessages');
-    const userDiv = document.createElement('div');
-    userDiv.className = 'message user-message';
-    userDiv.textContent = msgText;
-    messagesContainer.appendChild(userDiv);
-    input.value = '';
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    setTimeout(() => {
-        const botDiv = document.createElement('div');
-        botDiv.className = 'message bot-message';
-        botDiv.textContent = generateBotResponse(msgText);
-        messagesContainer.appendChild(botDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 600);
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    min-width: 220px;
+    padding: 10px 0;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1010;
 }
 
-function generateBotResponse(query) {
-    const q = query.toLowerCase();
-    if (q.includes('course') || q.includes('ai') || q.includes('python')) {
-        return "We offer professional courses in AI, ML, DL, Data Science, Full Stack, Java, Python, and IoT with MSME certification (UDYAM-TN-36-0058719).";
-    } else if (q.includes('service') || q.includes('website') || q.includes('app')) {
-        return "Our IT services include Website Building, Mobile Apps, Data Analytics, Visualization, Business Analytics, Software Development, AI Content, and Digital Marketing.";
-    } else if (q.includes('internship') || q.includes('training')) {
-        return "Our student training and internship programs provide 100% live project experience under expert mentors with verified MSME certificates.";
-    } else if (q.includes('contact') || q.includes('phone')) {
-        return "You can reach us at +91 93614 83073 or email sksmartaitechnologies@gmail.com.";
-    } else {
-        return "Welcome to SK SMART AI TECHNOLOGIES (MSME Reg: UDYAM-TN-36-0058719). How can we help you advance your career today?";
-    }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding-left: 25px;
+}
+
+/* 3-Dot LMS Menu */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lms-menu-container {
+    position: relative;
+}
+
+.lms-trigger-btn {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: transform 0.2s;
+}
+
+.lms-trigger-btn:hover {
+    transform: scale(1.05);
+}
+
+.lms-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    width: 200px;
+    padding: 10px 0;
+    display: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    z-index: 1020;
+}
+
+.lms-dropdown.show {
+    display: block;
+}
+
+.lms-header {
+    padding: 8px 15px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 5px;
+}
+
+.lms-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.lms-dropdown a:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--card-border);
+    margin: 6px 0;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+/* HERO SECTION & 3D VISUAL */
+.hero-section {
+    position: relative;
+    padding: 100px 0 80px;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.hero-glow {
+    position: absolute;
+    top: -20%;
+    left: 20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, rgba(10, 15, 29, 0) 70%);
+    z-index: -1;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: #fff;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--accent-glow);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    padding: 15px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.stat-card p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
+.ai-orbit-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbit-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(56, 189, 248, 0.4);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.core-orb {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #fff;
+    box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.floating-badge {
+    position: absolute;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-badge i {
+    color: var(--accent);
+}
+
+.top-badge { top: 20px; left: 0; }
+.bottom-badge { bottom: 20px; right: 0; }
+
+/* SECTIONS & GRIDS */
+section {
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.section-header h2 span {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+/* ABOUT */
+.about-section {
+    background: var(--bg-primary);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.about-card {
+    padding: 30px;
+    transition: transform 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.about-card .icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.about-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* COURSES */
+.courses-section {
+    background: var(--bg-primary);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: #fff;
+    border-color: transparent;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.course-card {
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.course-img {
+    height: 140px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(139, 92, 246, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--accent);
+}
+
+.course-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: max-content;
+}
+
+.course-body h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.course-body p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--card-border);
+    padding-top: 12px;
+}
+
+.view-blueprint {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* SERVICES */
+.services-section {
+    background: var(--bg-secondary);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.service-card {
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    background: rgba(56, 189, 248, 0.08);
+    border-color: var(--accent);
+}
+
+.service-card .icon {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* CONSULTING & TRAINING */
+.consulting-section {
+    background: var(--bg-primary);
+}
+
+.consulting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.consulting-card {
+    padding: 35px;
+}
+
+.icon-title {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.consulting-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.consulting-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.consulting-card ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.consulting-card ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.consulting-card ul li i {
+    color: var(--success);
+}
+
+.verify-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+}
+
+.verify-box h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.verify-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.verify-input-group input {
+    flex-grow: 1;
+    background: var(--bg-primary);
+    border: 1px solid var(--card-border);
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.verify-result {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* TESTIMONIALS */
+.testimonials-section {
+    background: var(--bg-secondary);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.testimonial-card {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stars {
+    color: #fbbf24;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.testimonial-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.client-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.client-info span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* CONTACT */
+.contact-section {
+    background: var(--bg-primary);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+}
+
+.contact-info-card {
+    padding: 40px;
+}
+
+.contact-info-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-info-card p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.contact-info-card i {
+    color: var(--accent);
+    width: 20px;
+}
+
+.contact-form {
+    padding: 40px;
+}
+
+.contact-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    background: var(--bg-primary);
+    border: 1px solid var(--card-border);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent);
+}
+
+.footer-brand p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.footer-contact p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--card-border);
+    padding-top: 20px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* FLOATING REGISTER BUTTON */
+.floating-register-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 25px var(--accent-glow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    animation: pulseGlow 2s infinite;
+    transition: transform 0.3s;
+}
+
+.floating-register-btn:hover {
+    transform: scale(1.08);
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+}
+
+/* AI CHATBOT WIDGET */
+.chatbot-widget {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 999;
+}
+
+.chatbot-toggle-btn {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--purple), var(--accent));
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-window {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    width: 350px;
+    height: 480px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chatbot-window.open {
+    display: flex;
+}
+
+.chatbot-header {
+    background: var(--bg-secondary);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.bot-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bot-info i {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.bot-info h4 {
+    font-size: 0.95rem;
+}
+
+.bot-info span {
+    font-size: 0.75rem;
+    color: var(--success);
+}
+
+.close-bot {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.chatbot-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.bot-message {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-primary);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.user-message {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.chatbot-input-area {
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    gap: 8px;
+}
+
+.chatbot-input-area input {
+    flex-grow: 1;
+    background: var(--bg-primary);
+    border: 1px solid var(--card-border);
+    padding: 8px 12px;
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.chatbot-input-area button {
+    background: var(--accent);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MODALS */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 29, 0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+}
+
+.auth-modal-content, .register-modal-content {
+    max-width: 500px;
+}
+
+.dashboard-modal-content {
+    max-width: 900px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-primary);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: var(--accent);
+}
+
+/* AUTH TABS */
+.auth-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    background: var(--bg-primary);
+    padding: 5px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.auth-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.auth-tab.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.auth-pane {
+    display: none;
+}
+
+.auth-pane.active {
+    display: block;
+}
+
+.auth-links-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.auth-links-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.otp-timer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.85rem;
+}
+
+/* DASHBOARD STYLES */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dash-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.dash-card h4 {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.dash-card h2 {
+    font-size: 1.8rem;
+    color: var(--accent);
+}
+
+.attendance-section, .certificate-section, .admin-database-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.attendance-section h3, .certificate-section h3, .admin-database-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.data-table th, .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.9rem;
+}
+
+.data-table th {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 1024px) {
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-cta { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { display: none; }
+    .about-grid, .courses-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .consulting-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-secondary); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--card-border); }
+    .nav-links.active { display: flex; }
+    .menu-toggle { display: block; }
+    .about-grid, .courses-grid, .testimonials-grid, .services-grid { grid-template-columns: 1fr; }
+    .hero-content h1 { font-size: 2.3rem; }
+    .footer-content { grid-template-columns: 1fr; }
+    .auth-tabs { grid-template-columns: repeat(2, 1fr); }
 }
