@@ -96,7 +96,7 @@ body {
     border-left: none;
     border-right: none;
     padding: 15px 0;
-    background: rgba(10, 15, 29, 0.85);
+    background: rgba(10, 15, 29, 0.9);
     backdrop-filter: blur(16px);
 }
 
