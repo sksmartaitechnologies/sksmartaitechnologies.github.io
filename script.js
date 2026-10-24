@@ -195,12 +195,12 @@ function renderDashboard(role) {
             </div>
             <div class="attendance-section">
                 <h3>Daily Attendance Logger</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Mark your daily training/class attendance.</p>
+                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Mark your daily training/class attendance.</p>
                 <button class="btn btn-primary" onclick="alert('Attendance marked successfully!')"><i class="fas fa-check"></i> Check-In Today</button>
             </div>
             <div class="certificate-section">
                 <h3>Certificate Verification & Download</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Your verified course completion certificate is ready.</p>
+                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Your verified course completion certificate is ready.</p>
                 <button class="btn btn-primary" onclick="alert('Downloading verified certificate PDF...')"><i class="fas fa-download"></i> Download Verified Certificate</button>
             </div>
         `;
@@ -220,7 +220,7 @@ function renderDashboard(role) {
             </div>
             <div class="attendance-section">
                 <h3>Staff Attendance Tracker</h3>
-                <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Log your daily staff login and review batch attendance.</p>
+                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Log your daily staff login and review batch attendance.</p>
                 <button class="btn btn-primary" onclick="alert('Staff attendance recorded successfully!')"><i class="fas fa-clipboard-check"></i> Log Staff Attendance</button>
             </div>
         `;
