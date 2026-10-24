@@ -288,10 +288,10 @@ body {
     color: var(--text-primary);
 }
 
-/* HERO SECTION (Centered Single-Column, Visual Graphic Removed) */
+/* HERO SECTION (Centered Single-Column, Empty Space Removed) */
 .hero-section {
     position: relative;
-    padding: 100px 0 80px;
+    padding: 60px 0 40px;
     overflow: hidden;
     text-align: center;
 }
@@ -345,7 +345,7 @@ body {
 
 .center-cta {
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .btn {
