@@ -231,7 +231,7 @@ function renderDashboard(role) {
                     <h2>Admin Master Control Dashboard</h2>
                     <p style="color:var(--text-secondary);">SK SMART AI TECHNOLOGIES</p>
                 </div>
-                <span class="badge" style="background:var(--accent); color:#0a0f1d;">Administrator</span>
+                <span class="badge" style="background:var(--accent); color:#fff;">Administrator</span>
             </div>
             <div class="dashboard-stats-grid">
                 <div class="dash-card"><h4>Total Registrations</h4><h2>1,248</h2></div>
