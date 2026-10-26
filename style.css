@@ -28,7 +28,6 @@ body {
     width: 100%;
 }
 
-/* Glassmorphism Utilities with Depth Shadows */
 .glass {
     background: var(--card-bg);
     backdrop-filter: blur(14px);
@@ -124,7 +123,6 @@ body {
     color: var(--accent);
 }
 
-/* Dropdown */
 .dropdown {
     position: relative;
 }
@@ -161,7 +159,6 @@ body {
     padding-left: 20px;
 }
 
-/* 3-Dot Menu */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -352,7 +349,7 @@ body {
     margin: 0;
 }
 
-/* SECTIONS & GRIDS */
+/* SECTIONS */
 section {
     padding: 40px 0;
 }
@@ -1134,7 +1131,6 @@ section {
     color: #fff;
 }
 
-/* AUTH TABS */
 .auth-tabs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1202,7 +1198,6 @@ section {
     font-family: var(--font-main);
 }
 
-/* DASHBOARD STYLES */
 .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -1276,7 +1271,6 @@ section {
     font-weight: bold;
 }
 
-/* RESPONSIVE MEDIA QUERIES FOR MOBILE ALIGNMENT */
 @media (max-width: 1024px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1290,28 +1284,15 @@ section {
     .nav-links {
         display: none;
     }
-    
     .hero-content h1 {
         font-size: 2.1rem;
     }
-    
-    .hero-stats-center,
-    .about-grid,
-    .courses-grid,
-    .services-grid,
-    .consulting-grid,
-    .testimonials-grid,
-    .contact-grid,
-    .footer-content,
-    .dashboard-stats-grid,
-    .form-row {
+    .hero-stats-center, .about-grid, .courses-grid, .services-grid, .consulting-grid, .testimonials-grid, .contact-grid, .footer-content, .dashboard-stats-grid, .form-row {
         grid-template-columns: 1fr;
     }
-
     .auth-tabs {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .chatbot-window {
         width: calc(100vw - 30px);
         left: -10px;
