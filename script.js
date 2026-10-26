@@ -1,6 +1,5 @@
-// --- DOMContentLoaded & Navigation Setup ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Menu Dropdown Toggle (Menu Button)
+    // Menu Dropdown Toggle
     const lmsTriggerBtn = document.getElementById('lmsTriggerBtn');
     const lmsDropdown = document.getElementById('lmsDropdown');
     if (lmsTriggerBtn && lmsDropdown) {
@@ -49,19 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- Modal Utilities ---
+// Modal Utilities
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('open');
-    }
+    if (modal) modal.classList.add('open');
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove('open');
-    }
+    if (modal) modal.classList.remove('open');
 }
 
 function openAuthModal(tabName) {
@@ -87,12 +82,9 @@ function switchAuthTab(tabName) {
 
     panes.forEach(p => p.classList.remove('active'));
     const activePane = document.getElementById('pane-' + tabName);
-    if (activePane) {
-        activePane.classList.add('active');
-    }
+    if (activePane) activePane.classList.add('active');
 }
 
-// --- Conditional Fields for Registration ---
 function toggleConditionalFields() {
     const statusSelect = document.getElementById('currentStatusSelect');
     const condDiv = document.getElementById('studyingConditionalFields');
@@ -101,7 +93,7 @@ function toggleConditionalFields() {
     }
 }
 
-// --- OTP & Forgot Password Flow ---
+// OTP Flow
 let otpTimer = null;
 let secondsLeft = 120;
 
@@ -118,10 +110,8 @@ function openForgotPasswordModal() {
 
 function handleSendOtp(e) {
     e.preventDefault();
-    const step1 = document.getElementById('forgotStep1');
-    const step2 = document.getElementById('forgotStep2');
-    if (step1) step1.style.display = 'none';
-    if (step2) step2.style.display = 'block';
+    document.getElementById('forgotStep1').style.display = 'none';
+    document.getElementById('forgotStep2').style.display = 'block';
     startOtpTimer();
 }
 
@@ -141,7 +131,6 @@ function startOtpTimer() {
         if (timerDisplay) {
             timerDisplay.textContent = `Time Remaining: ${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
         }
-
         if (secondsLeft <= 0) {
             clearInterval(otpTimer);
             if (timerDisplay) timerDisplay.style.display = 'none';
@@ -160,10 +149,8 @@ function handleVerifyOtp(e) {
     const otpInput = document.getElementById('otpInput');
     if (otpInput && otpInput.value === '1234') {
         clearInterval(otpTimer);
-        const step2 = document.getElementById('forgotStep2');
-        const step3 = document.getElementById('forgotStep3');
-        if (step2) step2.style.display = 'none';
-        if (step3) step3.style.display = 'block';
+        document.getElementById('forgotStep2').style.display = 'none';
+        document.getElementById('forgotStep3').style.display = 'block';
     } else {
         alert("Invalid OTP! Please enter 1234 for simulation.");
     }
@@ -176,7 +163,6 @@ function handleUpdatePassword(e) {
     openAuthModal('student');
 }
 
-// --- Login & Dashboards ---
 function handleLoginSubmit(e, role) {
     e.preventDefault();
     closeModal('authModal');
@@ -215,12 +201,10 @@ function renderDashboard(role) {
             </div>
             <div class="attendance-section">
                 <h3>Daily Attendance Logger</h3>
-                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Mark your daily training/class attendance.</p>
                 <button class="btn btn-primary" type="button" onclick="alert('Attendance marked successfully!')"><i class="fas fa-check"></i> Check-In Today</button>
             </div>
             <div class="certificate-section">
                 <h3>Certificate Verification & Download</h3>
-                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Your verified course completion certificate is ready.</p>
                 <button class="btn btn-primary" type="button" onclick="alert('Downloading verified certificate PDF...')"><i class="fas fa-download"></i> Download Verified Certificate</button>
             </div>
         `;
@@ -238,11 +222,6 @@ function renderDashboard(role) {
                 <div class="dash-card"><h4>Total Trainees</h4><h2>140 Students</h2></div>
                 <div class="dash-card"><h4>Avg. Attendance</h4><h2>91%</h2></div>
             </div>
-            <div class="attendance-section">
-                <h3>Staff Attendance Tracker</h3>
-                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:15px;">Log your daily staff login and review batch attendance.</p>
-                <button class="btn btn-primary" type="button" onclick="alert('Staff attendance recorded successfully!')"><i class="fas fa-clipboard-check"></i> Log Staff Attendance</button>
-            </div>
         `;
     } else if (role === 'admin') {
         content.innerHTML = `
@@ -258,30 +237,15 @@ function renderDashboard(role) {
                 <div class="dash-card"><h4>Active Courses</h4><h2>12 Programs</h2></div>
                 <div class="dash-card"><h4>Database Sync</h4><h2>Google Sheets Connected</h2></div>
             </div>
-            <div class="admin-database-section">
-                <h3>Recent Database Records & Submissions</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr><th>ID</th><th>Name</th><th>Role / Course</th><th>Status</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>#SK-9081</td><td>Arun Kumar</td><td>Artificial Intelligence</td><td><span style="color:var(--success);">Verified</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
-                        <tr><td>#SK-9082</td><td>Priya Sundaram</td><td>Website Building</td><td><span style="color:var(--success);">Client</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
-                        <tr><td>#SK-9083</td><td>Deepika V.</td><td>Cyber Security</td><td><span style="color:var(--accent);">Intern</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
-                    </tbody>
-                </table>
-            </div>
         `;
     }
     openModal('dashboardModal');
 }
 
-// --- Certificate Verification ---
 function verifyCertificate() {
     const certIdInput = document.getElementById('certIdInput');
     const resultDiv = document.getElementById('verifyResult');
     if (!certIdInput || !resultDiv) return;
-
     const certId = certIdInput.value.trim();
     if (!certId) {
         resultDiv.innerHTML = `<span style="color:#ef4444;">Please enter a valid Certificate ID.</span>`;
@@ -290,10 +254,9 @@ function verifyCertificate() {
     resultDiv.innerHTML = `<span style="color:var(--success);"><i class="fas fa-check-circle"></i> Certificate ID <strong>${certId}</strong> is <strong>VERIFIED & AUTHENTIC</strong>. Issued by SK SMART AI TECHNOLOGIES.</span>`;
 }
 
-// --- General Submissions ---
 function handleAuthRegisterSubmit(e) {
     e.preventDefault();
-    alert("Registration data saved successfully! Simulated integration with Google Sheets completed.");
+    alert("Registration data saved successfully!");
     closeModal('authModal');
 }
 
@@ -309,14 +272,14 @@ function handleContactSubmit(e) {
     e.target.reset();
 }
 
-// --- AI Chatbot Logic ---
+// --- AI Chatbot Connected to Backend API ---
 function handleChatKeyPress(e) {
     if (e.key === 'Enter') {
         sendChatMessage();
     }
 }
 
-function sendChatMessage() {
+async function sendChatMessage() {
     const input = document.getElementById('chatUserInput');
     if (!input) return;
 
@@ -326,7 +289,7 @@ function sendChatMessage() {
     const messagesContainer = document.getElementById('chatbotMessages');
     if (!messagesContainer) return;
 
-    // Append user message
+    // Append User Message
     const userDiv = document.createElement('div');
     userDiv.className = 'message user-message';
     userDiv.textContent = msgText;
@@ -334,27 +297,24 @@ function sendChatMessage() {
     input.value = '';
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    // Simulate AI bot response
-    setTimeout(() => {
-        const botDiv = document.createElement('div');
-        botDiv.className = 'message bot-message';
-        botDiv.textContent = generateBotResponse(msgText);
-        messagesContainer.appendChild(botDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 600);
-}
+    // Append Bot Loading Bubble
+    const botDiv = document.createElement('div');
+    botDiv.className = 'message bot-message';
+    botDiv.textContent = "Thinking...";
+    messagesContainer.appendChild(botDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-function generateBotResponse(query) {
-    const q = query.toLowerCase();
-    if (q.includes('course') || q.includes('ai') || q.includes('cyber') || q.includes('python')) {
-        return "We offer professional courses in AI, ML, DL, Data Science, Cyber Security, Full Stack, Java, Python, and IoT.";
-    } else if (q.includes('service') || q.includes('website') || q.includes('app')) {
-        return "Our IT services include Website Building, Mobile Apps, Data Analytics, Visualization, Business Analytics, Software Development, AI Content, and Digital Marketing.";
-    } else if (q.includes('internship') || q.includes('training')) {
-        return "Our student training and internship programs provide 100% live project experience under expert mentors.";
-    } else if (q.includes('contact') || q.includes('phone')) {
-        return "You can reach us at +91 93614 83073 or email sksmartaitechnologies@gmail.com.";
-    } else {
-        return "Welcome to SK SMART AI TECHNOLOGIES. How can we help you advance your career today?";
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: msgText })
+        });
+
+        const data = await response.json();
+        botDiv.textContent = data.reply || "Welcome to SK SMART AI TECHNOLOGIES. How can we help you advance your career today?";
+    } catch (error) {
+        botDiv.textContent = "Welcome to SK SMART AI TECHNOLOGIES. How can we assist you with our IT services and courses today?";
     }
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
