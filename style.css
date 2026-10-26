@@ -262,20 +262,6 @@ body {
     align-items: center;
 }
 
-.badge-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(2, 132, 199, 0.1);
-    border: 1px solid rgba(2, 132, 199, 0.3);
-    padding: 5px 14px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
 .hero-content h1 {
     font-size: 3rem;
     font-weight: bold;
@@ -1290,12 +1276,7 @@ section {
     font-weight: bold;
 }
 
-
-/* ==========================================
-   RESPONSIVE MEDIA QUERIES FOR MOBILE ALIGNMENT
-   ========================================== */
-
-/* Tablet view */
+/* RESPONSIVE MEDIA QUERIES FOR MOBILE ALIGNMENT */
 @media (max-width: 1024px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1305,10 +1286,9 @@ section {
     }
 }
 
-/* Mobile & Small Tablet view */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Can be expanded with a hamburger menu if desired */
+        display: none;
     }
     
     .hero-content h1 {
