@@ -48,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Scroll to verify section from mobile menu
+function scrollToVerify() {
+    const section = document.getElementById('verifyBoxSection');
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 // Modal Utilities
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
@@ -272,7 +280,7 @@ function handleContactSubmit(e) {
     e.target.reset();
 }
 
-// --- AI Chatbot Connected to Backend API ---
+// --- AI Chatbot Logic ---
 function handleChatKeyPress(e) {
     if (e.key === 'Enter') {
         sendChatMessage();
@@ -314,7 +322,7 @@ async function sendChatMessage() {
         const data = await response.json();
         botDiv.textContent = data.reply || "Welcome to SK SMART AI TECHNOLOGIES. How can we help you advance your career today?";
     } catch (error) {
-        botDiv.textContent = "Welcome to SK SMART AI TECHNOLOGIES. How can we assist you with our IT services and courses today?";
+        botDiv.textContent = "Welcome to SK SMART AI TECHNOLOGIES. How can we assist you with our IT solutions and courses today?";
     }
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
