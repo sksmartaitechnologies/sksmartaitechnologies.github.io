@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Scroll to verify section from mobile menu
+// Scroll to verify section
 function scrollToVerify() {
     const section = document.getElementById('verifyBoxSection');
     if (section) {
