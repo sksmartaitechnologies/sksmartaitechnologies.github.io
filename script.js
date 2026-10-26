@@ -255,7 +255,7 @@ function renderDashboard(role) {
             </div>
             <div class="dashboard-stats-grid">
                 <div class="dash-card"><h4>Total Registrations</h4><h2>1,248</h2></div>
-                <div class="dash-card"><h4>Active Courses</h4><h2>11 Programs</h2></div>
+                <div class="dash-card"><h4>Active Courses</h4><h2>12 Programs</h2></div>
                 <div class="dash-card"><h4>Database Sync</h4><h2>Google Sheets Connected</h2></div>
             </div>
             <div class="admin-database-section">
@@ -267,7 +267,7 @@ function renderDashboard(role) {
                     <tbody>
                         <tr><td>#SK-9081</td><td>Arun Kumar</td><td>Artificial Intelligence</td><td><span style="color:var(--success);">Verified</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
                         <tr><td>#SK-9082</td><td>Priya Sundaram</td><td>Website Building</td><td><span style="color:var(--success);">Client</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
-                        <tr><td>#SK-9083</td><td>Deepika V.</td><td>Full Stack Dev</td><td><span style="color:var(--accent);">Intern</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
+                        <tr><td>#SK-9083</td><td>Deepika V.</td><td>Cyber Security</td><td><span style="color:var(--accent);">Intern</span></td><td><button class="btn-link" type="button" onclick="alert('Viewing record')">View</button></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -346,10 +346,10 @@ function sendChatMessage() {
 
 function generateBotResponse(query) {
     const q = query.toLowerCase();
-    if (q.includes('course') || q.includes('ai') || q.includes('python')) {
-        return "We offer professional courses in AI, ML, DL, Data Science, Full Stack, Java, Python, and IoT.";
+    if (q.includes('course') || q.includes('ai') || q.includes('cyber') || q.includes('python')) {
+        return "We offer professional courses in AI, ML, DL, Data Science, Cyber Security, Full Stack, Java, Python, and IoT.";
     } else if (q.includes('service') || q.includes('website') || q.includes('app')) {
-        return "Our IT Solution services include Website Building, Mobile Apps, Data Analytics, Visualization, Business Analytics, Software Development, AI Content, and Digital Marketing.";
+        return "Our IT services include Website Building, Mobile Apps, Data Analytics, Visualization, Business Analytics, Software Development, AI Content, and Digital Marketing.";
     } else if (q.includes('internship') || q.includes('training')) {
         return "Our student training and internship programs provide 100% live project experience under expert mentors.";
     } else if (q.includes('contact') || q.includes('phone')) {
