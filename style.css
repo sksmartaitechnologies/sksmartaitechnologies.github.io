@@ -11,7 +11,7 @@
     --font-main: "Times New Roman", Times, serif;
 }
 
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,13 +19,13 @@
 }
 
 body {
-    background: var(--bg-gradient) !important;
-    background-attachment: fixed !important;
-    color: var(--text-primary) !important;
-    font-family: var(--font-main) !important;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: var(--font-main);
     overflow-x: hidden;
     min-height: 100vh;
-    width: 1200px; /* Lock layout viewport width for identical mobile/desktop appearance */
+    width: 100%;
 }
 
 /* Glassmorphism Utilities with Depth Shadows */
@@ -42,6 +42,7 @@ body {
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 15px;
+    width: 100%;
 }
 
 /* NAVBAR */
@@ -81,6 +82,7 @@ body {
     justify-content: center;
     overflow: hidden;
     box-shadow: 0 4px 15px var(--accent-glow);
+    flex-shrink: 0;
 }
 
 .logo-img-box img {
@@ -241,7 +243,7 @@ body {
     margin: 4px 0;
 }
 
-/* HERO SECTION (Compact, zero gap) */
+/* HERO SECTION */
 .hero-section {
     position: relative;
     padding: 40px 0 25px;
@@ -297,8 +299,11 @@ body {
 }
 
 .center-cta {
+    display: flex;
+    gap: 12px;
     justify-content: center;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -361,7 +366,7 @@ body {
     margin: 0;
 }
 
-/* SECTIONS & GRIDS (Tightened padding to remove empty gaps) */
+/* SECTIONS & GRIDS */
 section {
     padding: 40px 0;
 }
@@ -715,6 +720,7 @@ section {
     font-weight: bold;
     color: #fff;
     font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 .client-info h4 {
@@ -863,6 +869,28 @@ section {
     gap: 10px;
 }
 
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
 .footer-bottom {
     text-align: center;
     border-top: 1px solid var(--card-border);
@@ -937,6 +965,7 @@ section {
     bottom: 70px;
     left: 0;
     width: 330px;
+    max-width: calc(100vw - 40px);
     height: 450px;
     display: none;
     flex-direction: column;
@@ -1134,8 +1163,8 @@ section {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding: 8px;
-    font-size: 0.9rem;
+    padding: 8px 4px;
+    font-size: 0.85rem;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
@@ -1195,6 +1224,8 @@ section {
     border-bottom: 1px solid var(--card-border);
     padding-bottom: 15px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .dashboard-stats-grid {
@@ -1229,6 +1260,7 @@ section {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 15px;
+    overflow-x: auto;
 }
 
 .attendance-section h3, .certificate-section h3, .admin-database-section h3 {
@@ -1242,6 +1274,7 @@ section {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    min-width: 500px;
 }
 
 .data-table th, .data-table td {
@@ -1255,4 +1288,52 @@ section {
 .data-table th {
     color: var(--text-secondary);
     font-weight: bold;
+}
+
+
+/* ==========================================
+   RESPONSIVE MEDIA QUERIES FOR MOBILE ALIGNMENT
+   ========================================== */
+
+/* Tablet view */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-grid, .courses-grid, .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile & Small Tablet view */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Can be expanded with a hamburger menu if desired */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.1rem;
+    }
+    
+    .hero-stats-center,
+    .about-grid,
+    .courses-grid,
+    .services-grid,
+    .consulting-grid,
+    .testimonials-grid,
+    .contact-grid,
+    .footer-content,
+    .dashboard-stats-grid,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chatbot-window {
+        width: calc(100vw - 30px);
+        left: -10px;
+    }
 }
